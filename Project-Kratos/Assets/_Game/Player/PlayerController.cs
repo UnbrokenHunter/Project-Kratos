@@ -1,13 +1,13 @@
 using ProjectKratos.Bullet;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ProjectKratos.Player
 {
     public class PlayerController : NetworkBehaviour, IPlayer
     {
         [SerializeField] private ScriptableStats _stats;
-        [SerializeField] private Transform _firepoint;
 
         #region Internal
         private int _fixedFrame;
@@ -17,6 +17,7 @@ namespace ProjectKratos.Player
         
         // Cached Variables
         private Transform _transform;
+        private PlayerShoot _shoot;
         private PlayerInput _input;
         private Rigidbody _rb;
         #endregion
@@ -44,6 +45,7 @@ namespace ProjectKratos.Player
             _transform = transform;
             _rb = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
+            _shoot = GetComponent<PlayerShoot>();
 
             _input.Shoot += HandleShooting;
         }
@@ -54,6 +56,7 @@ namespace ProjectKratos.Player
             
             GatherInput();
         }
+        
         protected virtual void GatherInput()
         {
             _frameInput = _input.FrameInput;
@@ -97,20 +100,8 @@ namespace ProjectKratos.Player
         {
             if (!IsOwner) return;
 
-            GameObject _bulletObject = Instantiate(
-                _stats.BulletType.bulletPrefab, 
-                _firepoint.position, 
-                Quaternion.Euler(_transform.rotation.eulerAngles),
-                null);
+            _shoot.RequestFireServerRpc();
 
-            _bulletObject.GetComponent<NetworkObject>().Spawn(true);
-
-            _bulletObject.AddComponent<MeshFilter>().mesh = _stats.BulletType.BulletMesh;
-            _bulletObject.AddComponent<MeshRenderer>().material = _stats.BulletType.BulletMaterial;
-            _bulletObject.AddComponent<MeshCollider>().convex = true;
-
-            _bulletObject.GetComponent<Rigidbody>().AddForce(_stats.BulletType.BulletSpeed * _bulletObject.transform.forward, ForceMode.Impulse);
-            //_bulletObject.AddComponent<BulletScript>();
         }
 
         protected virtual void ApplyVelocity()
@@ -119,6 +110,7 @@ namespace ProjectKratos.Player
         }
 
     }
+
     public enum PlayerForce
     {
         /// <summary>

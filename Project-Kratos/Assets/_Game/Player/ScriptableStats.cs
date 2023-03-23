@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using ProjectKratos.Bullet;
 
 namespace ProjectKratos.Player
 {
@@ -13,12 +14,12 @@ namespace ProjectKratos.Player
         [Title("Attack Variables")]
         public float Damage = 1f;
         public float ShootSpeed = 1f;
-        public Bullet BulletType;
+        public ScriptableBullet BulletType;
 
         [Title("External")]
         [Tooltip("The rate at which external velocity decays")]
         public int ExternalVelocityDecay = 100;
 
-
+        
     }
 }

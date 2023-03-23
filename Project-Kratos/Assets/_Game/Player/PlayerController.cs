@@ -1,4 +1,4 @@
-using System;
+using ProjectKratos.Bullet;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,7 +8,6 @@ namespace ProjectKratos.Player
     {
         [SerializeField] private ScriptableStats _stats;
         [SerializeField] private Transform _firepoint;
-
 
         #region Internal
         private int _fixedFrame;
@@ -73,7 +72,9 @@ namespace ProjectKratos.Player
         }
 
 
-
+        /// <summary>
+        /// Gets the player input, and sets the _speed variable equal to it
+        /// </summary>
         protected virtual void HandleMovement()
         {
 
@@ -87,42 +88,35 @@ namespace ProjectKratos.Player
                     Quaternion.LookRotation(_movement), _stats.RotationSpeed);
         }
 
+        /// <summary>
+        /// Creates a bullet entirly through script, and syncs it to the server 
+        /// using a ClientNetworkTransform. It also adds force to it, and sets 
+        /// its direction to the player's
+        /// </summary>
         protected virtual void HandleShooting()
         {
             if (!IsOwner) return;
 
-            ShootClientRpc();
+            GameObject _bulletObject = Instantiate(
+                _stats.BulletType.bulletPrefab, 
+                _firepoint.position, 
+                Quaternion.Euler(_transform.rotation.eulerAngles),
+                null);
 
-            GameObject _bulletObject = new ("Bullet");
-            _bulletObject.transform.SetPositionAndRotation(
-                _firepoint.position,
-                Quaternion.Euler(_transform.rotation.eulerAngles)
-            );
+            _bulletObject.GetComponent<NetworkObject>().Spawn(true);
 
             _bulletObject.AddComponent<MeshFilter>().mesh = _stats.BulletType.BulletMesh;
             _bulletObject.AddComponent<MeshRenderer>().material = _stats.BulletType.BulletMaterial;
             _bulletObject.AddComponent<MeshCollider>().convex = true;
 
-            _bulletObject.AddComponent<Rigidbody>().AddForce(_stats.BulletType.BulletSpeed * _bulletObject.transform.forward, ForceMode.Impulse);
-            _bulletObject.AddComponent<BulletScript>();
-            
+            _bulletObject.GetComponent<Rigidbody>().AddForce(_stats.BulletType.BulletSpeed * _bulletObject.transform.forward, ForceMode.Impulse);
+            //_bulletObject.AddComponent<BulletScript>();
         }
 
         protected virtual void ApplyVelocity()
         {
             _rb.velocity = _speed + _currentExternalVelocity;
         }
-
-
-        #region Servers
-
-        [ClientRpc]
-        private void ShootClientRpc()
-        {
-            Debug.Log($"Shoot Server RPC: {OwnerClientId}");
-        }
-
-        #endregion
 
     }
     public enum PlayerForce

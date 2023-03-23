@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ProjectKratos
+namespace ProjectKratos.Bullet
 {
     public class BulletScript : MonoBehaviour
     {

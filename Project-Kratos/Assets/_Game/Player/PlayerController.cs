@@ -100,7 +100,8 @@ namespace ProjectKratos.Player
         {
             if (!IsOwner) return;
 
-            _shoot.RequestFireServerRpc();
+            var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
+            _shoot.ShootBullet(rotation);
 
         }
 

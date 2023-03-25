@@ -9,8 +9,21 @@ namespace ProjectKratos.Player
         [SerializeField] private Transform _firepoint;
         [SerializeField] private GameObject _bulletPrefab;
 
+        private Quaternion _bulletRotation;
+
+        /// <summary>
+        /// In Future, we may want to also pass in the firepoint position, if there are aiming issues
+        /// </summary>
+        /// <param name="rotation"></param>
+        public void ShootBullet(Quaternion rotation)
+        {
+            _bulletRotation = rotation;
+
+            RequestFireServerRpc();
+        }
+
         [ServerRpc]
-        public void RequestFireServerRpc()
+        private void RequestFireServerRpc()
         {
             FireClientRpc();
         }
@@ -18,17 +31,19 @@ namespace ProjectKratos.Player
         [ClientRpc]
         private void FireClientRpc()
         {
-            ShootBullet();
+            CreateBullet();
         }
 
-        private void ShootBullet()
+        private void CreateBullet()
         {
             // The velocity is done in the awake function on the object In the BulletScript
-            Instantiate(
+            GameObject bullet = Instantiate(
                 _bulletPrefab,
                 _firepoint.position,
-                Quaternion.Euler(transform.rotation.eulerAngles),
+                _bulletRotation,
                 null);
+
+            bullet.GetComponent<BulletScript>().Direction = transform.forward;
 
         }
     }

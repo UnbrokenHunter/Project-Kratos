@@ -8,10 +8,8 @@ namespace ProjectKratos.Player
     {
         [SerializeField] private Transform _objectToFollow;
 
-        public override void OnNetworkSpawn()
-        {
-            if (!IsOwner) return;
-
+        public override void OnGainedOwnership()
+        {            
             Camera.main.GetComponent<CinemachineBrain>().
                 ActiveVirtualCamera.Follow = _objectToFollow;
         }

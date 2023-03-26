@@ -1,4 +1,5 @@
 using ProjectKratos.Bullet;
+using System.Diagnostics;
 using Unity.Netcode;
 
 namespace ProjectKratos.Player
@@ -45,9 +46,10 @@ namespace ProjectKratos.Player
                 _variables.Stats.CurrentHealth = 0;
                 KillPlayer();
             }
-            print(_variables.Stats.CurrentHealth + " " + damage);
 
             _healthBar.UpdateBar();
+
+            print($"Current Health: {_variables.Stats.CurrentHealth} \nDamage Taken: {damage} \nPlayer Name: {name}");
         }
 
         public virtual void AddHealth(float healAmt)

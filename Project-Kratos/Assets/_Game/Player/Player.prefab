@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446ee9265108f824cad3af9a376499b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthBar: {fileID: 7945480099751494513}
+  _healthBarSpriteRender: {fileID: 7945480099751494513}
 --- !u!1 &1882987540414465274
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 045fd89ba756ba1439e7d4e08e09f781, type: 2}
+  moneyCount: 0
 --- !u!1 &7133632495305275656
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,20 +7,17 @@ namespace ProjectKratos.Player
     {
         #region Internal
 
-        public float CurrentHealth { get => _currentHealth; }
-        private float _currentHealth;
-
         private PlayerVariables _variables;
-        private HealthBarManager _healthBarManager;
+        private HealthBar _healthBar;
 
         #endregion
 
         public override void OnNetworkSpawn()
         {
             _variables = GetComponentInParent<PlayerVariables>();
-            _healthBarManager = transform.root.GetComponentInChildren<HealthBarManager>();
+            _healthBar = transform.root.GetComponentInChildren<HealthBar>();
 
-            _currentHealth = _variables.Stats.MaxHealth;
+            _variables.Stats.CurrentHealth = _variables.Stats.MaxHealth;
         }
 
         public virtual void PlayerHit(BulletScript bullet)
@@ -41,29 +38,30 @@ namespace ProjectKratos.Player
         {
             if (!IsOwner) return;
 
-            _currentHealth -= damage;
+            _variables.Stats.CurrentHealth -= damage;
 
-            if (_currentHealth <= 0)
+            if (_variables.Stats.CurrentHealth <= 0)
             {
-                _currentHealth = 0;
+                _variables.Stats.CurrentHealth = 0;
                 KillPlayer();
             }
-            print(_currentHealth + " " + damage);
-            _healthBarManager.SetBar();
+            print(_variables.Stats.CurrentHealth + " " + damage);
+
+            _healthBar.UpdateBar();
         }
 
         public virtual void AddHealth(float healAmt)
         {
             if (!IsOwner) return;
 
-            _currentHealth += healAmt;
+            _variables.Stats.CurrentHealth += healAmt;
 
-            if(_currentHealth <= _variables.Stats.MaxHealth)
+            if(_variables.Stats.CurrentHealth <= _variables.Stats.MaxHealth)
             {
-                _currentHealth = _variables.Stats.MaxHealth;
+                _variables.Stats.CurrentHealth = _variables.Stats.MaxHealth;
             }
-
-            _healthBarManager.SetBar();
+            
+            _healthBar.UpdateBar();
         }
 
         private void KillPlayer()

@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using ProjectKratos.Bullet;
 
 namespace ProjectKratos.Player
 {
@@ -8,15 +7,18 @@ namespace ProjectKratos.Player
     public class ScriptableStats : ScriptableObject
     {
         [Title("Movement Variables")]
+        public bool CanMove = true;
         public float Speed = 10f;
         public float RotationSpeed = 0.15f;
 
         [Title("Health Variables")]
+        public float CurrentHealth;
         public float MaxHealth = 100f;
-        public float Defense = 100f;
+        public float Defense = 1f;
         public float HealthRegen = 1f;
 
         [Title("Attack Variables")]
+        public bool CanShoot = true;
         public float Damage = 1f;
 
         [Title("External")]

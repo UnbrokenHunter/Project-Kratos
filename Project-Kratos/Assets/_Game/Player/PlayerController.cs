@@ -82,6 +82,7 @@ namespace ProjectKratos.Player
         /// </summary>
         protected virtual void HandleMovement()
         {
+            if (!_variables.Stats.CanMove) return;
 
             Vector3 _movement = new (Input.x, 0f, Input.y);
 
@@ -101,6 +102,7 @@ namespace ProjectKratos.Player
         protected virtual void HandleShooting()
         {
             if (!IsOwner) return;
+            if (!_variables.Stats.CanShoot) return;
 
             var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
             _shoot.ShootBullet(rotation, _variables.Stats.Damage);

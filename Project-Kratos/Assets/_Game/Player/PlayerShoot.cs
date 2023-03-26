@@ -25,10 +25,8 @@ namespace ProjectKratos.Player
         }
 
         [ServerRpc]
-        private void RequestFireServerRpc(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier)
-        {
+        private void RequestFireServerRpc(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier) => 
             FireClientRpc(bulletRotation, instanceIdOfShooter, damageMultiplier);
-        }
 
         [ClientRpc]
         private void FireClientRpc(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier)

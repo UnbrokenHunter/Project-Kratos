@@ -9,5 +9,8 @@ namespace ProjectKratos
         public ScriptableStats Stats { get => _stats; set => _stats = value; }
         [SerializeField] private ScriptableStats _stats;
 
+        public float MoneyCount { get => moneyCount; set => moneyCount = value; }
+        [SerializeField] private float moneyCount;
+
     }
 }

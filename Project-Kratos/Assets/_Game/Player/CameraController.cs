@@ -2,7 +2,7 @@ using Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace ProjectKratos
+namespace ProjectKratos.Player
 {
     public class CameraController : NetworkBehaviour
     {

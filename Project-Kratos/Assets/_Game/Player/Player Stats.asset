@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 800
   RotationSpeed: 0.15
-  Damage: 1
-  ShootSpeed: 1
-  BulletType: {fileID: 11400000, guid: a8e9b07d8d72bb84488ba92d79c1eae1, type: 2}
+  MaxHealth: 100
+  Defense: 1
+  HealthRegen: 1
+  Damage: 5
   ExternalVelocityDecay: 100

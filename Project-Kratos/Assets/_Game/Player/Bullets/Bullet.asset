@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33969ddffc091e9419d6d80c650423bc, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
-    type: 3}
-  BulletDamageMultiplier: 1
-  BulletSpeed: 223.78
-  BulletMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  BulletMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  Damage: 3
+  Speed: 10

@@ -6,20 +6,16 @@ namespace ProjectKratos.Shop
 {
     public abstract class ShopItem : MonoBehaviour
     {
+        private ShopMenu _shopMenu;
         private protected PlayerVariables _variables;
         [SerializeField] private protected float _cost;
 
-        private void OnEnable()
+        private void Start()
         {
-            _variables = NetworkManager.Singleton.LocalClient.PlayerObject.
-                GetComponent<PlayerVariables>();
+            _shopMenu = GetComponentInParent<ShopMenu>();
+            _variables = _shopMenu.Variables;
 
             GetComponent<Button>().onClick.AddListener(() => TryBuyItem());
-        }
-
-        private void OnDisable()
-        {
-            GetComponent<Button>().onClick.RemoveListener(() => TryBuyItem());
         }
 
         public virtual void TryBuyItem()

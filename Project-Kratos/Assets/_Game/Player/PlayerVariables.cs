@@ -1,4 +1,5 @@
 using ProjectKratos.Player;
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,5 +13,9 @@ namespace ProjectKratos
         public float MoneyCount { get => moneyCount; set => moneyCount = value; }
         [SerializeField] private float moneyCount;
 
+        public static implicit operator GameObject(PlayerVariables v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

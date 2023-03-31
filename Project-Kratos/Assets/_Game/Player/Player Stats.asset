@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cff47cd6ec0ca4185cf08db5225c1b, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
+  CanMove: 1
   Speed: 800
   RotationSpeed: 0.15
-  Damage: 1
-  ShootSpeed: 1
-  BulletType: {fileID: 11400000, guid: a8e9b07d8d72bb84488ba92d79c1eae1, type: 2}
+  CurrentHealth: 100
+  MaxHealth: 100
+  Defense: 1
+  HealthRegen: 1
+  CanShoot: 1
+  Damage: 5
   ExternalVelocityDecay: 100

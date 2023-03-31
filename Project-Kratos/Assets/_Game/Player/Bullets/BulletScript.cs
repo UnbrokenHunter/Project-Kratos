@@ -1,17 +1,46 @@
+using ProjectKratos.Player;
 using UnityEngine;
 
 namespace ProjectKratos.Bullet
 {
     public class BulletScript : MonoBehaviour
+
     {
-        public Vector3 Direction { private get; set; }
+        public ShooterStats ShooterStats { get; private set; }
 
-        [SerializeField] private ScriptableBullet _bulletType;
+        public ScriptableBullet BulletStats { get => _bulletStats; }
+        [SerializeField] private ScriptableBullet _bulletStats;
 
-        private void Start()
+        public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.Direction, ForceMode.Impulse);
+
+        public void CreateBullet(Vector3 direction, int shooterID, float shooterDamageMultipler)
         {
-            GetComponent<Rigidbody>().AddForce(_bulletType.BulletSpeed * Direction, ForceMode.Impulse);
+            ShooterStats = new ShooterStats {
+                Direction = direction,
+                ShooterID = shooterID,
+                ShooterDamageMultipler = shooterDamageMultipler
+            };
         }
 
+        // Hits something
+        private void OnTriggerEnter(Collider other)
+        {
+            // Hits Player
+            if (!other.transform.root.CompareTag("Player")) return;
+            
+            PlayerInteractions player = 
+                other.transform.root.GetComponentInChildren<PlayerInteractions>();
+
+            player.PlayerHit(this);
+
+        }
     }
+
+    public struct ShooterStats
+    {
+        public Vector3 Direction;
+        public int ShooterID;
+        public float ShooterDamageMultipler;
+    }
+
 }

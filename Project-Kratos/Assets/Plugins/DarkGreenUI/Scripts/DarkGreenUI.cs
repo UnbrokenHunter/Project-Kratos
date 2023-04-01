@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DarkGreenUI : MonoBehaviour{
 
-    public static string assetsPath = "Assets/DarkGreenUI/Prefabs/";
+    public static string assetsPath = "Assets/Plugins/DarkGreenUI/Prefabs/";
 
     public static GameObject textBackground = AssetDatabase.LoadAssetAtPath(assetsPath + "TextBackground.prefab", typeof(GameObject)) as GameObject;
 

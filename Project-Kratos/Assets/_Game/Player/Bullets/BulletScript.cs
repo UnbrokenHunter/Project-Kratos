@@ -11,14 +11,15 @@ namespace ProjectKratos.Bullet
         public ScriptableBullet BulletStats { get => _bulletStats; }
         [SerializeField] private ScriptableBullet _bulletStats;
 
-        public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.Direction, ForceMode.Impulse);
+        public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultipler * ShooterStats.Direction, ForceMode.Impulse);
 
-        public void CreateBullet(Vector3 direction, int shooterID, float shooterDamageMultipler)
+        public void CreateBullet(Vector3 direction, int shooterID, float shooterDamageMultipler, float shooterSpeedMultiplier)
         {
             ShooterStats = new ShooterStats {
                 Direction = direction,
                 ShooterID = shooterID,
-                ShooterDamageMultipler = shooterDamageMultipler
+                ShooterDamageMultipler = shooterDamageMultipler,
+                ShooterSpeedMultipler = shooterSpeedMultiplier
             };
         }
 
@@ -41,6 +42,7 @@ namespace ProjectKratos.Bullet
         public Vector3 Direction;
         public int ShooterID;
         public float ShooterDamageMultipler;
+        public float ShooterSpeedMultipler;
     }
 
 }

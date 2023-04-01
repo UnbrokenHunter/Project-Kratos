@@ -1,4 +1,4 @@
-using Unity.Netcode;
+using ProjectKratos.Player;
 using UnityEngine;
 using UnityEngine.UI;
 

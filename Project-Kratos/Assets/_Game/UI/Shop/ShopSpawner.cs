@@ -1,3 +1,4 @@
+using ProjectKratos.Player;
 using ProjectKratos.Shop;
 using Unity.Netcode;
 using UnityEngine;

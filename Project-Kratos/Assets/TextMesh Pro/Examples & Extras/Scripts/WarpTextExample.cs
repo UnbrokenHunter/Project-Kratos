@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using ProjectKratos;
 
 namespace TMPro.Examples
 {
@@ -137,7 +137,7 @@ namespace TMPro.Examples
                 // Upload the mesh with the revised information
                 m_TextComponent.UpdateVertexData();
 
-                yield return new WaitForSeconds(0.025f);
+                yield return Helpers.GetWait(0.025f);
             }
         }
     }

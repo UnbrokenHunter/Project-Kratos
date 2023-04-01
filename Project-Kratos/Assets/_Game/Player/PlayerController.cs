@@ -70,7 +70,7 @@ namespace ProjectKratos.Player
             _currentExternalVelocity = Vector2.MoveTowards(
                 _currentExternalVelocity, 
                 Vector2.zero, 
-                _variables.Stats.ExternalVelocityDecay * Time.fixedDeltaTime);
+                _variables.ExternalVelocityDecay * Time.fixedDeltaTime);
 
             HandleMovement();
 
@@ -82,16 +82,16 @@ namespace ProjectKratos.Player
         /// </summary>
         protected virtual void HandleMovement()
         {
-            if (!_variables.Stats.CanMove) return;
+            if (!_variables.CanMove) return;
 
             Vector3 _movement = new (Input.x, 0f, Input.y);
 
 
-            _speed = _variables.Stats.Speed * Time.fixedDeltaTime * _movement;
+            _speed = _variables.Speed * Time.fixedDeltaTime * _movement;
 
             if(_movement != Vector3.zero)
                 _transform.rotation = Quaternion.Slerp (_transform.rotation, 
-                    Quaternion.LookRotation(_movement), _variables.Stats.RotationSpeed);
+                    Quaternion.LookRotation(_movement), _variables.RotationSpeed);
         }
 
         /// <summary>
@@ -102,10 +102,10 @@ namespace ProjectKratos.Player
         protected virtual void HandleShooting()
         {
             if (!IsOwner) return;
-            if (!_variables.Stats.CanShoot) return;
+            if (!_variables.CanShoot) return;
 
             var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
-            _shoot.ShootBullet(rotation, _variables.Stats.Damage);
+            _shoot.ShootBullet(rotation, _variables.Damage, _variables.ShootingSpeed);
 
         }
 

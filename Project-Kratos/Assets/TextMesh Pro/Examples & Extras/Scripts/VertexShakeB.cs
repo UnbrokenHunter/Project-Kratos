@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using ProjectKratos;
 
 namespace TMPro.Examples
 {
@@ -85,7 +85,7 @@ namespace TMPro.Examples
                 // If No Characters then just yield and wait for some text to be added
                 if (characterCount == 0)
                 {
-                    yield return new WaitForSeconds(0.25f);
+                    yield return Helpers.GetWait(0.25f);
                     continue;
                 }
 
@@ -177,7 +177,7 @@ namespace TMPro.Examples
                     m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
                 }
 
-                yield return new WaitForSeconds(0.1f);
+                yield return Helpers.GetWait(0.1f);
             }
         }
 

@@ -1,23 +1,13 @@
 using ProjectKratos.Bullet;
 using QFSW.QC;
-using System.Collections;
-using System.Diagnostics;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
     public class PlayerInteractions : NetworkBehaviour
     {
-        #region Internal
-
-        private PlayerVariables _variables;
-        private HealthBar _healthBar;
-
-        private float _regenDivider = 10;
-
-        #endregion
-
         public override void OnNetworkSpawn()
         {
             _variables = GetComponentInParent<PlayerVariables>();
@@ -29,23 +19,45 @@ namespace ProjectKratos.Player
         }
 
         public virtual void PlayerHit(BulletScript bullet)
-        {            
+        {
             if (!IsOwner) return;
-            if (bullet.ShooterStats.ShooterID == transform.parent.GetInstanceID()) return;            
-
-            DealDamage(CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultipler));
+            if (bullet.ShooterStats.ShooterGameObject == transform.parent.gameObject) return;
+            
+            
+            bool kill = DealDamage(CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultipler));
+             
+            MessageAttackResultServerRpc(bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>(), kill); 
+            
             Destroy(bullet);
+        }
+
+        [ServerRpc]
+        private void MessageAttackResultServerRpc(NetworkBehaviourReference shooterReference, bool wasKill)
+        {
+            MessageAttackResultClientRpc(shooterReference, wasKill);
+        }
+        
+        [ClientRpc]
+        private void MessageAttackResultClientRpc(NetworkBehaviourReference shooterReference, bool wasKill)
+        {
+            shooterReference.TryGet(out PlayerVariables shooter);
+            
+            if(wasKill) 
+                shooter.GetComponentInChildren<PlayerInteractions>().KillSuccessful();
+            
+            else 
+                shooter.GetComponentInChildren<PlayerInteractions>().AttackSuccessful();
         }
 
         private float CalculateDamage(float damage, float multiplier)
         {
-            return (damage * multiplier) / _variables.Defense;
+            return damage * multiplier / _variables.Defense;
         }
 
         [Command("dmg")]
-        public virtual void DealDamage(float damage)
+        protected virtual bool DealDamage(float damage)
         {
-            if (!IsOwner) return;
+            if (!IsOwner) return false;
 
             _variables.CurrentHealth -= damage;
 
@@ -53,26 +65,23 @@ namespace ProjectKratos.Player
             {
                 _variables.CurrentHealth = 0;
                 KillPlayer();
+                return true;
             }
 
             PauseRegen();
             _healthBar.UpdateBar();
-
-            print($"Current Health: {_variables.CurrentHealth} \nDamage Taken: {damage} \nPlayer Name: {name}");
+            return false;
         }
 
         [Command("heal")]
-        public virtual void AddHealth(float healAmt)
+        protected virtual void AddHealth(float healAmt)
         {
             if (!IsOwner) return;
 
             _variables.CurrentHealth += healAmt;
 
-            if(_variables.CurrentHealth >= _variables.MaxHealth)
-            {
-                _variables.CurrentHealth = _variables.MaxHealth;
-            }
-            
+            if (_variables.CurrentHealth >= _variables.MaxHealth) _variables.CurrentHealth = _variables.MaxHealth;
+
             _healthBar.UpdateBar();
         }
 
@@ -86,9 +95,34 @@ namespace ProjectKratos.Player
 
         private void AddRegen()
         {
-             if (!IsOwner) return;
+            if (!IsOwner) return;
 
             AddHealth(_variables.HealthRegen / _regenDivider);
+        }
+
+        /// <summary>
+        /// The bullet shot hit a player.
+        /// </summary>
+        public void AttackSuccessful()
+        {
+            //if (!IsOwner) return;
+            
+            
+                
+            
+            print(gameObject.name + "Attack Successful");
+        }
+        
+        /// <summary>
+        /// The bullet shot killed a player.
+        /// </summary>
+        public void KillSuccessful()
+        {
+            if (!IsOwner) return;
+
+            _variables.MoneyCount += _variables.MoneyPerKill;
+            
+            print("Kill Successful"); 
         }
 
         private void KillPlayer()
@@ -96,6 +130,13 @@ namespace ProjectKratos.Player
             print("Kill Player");
         }
 
+        #region Internal
 
+        private PlayerVariables _variables;
+        private HealthBar _healthBar;
+
+        private readonly float _regenDivider = 10;
+
+        #endregion
     }
 }

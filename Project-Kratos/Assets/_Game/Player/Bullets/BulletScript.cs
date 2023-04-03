@@ -13,11 +13,11 @@ namespace ProjectKratos.Bullet
 
         public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultipler * ShooterStats.Direction, ForceMode.Impulse);
 
-        public void CreateBullet(Vector3 direction, int shooterID, float shooterDamageMultipler, float shooterSpeedMultiplier)
+        public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultipler, float shooterSpeedMultiplier)
         {
             ShooterStats = new ShooterStats {
                 Direction = direction,
-                ShooterID = shooterID,
+                ShooterGameObject = shooterGameObject,
                 ShooterDamageMultipler = shooterDamageMultipler,
                 ShooterSpeedMultipler = shooterSpeedMultiplier
             };
@@ -26,6 +26,13 @@ namespace ProjectKratos.Bullet
         // Hits something
         private void OnTriggerEnter(Collider other)
         {
+            // Hits World
+            if (other.CompareTag("World"))
+            {
+                //Destroy(gameObject);
+            }
+
+
             // Hits Player
             if (!other.transform.root.CompareTag("Player")) return;
             
@@ -40,7 +47,7 @@ namespace ProjectKratos.Bullet
     public struct ShooterStats
     {
         public Vector3 Direction;
-        public int ShooterID;
+        public GameObject ShooterGameObject;
         public float ShooterDamageMultipler;
         public float ShooterSpeedMultipler;
     }

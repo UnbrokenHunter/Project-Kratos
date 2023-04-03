@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ProjectKratos.Player
 {
@@ -26,15 +27,17 @@ namespace ProjectKratos.Player
         [SerializeField] private float _damage = 1f;
         [SerializeField] private float _shootingSpeed = 1f;
 
-        [Header("Economy")]
-        [SerializeField] private float moneyCount;
+        [Header("Economy")] 
+        [SerializeField] private float _moneyPerKill = 100f;
+        [SerializeField] private float _moneyCount;
         
         [Header("External")]
         [Tooltip("The rate at which external velocity decays")]
         [SerializeField] private int _externalVelocityDecay = 100;
 
         #region Getters/Setters
-        public float MoneyCount { get => moneyCount; set => moneyCount = value; }
+        public float MoneyCount { get => _moneyCount; set => _moneyCount = value; }
+        public float MoneyPerKill { get => _moneyPerKill; set => _moneyPerKill = value; }
         public bool CanMove { get => _canMove; set => _canMove = value; }
         public float Speed { get => _speed; set => _speed = value; }
         public float RotationSpeed { get => _rotationSpeed; set => _rotationSpeed = value; }
@@ -56,7 +59,7 @@ namespace ProjectKratos.Player
             sb.Append($"Movement Variables: [CanMove={_canMove}, Speed={_speed}, RotationSpeed={_rotationSpeed}]\n");
             sb.Append($"Health Variables: [CurrentHealth={_currentHealth}, MaxHealth={_maxHealth}, Defense={_defense}, HealthRegen={_healthRegen}]\n");
             sb.Append($"Attack Variables: [CanShoot={_canShoot}, Damage={_damage}, ShootingSpeed={_shootingSpeed}]\n");
-            sb.Append($"Economy: [MoneyCount={moneyCount}]\n");
+            sb.Append($"Economy: [MoneyCount={_moneyCount}, MoneyPerKill ={_moneyPerKill}]\n");
             sb.Append($"External: [ExternalVelocityDecay={_externalVelocityDecay}]\n");
             sb.Append("------------------\n");
             return sb.ToString();

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3519870056089270203}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 5692204281288510495}
   m_Layer: 0
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 5592414154122976979}
   m_Layer: 0
   m_Name: Hitboxs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 5698515612744165495}
   m_Layer: 0
   m_Name: Player Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

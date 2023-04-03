@@ -18,7 +18,7 @@ namespace ProjectKratos.Shop
             GetComponent<Button>().onClick.AddListener(() => TryBuyItem());
         }
 
-        public virtual void TryBuyItem()
+        protected virtual void TryBuyItem()
         {
             if (_variables.MoneyCount >= _cost)
             {

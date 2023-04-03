@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ProjectKratos.Player;
 using UnityEngine;
 
@@ -13,7 +10,6 @@ namespace ProjectKratos
         protected override void ItemCollected(GameObject player)
         {
             player.GetComponent<PlayerVariables>().MoneyCount += _moneyToGive;
-            Destroy(gameObject);
         }
 
     }

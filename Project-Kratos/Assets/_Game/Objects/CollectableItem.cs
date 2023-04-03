@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -10,6 +8,8 @@ namespace ProjectKratos
         private ObjectSpawner _spawner;
         private int _spawnIndex;
         
+        [SerializeField] private bool _destroyOnPickup = true;
+        
         public CollectableItem SpawnItem(ObjectSpawner spawner, int spawnIndex)
         {
             _spawner = spawner;
@@ -18,15 +18,21 @@ namespace ProjectKratos
             return this;
         }
 
-        public void OnDisable()
+        [ServerRpc(RequireOwnership = false)]
+        private void DestroyServerRpc()
         {
-            _spawner.ObjectDespawn(_spawnIndex);
+            print("Destroy On Server");
+            _spawner.ObjectDespawnServerRpc(_spawnIndex);
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
         { 
             if (!other.CompareTag("Player")) return;
-            ItemCollected(other.transform.root.gameObject); 
+            ItemCollected(other.transform.root.gameObject);
+            
+            if (!_destroyOnPickup) return;
+            DestroyServerRpc();
         }
 
         protected abstract void ItemCollected(GameObject player);

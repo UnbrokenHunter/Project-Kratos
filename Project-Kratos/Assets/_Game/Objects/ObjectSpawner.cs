@@ -19,11 +19,15 @@ namespace ProjectKratos
  
         public override void OnNetworkSpawn()
         {
+            if (!IsServer) return;
+            
             InvokeRepeating(nameof(SpawnObject), 0, _spawnInterval);
         }
 
         private void SpawnObject()
         {
+            if (!IsServer) return; 
+            
             // The number after removing objects that are already spawned
             float realSpawnNumber = spawnChanceTotal;
             
@@ -62,8 +66,10 @@ namespace ProjectKratos
         /// <summary>
         /// Call this method when an object is collected or destroyed to reset the spawn stats
         /// </summary>
-        public void ObjectDespawn(int index)
+        [ServerRpc(RequireOwnership = false)]
+        public void ObjectDespawnServerRpc(int index)
         {
+            if (!IsServer) return;
             _spawnStats[index].isSpawned = false;
         }
         

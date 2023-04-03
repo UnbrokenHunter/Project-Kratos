@@ -39,6 +39,8 @@ namespace ProjectKratos.Player
 
         private void CreateBullet(Quaternion bulletRotation, NetworkBehaviour networkOfShooter, float damageMultiplier, float speedMultipler)
         {
+            // !isOwner is called in the ClientRpc
+            
             // The velocity is done in the awake function on the object In the BulletScript
             GameObject bullet = Instantiate(
                 _bulletPrefab,

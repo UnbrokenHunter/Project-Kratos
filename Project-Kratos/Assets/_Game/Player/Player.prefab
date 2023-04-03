@@ -825,7 +825,8 @@ MonoBehaviour:
   _canShoot: 1
   _damage: 1
   _shootingSpeed: 1
-  moneyCount: 0
+  _moneyPerKill: 100
+  _moneyCount: 0
   _externalVelocityDecay: 100
 --- !u!1 &6726190944142930072
 GameObject:
@@ -915,6 +916,7 @@ GameObject:
   - component: {fileID: 4148646320117592143}
   - component: {fileID: 7133632495305275658}
   - component: {fileID: 891393937393006627}
+  - component: {fileID: 5698515612744165495}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -1075,6 +1077,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccd6052320374bf4c8c42151db39cd0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5698515612744165495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133632495305275656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dd3fa4611bb86409c20db59ad40cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7609152252434670445

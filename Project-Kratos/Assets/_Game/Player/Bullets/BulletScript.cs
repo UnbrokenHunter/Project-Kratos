@@ -1,17 +1,53 @@
+using ProjectKratos.Player;
 using UnityEngine;
 
 namespace ProjectKratos.Bullet
 {
     public class BulletScript : MonoBehaviour
     {
-        public Vector3 Direction { private get; set; }
+        public ShooterStats ShooterStats { get; private set; }
 
-        [SerializeField] private ScriptableBullet _bulletType;
+        public ScriptableBullet BulletStats { get => _bulletStats; }
+        [SerializeField] private ScriptableBullet _bulletStats;
 
-        private void Start()
+        public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
+
+        public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {
-            GetComponent<Rigidbody>().AddForce(_bulletType.BulletSpeed * Direction, ForceMode.Impulse);
+            ShooterStats = new ShooterStats {
+                Direction = direction,
+                ShooterGameObject = shooterGameObject,
+                ShooterDamageMultiplier = shooterDamageMultiplier,
+                ShooterSpeedMultiplier = shooterSpeedMultiplier
+            };
         }
 
+        // Hits something
+        private void OnTriggerEnter(Collider other)
+        {
+            // Hits World
+            if (other.CompareTag("World"))
+            {
+                Destroy(gameObject);
+            }
+
+            // Hits Player
+            if (!other.transform.root.CompareTag("Player")) return;
+            
+            PlayerHitInteractions player = 
+                other.transform.root.GetComponentInChildren<PlayerHitInteractions>();
+
+            player.PlayerHit(this);
+
+        }
     }
+
+    public struct ShooterStats
+    {
+        public Vector3 Direction;
+        public GameObject ShooterGameObject;
+        public float ShooterDamageMultiplier;
+        public float ShooterSpeedMultiplier;
+    }
+
 }

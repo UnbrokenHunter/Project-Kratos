@@ -19,7 +19,7 @@ public class SceneSorterGlobals
     static readonly public float ButtonHeight = 32;
 
     static readonly public float LeftMargin = 20.0f;
-    static readonly public float TopMargin = 45;
+    static readonly public float TopMargin = 2;
 
     static readonly public float HorizPad = 5.0f;
     static readonly public float VertPad = 5.0f;

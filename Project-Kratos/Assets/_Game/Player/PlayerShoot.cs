@@ -9,42 +9,47 @@ namespace ProjectKratos.Player
         [SerializeField] private Transform _firepoint;
         [SerializeField] private GameObject _bulletPrefab;
 
-        private Quaternion _bulletRotation;
-
         /// <summary>
         /// In Future, we may want to also pass in the firepoint position, if there are aiming issues
         /// </summary>
         /// <param name="rotation"></param>
-        public void ShootBullet(Quaternion rotation)
+        public void ShootBullet(Quaternion rotation, float damageMultiplier, float speedMultipler)
         {
-            _bulletRotation = rotation;
+            if (!IsOwner) return;
 
-            RequestFireServerRpc();
+            // Fire Locally immediately
+            var shooterObject = transform.root.gameObject.GetComponent<PlayerVariables>();
+            CreateBullet(rotation, shooterObject, damageMultiplier, speedMultipler);
+
+            // Send off the call to all clients
+            RequestFireServerRpc(rotation, shooterObject, damageMultiplier, speedMultipler);
         }
 
         [ServerRpc]
-        private void RequestFireServerRpc()
-        {
-            FireClientRpc();
-        }
+        private void RequestFireServerRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler) => 
+            FireClientRpc(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
 
         [ClientRpc]
-        private void FireClientRpc()
+        private void FireClientRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler)
         {
-            CreateBullet();
+            if (!IsOwner) 
+                CreateBullet(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
         }
 
-        private void CreateBullet()
+
+        private void CreateBullet(Quaternion bulletRotation, NetworkBehaviour networkOfShooter, float damageMultiplier, float speedMultipler)
         {
+            // !isOwner is called in the ClientRpc
+            
             // The velocity is done in the awake function on the object In the BulletScript
             GameObject bullet = Instantiate(
                 _bulletPrefab,
                 _firepoint.position,
-                _bulletRotation,
+                bulletRotation,
                 null);
 
-            bullet.GetComponent<BulletScript>().Direction = transform.forward;
-
+            BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+            bulletScript.CreateBullet(transform.forward, networkOfShooter.gameObject, damageMultiplier, speedMultipler);
         }
     }
 }

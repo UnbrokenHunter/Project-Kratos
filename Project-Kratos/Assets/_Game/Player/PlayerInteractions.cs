@@ -1,15 +1,19 @@
 using ProjectKratos.Bullet;
-using System.Diagnostics;
+using QFSW.QC;
 using Unity.Netcode;
+using UnityEditor;
+using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerInteractions : NetworkBehaviour
+    public sealed class PlayerInteractions : NetworkBehaviour
     {
         #region Internal
 
         private PlayerVariables _variables;
         private HealthBar _healthBar;
+
+        private readonly float _regenDivider = 10;
 
         #endregion
 
@@ -18,59 +22,61 @@ namespace ProjectKratos.Player
             _variables = GetComponentInParent<PlayerVariables>();
             _healthBar = transform.root.GetComponentInChildren<HealthBar>();
 
-            _variables.Stats.CurrentHealth = _variables.Stats.MaxHealth;
+            _variables.CurrentHealth = _variables.MaxHealth;
+
+            InvokeRepeating(nameof(AddRegen), 0, 1 / _regenDivider);
         }
 
-        public virtual void PlayerHit(BulletScript bullet)
-        {            
-            if (!IsOwner) return;
-            if (bullet.ShooterStats.ShooterID == transform.parent.GetInstanceID()) return;            
-
-            DealDamage(CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultipler));
-            Destroy(bullet);
-        }
-
-        private float CalculateDamage(float damage, float multiplier)
+        [Command("dmg")]
+        public bool DealDamage(float damage)
         {
-            return (damage * multiplier) / _variables.Stats.Defense;
-        }
+            if (!IsOwner) return false;
 
-        public virtual void DealDamage(float damage)
-        {
-            if (!IsOwner) return;
+            _variables.CurrentHealth -= damage;
 
-            _variables.Stats.CurrentHealth -= damage;
-
-            if (_variables.Stats.CurrentHealth <= 0)
+            if (_variables.CurrentHealth <= 0)
             {
-                _variables.Stats.CurrentHealth = 0;
+                _variables.CurrentHealth = 0;
                 KillPlayer();
+                return true;
             }
 
+            PauseRegen();
             _healthBar.UpdateBar();
-
-            print($"Current Health: {_variables.Stats.CurrentHealth} \nDamage Taken: {damage} \nPlayer Name: {name}");
+            return false;
         }
 
-        public virtual void AddHealth(float healAmt)
+        [Command("heal")]
+        private void AddHealth(float healAmt)
         {
             if (!IsOwner) return;
 
-            _variables.Stats.CurrentHealth += healAmt;
+            _variables.CurrentHealth += healAmt;
 
-            if(_variables.Stats.CurrentHealth <= _variables.Stats.MaxHealth)
-            {
-                _variables.Stats.CurrentHealth = _variables.Stats.MaxHealth;
-            }
-            
+            if (_variables.CurrentHealth >= _variables.MaxHealth) _variables.CurrentHealth = _variables.MaxHealth;
+
             _healthBar.UpdateBar();
+        }
+
+        private void PauseRegen()
+        {
+            CancelInvoke(nameof(AddRegen));
+
+            // Name     Time to cancel    Frequency
+            InvokeRepeating(nameof(AddRegen), 3, 1 / _regenDivider);
+        }
+
+        private void AddRegen()
+        {
+            if (!IsOwner) return;
+
+            AddHealth(_variables.HealthRegen / _regenDivider);
         }
 
         private void KillPlayer()
         {
             print("Kill Player");
         }
-
 
     }
 }

@@ -1,3 +1,4 @@
+using ProjectKratos.Player;
 using UnityEngine;
 
 namespace ProjectKratos.Shop
@@ -11,10 +12,9 @@ namespace ProjectKratos.Shop
         private void OnEnable()
         {
             if (_variables == null) return;
-            print("Enable");
 
-            _variables.Stats.CanMove = false;
-            _variables.Stats.CanShoot = false;
+            _variables.CanMove = false;
+            _variables.CanShoot = false;
         }
 
         private void OnDisable()
@@ -22,8 +22,8 @@ namespace ProjectKratos.Shop
             if (_variables == null) return;
             print("Disable");
 
-            _variables.Stats.CanMove = true;
-            _variables.Stats.CanShoot = true;
+            _variables.CanMove = true;
+            _variables.CanShoot = true;
 
         }
     }

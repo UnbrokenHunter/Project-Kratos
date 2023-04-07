@@ -1,17 +1,22 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ProjectKratos.Tabs
 {
     public class TabGroup : MonoBehaviour
     {
         [Title("Sprites")]
-        [SerializeField] private Sprite tabIdle;
-        [SerializeField] private Sprite tabHover;
-        [SerializeField] private Sprite tabActive;
+        [SerializeField] private SelectType selectType = SelectType.Tint;
+
+        [SerializeField, ShowIf("@selectType == SelectType.Sprite")] private Texture2D tabIdle;
+        [SerializeField, ShowIf("@selectType == SelectType.Sprite")] private Texture2D tabHover;
+        [SerializeField, ShowIf("@selectType == SelectType.Sprite")] private Texture2D tabActive;
+
+        [SerializeField, ShowIf("@selectType == SelectType.Tint")] private Color tabHighlight;
+        [SerializeField, ShowIf("@selectType == SelectType.Tint")] private Color tabPressed;
 
         [Title("Debug")]
         [ReadOnly, SerializeField] private List<TabButton> tabButtons;
@@ -20,28 +25,29 @@ namespace ProjectKratos.Tabs
         [Title("Default Behavior")]
         [SerializeField] private List<GameObject> objectsToSwap;
 
-        private void Start() => tabButtons = GetComponentsInChildren<TabButton>().ToList();
 
-        public void Subscribe(TabButton button)
+        private void Start()
         {
-            tabButtons ??= new List<TabButton>
-            {
-                button
-            };
+            tabButtons = GetComponentsInChildren<TabButton>().ToList();
         }
+
+        public void Subscribe(TabButton button) => tabButtons ??= new List<TabButton> { button };
 
         public void OnTabEnter(TabButton button)
         {
             ResetTabs();
-            if(selectedTab != null || button != selectedTab)
-                button.background.sprite = tabHover;
+
+            if (selectedTab != null || button != selectedTab)
+            {
+                if (selectType == SelectType.Sprite)
+                    button.background.texture = tabHover;
+
+                else if (selectType == SelectType.Tint)
+                    button.background.color = tabHighlight;
+            }
         }
 
-        public void OnTabExit(TabButton button)
-        {
-            ResetTabs();
-
-        }
+        public void OnTabExit(TabButton button) => ResetTabs();
 
         public void OnTabSelected(TabButton button)
         {
@@ -54,32 +60,37 @@ namespace ProjectKratos.Tabs
             selectedTab.Select();
 
             ResetTabs();
-            button.background.sprite = tabActive;
+
+            if (selectType == SelectType.Sprite)
+                button.background.texture = tabActive;
+
+            else if (selectType == SelectType.Tint)
+                button.background.color = tabPressed;
+
 
             int index = button.transform.GetSiblingIndex();
             for(int i = 0; i < objectsToSwap.Count; i++)
             {
-                if(i == index)
-                {
-                    objectsToSwap[i].SetActive(true);
-                }
-                else
-                {
-                    objectsToSwap[i].SetActive(false);
-                }
+                objectsToSwap[i].SetActive(i == index);
             }
 
         }
 
-        public void ResetTabs()
+        private void ResetTabs()
         {
             foreach (var tab in tabButtons)
             {
                 if (selectedTab != null && tab == selectedTab) continue;
 
-                tab.background.sprite = tabIdle;
+                if (selectType == SelectType.Sprite)
+                    tab.background.texture = tabIdle;
+
+                else if (selectType == SelectType.Tint) 
+                    tab.background.color = tab.NormalColor;
             }
         }
 
+
+        private enum SelectType {  Tint, Sprite, }
     }
 }

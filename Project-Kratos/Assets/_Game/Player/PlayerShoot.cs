@@ -13,31 +13,34 @@ namespace ProjectKratos.Player
         /// In Future, we may want to also pass in the firepoint position, if there are aiming issues
         /// </summary>
         /// <param name="rotation"></param>
-        public void ShootBullet(Quaternion rotation, float damageMultiplier)
+        public void ShootBullet(Quaternion rotation, float damageMultiplier, float speedMultipler)
         {
             if (!IsOwner) return;
 
-            // Fire Locally immedietly
-            CreateBullet(rotation, transform.parent.GetInstanceID(), damageMultiplier);
+            // Fire Locally immediately
+            var shooterObject = transform.root.gameObject.GetComponent<PlayerVariables>();
+            CreateBullet(rotation, shooterObject, damageMultiplier, speedMultipler);
 
             // Send off the call to all clients
-            RequestFireServerRpc(rotation, transform.parent.GetInstanceID(), damageMultiplier);
+            RequestFireServerRpc(rotation, shooterObject, damageMultiplier, speedMultipler);
         }
 
         [ServerRpc]
-        private void RequestFireServerRpc(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier) => 
-            FireClientRpc(bulletRotation, instanceIdOfShooter, damageMultiplier);
+        private void RequestFireServerRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler) => 
+            FireClientRpc(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
 
         [ClientRpc]
-        private void FireClientRpc(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier)
+        private void FireClientRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler)
         {
             if (!IsOwner) 
-                CreateBullet(bulletRotation, instanceIdOfShooter, damageMultiplier);
+                CreateBullet(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
         }
 
 
-        private void CreateBullet(Quaternion bulletRotation, int instanceIdOfShooter, float damageMultiplier)
+        private void CreateBullet(Quaternion bulletRotation, NetworkBehaviour networkOfShooter, float damageMultiplier, float speedMultipler)
         {
+            // !isOwner is called in the ClientRpc
+            
             // The velocity is done in the awake function on the object In the BulletScript
             GameObject bullet = Instantiate(
                 _bulletPrefab,
@@ -46,7 +49,7 @@ namespace ProjectKratos.Player
                 null);
 
             BulletScript bulletScript = bullet.GetComponent<BulletScript>();
-            bulletScript.CreateBullet(transform.forward, instanceIdOfShooter, damageMultiplier);
+            bulletScript.CreateBullet(transform.forward, networkOfShooter.gameObject, damageMultiplier, speedMultipler);
         }
     }
 }

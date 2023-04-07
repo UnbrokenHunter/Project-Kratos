@@ -1,6 +1,4 @@
 using ProjectKratos.Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectKratos.Shop
@@ -11,7 +9,8 @@ namespace ProjectKratos.Shop
 
         private protected override void BuyItem()
         {
-            _variables.gameObject.GetComponentInChildren<PlayerInteractions>().AddHealth(_healthAmount);
+            _variables.MaxHealth += _healthAmount;
+            _variables.CurrentHealth += _healthAmount;
         }
     }
 }

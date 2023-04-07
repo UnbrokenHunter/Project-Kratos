@@ -5,28 +5,38 @@ using UnityEngine.Events;
 
 namespace ProjectKratos.Tabs
 {
-
-    [RequireComponent(typeof(Image))]
+    [RequireComponent(typeof(RawImage))]
     public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
     {
         private TabGroup tabGroup;
 
-        internal Image background;
+        internal RawImage background;
+
+        public Color NormalColor { get => normalColor; private set => normalColor = value; }
+        private Color normalColor;
+
         [SerializeField] private UnityEvent onTabSelect;
         [SerializeField] private UnityEvent onTabDeselect;
+
 
         private void Start()
         {
             tabGroup = GetComponentInParent<TabGroup>();
 
-            background = GetComponent<Image>();
+            background = GetComponent<RawImage>();
+
+            normalColor = background.color;
+
             tabGroup.Subscribe(this);
         }
 
 
         public void OnPointerClick(PointerEventData eventData) => tabGroup.OnTabSelected(this);
 
-        public void OnPointerEnter(PointerEventData eventData) => tabGroup.OnTabEnter(this);
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            tabGroup.OnTabEnter(this);
+        }
 
         public void OnPointerExit(PointerEventData eventData) => tabGroup.OnTabExit(this);
 

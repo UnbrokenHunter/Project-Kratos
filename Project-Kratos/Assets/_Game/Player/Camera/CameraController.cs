@@ -6,6 +6,7 @@ namespace ProjectKratos.Player
 {
     public class CameraController : NetworkBehaviour
     {
+        public CinemachineVirtualCamera Camera => _camera;
         [SerializeField] private CinemachineVirtualCamera _camera;
 
         public override void OnNetworkSpawn()

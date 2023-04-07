@@ -21,7 +21,7 @@ namespace ProjectKratos.Player
 
         public void UpdateBar()
         {
-            var width = (_variables.Stats.CurrentHealth / _variables.Stats.MaxHealth) / _maxWidth;
+            var width = (_variables.CurrentHealth / _variables.MaxHealth) / _maxWidth;
             _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
 
             UpdateHealthBarServerRpc(width);

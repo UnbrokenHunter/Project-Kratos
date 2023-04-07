@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - World
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - World
   - Water
   - UI
   - 

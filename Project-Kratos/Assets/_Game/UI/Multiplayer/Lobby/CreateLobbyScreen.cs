@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CreateLobbyScreen : MonoBehaviour {
-    [SerializeField] private TMP_InputField _nameInput, _maxPlayersInput;
+public class CreateLobbyScreen : MonoBehaviour
+{
+    [SerializeField] private InputField _nameInput;
+    [SerializeField] private TMP_InputField _maxPlayersInput;
     [SerializeField] private TMP_Dropdown _typeDropdown;
 
     private void Start() {

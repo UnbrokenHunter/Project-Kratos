@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using ProjectKratos;
 
 namespace TMPro.Examples
 {
@@ -64,7 +64,7 @@ namespace TMPro.Examples
 
                 if (visibleCount > totalVisibleCharacters)
                 {
-                    yield return new WaitForSeconds(1.0f);
+                    yield return Helpers.GetWait(1.0f);
                     visibleCount = 0;
                 }
 
@@ -108,12 +108,12 @@ namespace TMPro.Examples
                 // Once the last character has been revealed, wait 1.0 second and start over.
                 if (visibleCount >= totalVisibleCharacters)
                 {
-                    yield return new WaitForSeconds(1.0f);
+                    yield return Helpers.GetWait(1.0f);
                 }
 
                 counter += 1;
 
-                yield return new WaitForSeconds(0.1f);
+                yield return Helpers.GetWait(0.1f);
             }
         }
 

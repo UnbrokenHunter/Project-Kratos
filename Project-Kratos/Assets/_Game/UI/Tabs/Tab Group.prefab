@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873b4d696b2d97b488154ec713643b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 0}
   onTabSelect:
     m_PersistentCalls:
       m_Calls: []
@@ -225,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873b4d696b2d97b488154ec713643b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 0}
   onTabSelect:
     m_PersistentCalls:
       m_Calls: []
@@ -323,9 +321,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9bba72007cb8046a3ee7ed5eaeaae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectType: 0
   tabIdle: {fileID: 21300000, guid: 46e99bf6e9958404db611bc4ae013e35, type: 3}
   tabHover: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   tabActive: {fileID: 21300000, guid: cecdbf60b0c9d47c9a26b99a41425de0, type: 3}
+  tabHighlight: {r: 0, g: 0, b: 0, a: 0}
+  tabPressed: {r: 0, g: 0, b: 0, a: 0}
   tabButtons: []
   selectedTab: {fileID: 0}
   objectsToSwap:
@@ -550,6 +551,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457296855969262846, guid: d3b78d15735176d41806ce03e81b42a1,
+        type: 3}
+      propertyPath: m_Text
+      value: HEALTH
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457296855969262846, guid: d3b78d15735176d41806ce03e81b42a1,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457296855969262846, guid: d3b78d15735176d41806ce03e81b42a1,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3b78d15735176d41806ce03e81b42a1, type: 3}

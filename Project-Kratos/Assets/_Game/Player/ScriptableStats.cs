@@ -20,6 +20,7 @@ namespace ProjectKratos.Player
         [Title("Attack Variables")]
         public bool CanShoot = true;
         public float Damage = 1f;
+        public float ShootingSpeed = 1f;
 
         [Title("External")]
         [Tooltip("The rate at which external velocity decays")]

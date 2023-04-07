@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ProjectKratos;
+
 
 namespace TMPro.Examples
 {
@@ -44,7 +44,7 @@ namespace TMPro.Examples
                 // If No Characters then just yield and wait for some text to be added
                 if (characterCount == 0)
                 {
-                    yield return Helpers.GetWait(0.25f);
+                    yield return new WaitForSeconds(0.25f);
                     continue;
                 }
 
@@ -76,7 +76,7 @@ namespace TMPro.Examples
 
                 currentCharacter = (currentCharacter + 1) % characterCount;
 
-                yield return Helpers.GetWait(0.05f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
 

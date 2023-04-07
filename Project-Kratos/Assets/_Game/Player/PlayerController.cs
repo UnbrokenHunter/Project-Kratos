@@ -1,26 +1,29 @@
-using Cinemachine;
+using ProjectKratos.Bullet;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerController : NetworkBehaviour
+    public class PlayerController : NetworkBehaviour, IPlayer
     {
+        [SerializeField] private ScriptableStats _stats;
+
         #region Internal
+        private int _fixedFrame;
         private FrameInput _frameInput;
         private Vector3 _speed;
         private Vector3 _currentExternalVelocity;
         
         // Cached Variables
         private Transform _transform;
-        private PlayerVariables _variables;
         private PlayerShoot _shoot;
-        private PlayerInteractions _interactions;
         private PlayerInput _input;
         private Rigidbody _rb;
         #endregion
 
         #region External
+        public ScriptableStats PlayerStats => _stats;
 
         public Vector2 Input => _frameInput.Move;
 
@@ -40,16 +43,13 @@ namespace ProjectKratos.Player
 
             // Cache Variables
             _transform = transform;
-            _variables = GetComponentInParent<PlayerVariables>();
             _rb = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
             _shoot = GetComponent<PlayerShoot>();
-            _interactions = GetComponent<PlayerInteractions>();
 
             _input.Shoot += HandleShooting;
         }
 
-        #region Input
         protected virtual void Update()
         {
             if (!IsOwner) return;
@@ -61,37 +61,34 @@ namespace ProjectKratos.Player
         {
             _frameInput = _input.FrameInput;
         }
-        #endregion
 
         protected virtual void FixedUpdate()
         {
             if (!IsOwner) return;
 
-            _currentExternalVelocity = Vector2.MoveTowards(
-                _currentExternalVelocity, 
-                Vector2.zero, 
-                _variables.ExternalVelocityDecay * Time.fixedDeltaTime);
+            _fixedFrame++;
+            _currentExternalVelocity = Vector2.MoveTowards(_currentExternalVelocity, Vector2.zero, _stats.ExternalVelocityDecay * Time.fixedDeltaTime);
 
             HandleMovement();
 
             ApplyVelocity();
         }
 
+
         /// <summary>
         /// Gets the player input, and sets the _speed variable equal to it
         /// </summary>
         protected virtual void HandleMovement()
         {
-            if (!_variables.CanMove) return;
 
             Vector3 _movement = new (Input.x, 0f, Input.y);
 
 
-            _speed = _variables.Speed * Time.fixedDeltaTime * _movement;
+            _speed = _stats.Speed * Time.fixedDeltaTime * _movement;
 
             if(_movement != Vector3.zero)
                 _transform.rotation = Quaternion.Slerp (_transform.rotation, 
-                    Quaternion.LookRotation(_movement), _variables.RotationSpeed);
+                    Quaternion.LookRotation(_movement), _stats.RotationSpeed);
         }
 
         /// <summary>
@@ -102,10 +99,9 @@ namespace ProjectKratos.Player
         protected virtual void HandleShooting()
         {
             if (!IsOwner) return;
-            if (!_variables.CanShoot) return;
 
             var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
-            _shoot.ShootBullet(rotation, _variables.Damage, _variables.ShootingSpeed);
+            _shoot.ShootBullet(rotation);
 
         }
 

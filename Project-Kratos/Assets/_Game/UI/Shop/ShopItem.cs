@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace ProjectKratos.Shop
 {
+    /// <summary>
+    /// Inheritors have access to the PlayerVariables and the cost of the item
+    /// </summary>
     public abstract class ShopItem : MonoBehaviour
     {
         private ShopMenu _shopMenu;

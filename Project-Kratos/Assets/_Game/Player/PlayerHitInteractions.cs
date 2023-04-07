@@ -65,7 +65,7 @@ namespace ProjectKratos.Player
         {
             if (!IsOwner) return;
 
-            _variables.MoneyCount += _variables.MoneyPerKill;
+            _variables.MoneyCount = _variables.MoneyPerKill;
             
             print("Kill Successful"); 
         }

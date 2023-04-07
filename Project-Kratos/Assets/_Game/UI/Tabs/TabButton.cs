@@ -35,7 +35,6 @@ namespace ProjectKratos.Tabs
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            print(eventData.position);
             tabGroup.OnTabEnter(this);
         }
 

@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,10 @@ namespace ProjectKratos.Tabs
         [SerializeField] private List<GameObject> objectsToSwap;
 
 
-        private void Start() => tabButtons = GetComponentsInChildren<TabButton>().ToList();
+        private void Start()
+        {
+            tabButtons = GetComponentsInChildren<TabButton>().ToList();
+        }
 
         public void Subscribe(TabButton button) => tabButtons ??= new List<TabButton> { button };
 
@@ -67,19 +71,12 @@ namespace ProjectKratos.Tabs
             int index = button.transform.GetSiblingIndex();
             for(int i = 0; i < objectsToSwap.Count; i++)
             {
-                if(i == index)
-                {
-                    objectsToSwap[i].SetActive(true);
-                }
-                else
-                {
-                    objectsToSwap[i].SetActive(false);
-                }
+                objectsToSwap[i].SetActive(i == index);
             }
 
         }
 
-        public void ResetTabs()
+        private void ResetTabs()
         {
             foreach (var tab in tabButtons)
             {
@@ -94,6 +91,6 @@ namespace ProjectKratos.Tabs
         }
 
 
-        protected enum SelectType {  Tint, Sprite, }
+        private enum SelectType {  Tint, Sprite, }
     }
 }

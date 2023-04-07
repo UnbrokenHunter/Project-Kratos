@@ -1,10 +1,9 @@
 using QFSW.QC;
-using Sirenix.OdinInspector;
 using System;
 using System.Text;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ProjectKratos.Player
 {
@@ -35,8 +34,33 @@ namespace ProjectKratos.Player
         [Tooltip("The rate at which external velocity decays")]
         [SerializeField] private int _externalVelocityDecay = 100;
 
+        #region Things to do when something is changed
+
+        public TMP_Text MoneyText { get => _moneyText; set => _moneyText = value; }
+        private TMP_Text _moneyText;
+
+        /// <summary>
+        /// So that we can set the money count and have it update the UI
+        /// </summary>
+        /// <param name="money"></param>
+        /// <returns></returns>
+        private float SetMoney(float moneyToAdd) {
+            
+            _moneyCount += moneyToAdd;
+                
+            if (MoneyText != null)
+                MoneyText.text = "Coins: " + _moneyCount;
+            
+            return _moneyCount;
+        }
+
+        #endregion
+
         #region Getters/Setters
-        public float MoneyCount { get => _moneyCount; set => _moneyCount = value; }
+        /// <summary>
+        /// Do not use add to this, only set it. The add it implied.
+        /// </summary>
+        public float MoneyCount { get => _moneyCount; set => SetMoney(value); }
         public float MoneyPerKill { get => _moneyPerKill; set => _moneyPerKill = value; }
         public bool CanMove { get => _canMove; set => _canMove = value; }
         public float Speed { get => _speed; set => _speed = value; }

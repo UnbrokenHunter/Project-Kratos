@@ -21,7 +21,6 @@ namespace ProjectKratos
         [ServerRpc(RequireOwnership = false)]
         private void DestroyServerRpc()
         {
-            print("Destroy On Server");
             _spawner.ObjectDespawnServerRpc(_spawnIndex);
             Destroy(gameObject);
         }
@@ -29,12 +28,17 @@ namespace ProjectKratos
         private void OnTriggerEnter(Collider other)
         { 
             if (!other.CompareTag("Player")) return;
-            ItemCollected(other.transform.root.gameObject);
+                ItemCollected(other.transform.root.gameObject, gameObject);
             
             if (!_destroyOnPickup) return;
-            DestroyServerRpc();
+                DestroyServerRpc();
         }
 
-        protected abstract void ItemCollected(GameObject player);
+        /// <summary>
+        /// Make sure to check that the item that is being collected is the correct item. Otherwise it will call this method on all items.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="item"></param>
+        protected abstract void ItemCollected(GameObject player, GameObject item);
     }
 }

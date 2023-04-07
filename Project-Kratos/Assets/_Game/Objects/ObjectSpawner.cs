@@ -70,6 +70,7 @@ namespace ProjectKratos
         public void ObjectDespawnServerRpc(int index)
         {
             if (!IsServer) return;
+            
             _spawnStats[index].isSpawned = false;
         }
         

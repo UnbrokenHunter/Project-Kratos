@@ -10,18 +10,27 @@ namespace ProjectKratos
         [SerializeField] private GameObject _shopPrefab;
         [SerializeField] private PlayerVariables _playerVariables;
 
+        private GameObject _shop;
+        
         public override void OnNetworkSpawn()
         {
             if (!IsOwner) return;
 
-            GameObject shop = Instantiate(_shopPrefab);
+            _shop = Instantiate(_shopPrefab);
 
-            var shopMenu = shop.GetComponentInChildren<ShopMenu>();
+            var shopMenu = _shop.GetComponentInChildren<ShopMenu>();
             print(shopMenu + " " + _playerVariables);
             shopMenu.Variables = _playerVariables;
 
             shopMenu.gameObject.SetActive(false);
 
+        }
+
+        public void DestroyShop()
+        {
+            if (!IsOwner) return;
+            
+            Destroy(_shop);
         }
     }
 }

@@ -26,8 +26,10 @@ namespace ProjectKratos.Player
         }
 
         [ServerRpc]
-        private void RequestFireServerRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler) => 
+        private void RequestFireServerRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler)
+        {
             FireClientRpc(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
+        } 
 
         [ClientRpc]
         private void FireClientRpc(Quaternion bulletRotation, NetworkBehaviourReference referenceToShooter, float damageMultiplier, float speedMultipler)
@@ -35,7 +37,6 @@ namespace ProjectKratos.Player
             if (!IsOwner) 
                 CreateBullet(bulletRotation, referenceToShooter, damageMultiplier, speedMultipler);
         }
-
 
         private void CreateBullet(Quaternion bulletRotation, NetworkBehaviour networkOfShooter, float damageMultiplier, float speedMultipler)
         {

@@ -32,18 +32,20 @@ namespace ProjectKratos.Player
         {
             if (!IsOwner) return false;
 
+            var kill = false;
+            
             _variables.CurrentHealth -= damage;
 
-            if (_variables.CurrentHealth <= 0)
+            if (_variables.CurrentHealth < 0)
             {
-                _variables.CurrentHealth = 0;
-                KillPlayer();
-                return true;
+                RespawnPlayer();
+                kill = true;
             }
 
             PauseRegen();
             _healthBar.UpdateBar();
-            return false;
+            
+            return kill;
         }
 
         [Command("heal")]
@@ -73,9 +75,15 @@ namespace ProjectKratos.Player
             AddHealth(_variables.HealthRegen / _regenDivider);
         }
 
-        private void KillPlayer()
+        private void RespawnPlayer()
         {
-            print("Kill Player");
+            if (!IsOwner) return;
+            
+            print("Respawn Player");
+
+            transform.position = GameManager.Instance.PickRandomSpawnPoint().position;
+            _variables.SetStats();
+            
         }
 
     }

@@ -11,7 +11,6 @@ namespace ProjectKratos
         {
             if(item != gameObject) return;
             
-            print("Money collected");
             player.GetComponent<PlayerVariables>().MoneyCount = _moneyToGive;
         }
 

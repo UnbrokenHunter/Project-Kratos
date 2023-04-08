@@ -1,9 +1,19 @@
+using System;
 using Cinemachine;
 using ProjectKratos.Player;
 using Unity.Netcode;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : NetworkBehaviour {
+
+    public static GameManager Instance { get; private set; }
+
+    private void Start()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     [SerializeField] private NetworkBehaviour _playerPrefab;
     [SerializeField] private Transform[] _playerSpawnPoints;
@@ -14,15 +24,16 @@ public class GameManager : NetworkBehaviour {
     [ServerRpc(RequireOwnership = false)]
     private void SpawnPlayerServerRpc(ulong playerId)
     {
-
-        var spawnPointIndex = Random.Range(0, _playerSpawnPoints.Length - 1);
-        
-        var spawnPoint = _playerSpawnPoints[spawnPointIndex];
-        
-        var spawn = Instantiate(_playerPrefab, spawnPoint.position, Quaternion.identity);
+        var spawn = Instantiate(_playerPrefab, PickRandomSpawnPoint().position, Quaternion.identity);
         spawn.NetworkObject.SpawnWithOwnership(playerId);
     }
-
+    
+    public Transform PickRandomSpawnPoint()
+    {
+        var spawnPointIndex = Random.Range(0, _playerSpawnPoints.Length - 1);
+        return _playerSpawnPoints[spawnPointIndex];
+    }
+    
     public override async void OnDestroy() {
         base.OnDestroy();
         await MatchmakingService.LeaveLobby();

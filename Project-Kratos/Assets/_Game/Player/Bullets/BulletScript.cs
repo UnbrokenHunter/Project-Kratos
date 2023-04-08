@@ -38,6 +38,8 @@ namespace ProjectKratos.Bullet
                 other.transform.root.GetComponentInChildren<PlayerHitInteractions>();
 
             player.PlayerHit(this);
+            
+            Destroy(gameObject);
 
         }
     }

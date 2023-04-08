@@ -8,29 +8,49 @@ namespace ProjectKratos.Player
         
         private PlayerVariables _variables;
         private  PlayerInteractions _interactions;
-        
+        private float calculatedDamage;
+        private NetworkBehaviour _shooterReference;
+
         public override void OnNetworkSpawn()
         {
             _variables = GetComponentInParent<PlayerVariables>();
             _interactions = GetComponentInParent<PlayerInteractions>();
         }
         
+        /// <summary>
+        /// This method is called on the player that was hit by the bullet shot by someone else.
+        /// </summary>
+        /// <param name="bullet"></param>
         public void PlayerHit(BulletScript bullet)
         {
             if (!IsOwner) return;
             if (bullet.ShooterStats.ShooterGameObject == transform.parent.gameObject) return;
-            
-            bool kill = _interactions.DealDamage(CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier));
-            MessageAttackResultServerRpc(bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>(), kill); 
+
+            calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
+            var kill = _interactions.DealDamage(calculatedDamage);
+            print($"Was Kill: {kill}");
+
+            _shooterReference = bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>();
+            MessageAttackResultServerRpc(_shooterReference, kill); 
             
             Destroy(bullet);
         }
         
         private float CalculateDamage(float damage, float multiplier) => damage * multiplier / _variables.Defense;
 
+        /// <summary>
+        /// Call on server
+        /// </summary>
+        /// <param name="shooterReference"></param>
+        /// <param name="wasKill"></param>
         [ServerRpc]
         private void MessageAttackResultServerRpc(NetworkBehaviourReference shooterReference, bool wasKill) => MessageAttackResultClientRpc(shooterReference, wasKill);
         
+        /// <summary>
+        ///  Call on all clients
+        /// </summary>
+        /// <param name="shooterReference"></param>
+        /// <param name="wasKill"></param>
         [ClientRpc]
         private void MessageAttackResultClientRpc(NetworkBehaviourReference shooterReference, bool wasKill)
         {
@@ -50,12 +70,8 @@ namespace ProjectKratos.Player
         /// </summary>
         private void AttackSuccessful()
         {
-            //if (!IsOwner) return;
-            
-           
-            
-            
-            print(gameObject.name + "Attack Successful");
+            _variables.MoneyCount = _variables.MoneyPerKill / 10; 
+            print(gameObject.name + " Attack Successful");
         }
         
         /// <summary>
@@ -63,11 +79,9 @@ namespace ProjectKratos.Player
         /// </summary>
         private void KillSuccessful()
         {
-            if (!IsOwner) return;
-
-            _variables.MoneyCount = _variables.MoneyPerKill;
-            
-            print("Kill Successful"); 
+            print(gameObject.name + " Kill Successful");
+        
+            _variables.MoneyCount = _variables.MoneyPerKill; 
         }
         
     }

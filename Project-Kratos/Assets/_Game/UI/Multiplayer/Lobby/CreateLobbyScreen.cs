@@ -12,10 +12,13 @@ public class CreateLobbyScreen : MonoBehaviour
     [SerializeField] private TMP_Dropdown _typeDropdown;
 
     private void Start() {
-        SetOptions(_typeDropdown, Constants.GameTypes);
+        SetOptions(_typeDropdown);
 
-        void SetOptions(TMP_Dropdown dropdown, IEnumerable<string> values) {
-            dropdown.options = values.Select(type => new TMP_Dropdown.OptionData { text = type }).ToList();
+        void SetOptions(TMP_Dropdown dropdown)
+        {
+            var values = Constants.GameTypesList();
+            
+            dropdown.options = values.Select(type => new TMP_Dropdown.OptionData { text = type.ToString() }).ToList();
         }
     }
 

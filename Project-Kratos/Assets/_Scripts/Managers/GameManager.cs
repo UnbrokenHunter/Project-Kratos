@@ -15,6 +15,8 @@ public class GameManager : NetworkBehaviour {
         else Destroy(gameObject);
     }
 
+    #region  Spawning
+    
     [SerializeField] private NetworkBehaviour _playerPrefab;
     [SerializeField] private Transform[] _playerSpawnPoints;
     public override void OnNetworkSpawn() {
@@ -34,6 +36,12 @@ public class GameManager : NetworkBehaviour {
         return _playerSpawnPoints[spawnPointIndex];
     }
     
+    #endregion
+   
+    public Constants.GameTypes GameMode => _gameMode;
+    // create a variable to store the game mode
+    [SerializeField] private Constants.GameTypes _gameMode;
+
     public override async void OnDestroy() {
         base.OnDestroy();
         await MatchmakingService.LeaveLobby();

@@ -78,6 +78,8 @@ namespace ProjectKratos.Player
         private void RespawnPlayer()
         {
             if (!IsOwner) return;
+            if (PlayerGamemode.CanRespawn()) return;
+            
             
             print("Respawn Player");
 

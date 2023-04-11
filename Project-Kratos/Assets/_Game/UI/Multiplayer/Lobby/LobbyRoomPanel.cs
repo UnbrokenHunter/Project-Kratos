@@ -19,7 +19,8 @@ public class LobbyRoomPanel : MonoBehaviour {
     public void UpdateDetails(Lobby lobby) {
         Lobby = lobby;
         _nameText.text = lobby.Name;
-        _typeText.text = Constants.GameTypes[GetValue(Constants.GameTypeKey)];
+        var list = Constants.GameTypesList();
+        _typeText.text = list[GetValue(Constants.GameTypeKey)].ToString();
 
         var point = Mathf.InverseLerp(0, Constants.Difficulties.Count - 1, GetValue(Constants.DifficultyKey));
 

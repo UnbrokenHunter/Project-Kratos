@@ -20,7 +20,6 @@ namespace ProjectKratos.Shop
         private void OnDisable()
         {
             if (_variables == null) return;
-            print("Disable");
 
             _variables.CanMove = true;
             _variables.CanShoot = true;

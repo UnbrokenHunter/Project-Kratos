@@ -14,7 +14,6 @@ namespace ProjectKratos.Player
             if(!IsOwner) return;
 
             _camera.m_Priority = 10;
-            print(_camera.m_Priority);
         }
     }
 }

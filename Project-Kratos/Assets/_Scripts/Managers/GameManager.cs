@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using ProjectKratos.Player;
 using Unity.Netcode;
@@ -9,18 +11,28 @@ public class GameManager : NetworkBehaviour {
 
     public static GameManager Instance { get; private set; }
 
+    public List<PlayerVariables> Players => _players;
+    [SerializeField] private List<PlayerVariables> _players;
+    
     private void Start()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        
+        NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerConnected;
     }
 
     #region  Spawning
     
     [SerializeField] private NetworkBehaviour _playerPrefab;
     [SerializeField] private Transform[] _playerSpawnPoints;
-    public override void OnNetworkSpawn() {
-        SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
+
+    private void OnPlayerConnected(ulong clientId) {
+        if(!IsOwner) return;
+        
+        SpawnPlayerServerRpc(clientId);
+
+        _players = GameObject.FindObjectsByType<PlayerVariables>(FindObjectsSortMode.None).ToList();
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -29,7 +41,7 @@ public class GameManager : NetworkBehaviour {
         var spawn = Instantiate(_playerPrefab, PickRandomSpawnPoint().position, Quaternion.identity);
         spawn.NetworkObject.SpawnWithOwnership(playerId);
     }
-    
+     
     public Transform PickRandomSpawnPoint()
     {
         var spawnPointIndex = Random.Range(0, _playerSpawnPoints.Length - 1);
@@ -44,6 +56,7 @@ public class GameManager : NetworkBehaviour {
 
     public override async void OnDestroy() {
         base.OnDestroy();
+        
         await MatchmakingService.LeaveLobby();
         if(NetworkManager.Singleton != null )NetworkManager.Singleton.Shutdown();
     }

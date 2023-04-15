@@ -32,7 +32,7 @@ namespace ProjectKratos.Bullet
             }
 
             // Hits Player
-            if (!other.transform.root.CompareTag("Player")) return;
+            if (!other.gameObject.CompareTag("Player")) return;
             
             PlayerHitInteractions player = 
                 other.transform.root.GetComponentInChildren<PlayerHitInteractions>();

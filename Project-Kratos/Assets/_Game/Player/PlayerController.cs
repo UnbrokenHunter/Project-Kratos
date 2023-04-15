@@ -1,4 +1,3 @@
-using Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
 

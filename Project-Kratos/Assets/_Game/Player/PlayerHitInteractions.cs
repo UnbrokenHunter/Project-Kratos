@@ -28,7 +28,6 @@ namespace ProjectKratos.Player
 
             calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
             var kill = _interactions.DealDamage(calculatedDamage);
-            print($"Was Kill: {kill}");
 
             _shooterReference = bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>();
             MessageAttackResultServerRpc(_shooterReference, kill); 
@@ -71,7 +70,6 @@ namespace ProjectKratos.Player
         private void AttackSuccessful()
         {
             _variables.MoneyCount = _variables.MoneyPerKill / 10; 
-            print(gameObject.name + " Attack Successful");
         }
         
         /// <summary>
@@ -79,8 +77,6 @@ namespace ProjectKratos.Player
         /// </summary>
         private void KillSuccessful()
         {
-            print(gameObject.name + " Kill Successful");
-        
             _variables.MoneyCount = _variables.MoneyPerKill; 
         }
         

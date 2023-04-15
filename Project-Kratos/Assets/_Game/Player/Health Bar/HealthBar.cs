@@ -13,7 +13,7 @@ namespace ProjectKratos.Player
 
         public void Start()
         {
-            _variables = transform.root.GetComponent<PlayerVariables>();
+            _variables = transform.GetComponentInParent<PlayerVariables>();
             _maxWidth = _healthBarSpriteRender.size.x;
         }
 
@@ -21,7 +21,10 @@ namespace ProjectKratos.Player
 
         public void UpdateBar()
         {
-            var width = (_variables.CurrentHealth / _variables.MaxHealth) / _maxWidth;
+            print(_variables.ToString());
+            
+            var width = (_variables.CurrentHealth / _variables.MaxHealth); 
+            width /= _maxWidth;
             _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
 
             UpdateHealthBarServerRpc(width);

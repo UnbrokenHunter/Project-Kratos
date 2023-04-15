@@ -34,6 +34,8 @@ namespace ProjectKratos.Player
         [Tooltip("The rate at which external velocity decays")]
         [SerializeField] private int _externalVelocityDecay = 100;
 
+        //[Header("Other")] [SerializeField] private bool _isBot = false;
+        
         private Stats _stats;
         
         
@@ -111,7 +113,6 @@ namespace ProjectKratos.Player
         /// </summary>
         public void SetStats()
         {
-            print("Reset Stats");
             
             _stats = new Stats
             {
@@ -131,19 +132,28 @@ namespace ProjectKratos.Player
             };
             
             MoneyCount = 0;
+            
+            print("Reset Stats\n" + ToString());
         }
         
         [Command("stats")]
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("Player Variables:\n------------------\n");
-            sb.Append($"Movement Variables: [CanMove={_canMove}, Speed={_speed}, RotationSpeed={_rotationSpeed}]\n");
-            sb.Append($"Health Variables: [CurrentHealth={_currentHealth}, MaxHealth={_maxHealth}, Defense={_defense}, HealthRegen={_healthRegen}]\n");
-            sb.Append($"Attack Variables: [CanShoot={_canShoot}, Damage={_damage}, ShootingSpeed={_shootingSpeed}]\n");
-            sb.Append($"Economy: [MoneyCount={_moneyCount}, MoneyPerKill ={_moneyPerKill}]\n");
-            sb.Append($"External: [ExternalVelocityDecay={_externalVelocityDecay}]\n");
-            sb.Append("------------------\n");
+            sb.AppendLine("Stats:");
+            sb.AppendFormat("  CanMove: {0}\n", CanMove);
+            sb.AppendFormat("  Speed: {0}\n", Speed);
+            sb.AppendFormat("  RotationSpeed: {0}\n", RotationSpeed);
+            sb.AppendFormat("  CurrentHealth: {0}\n", CurrentHealth);
+            sb.AppendFormat("  MaxHealth: {0}\n", MaxHealth);
+            sb.AppendFormat("  Defense: {0}\n", Defense);
+            sb.AppendFormat("  HealthRegen: {0}\n", HealthRegen);
+            sb.AppendFormat("  CanShoot: {0}\n", CanShoot);
+            sb.AppendFormat("  Damage: {0}\n", Damage);
+            sb.AppendFormat("  ShootingSpeed: {0}\n", ShootingSpeed);
+            sb.AppendFormat("  MoneyPerKill: {0}\n", MoneyPerKill);
+            sb.AppendFormat("  MoneyCount: {0}\n", MoneyCount);
+            sb.AppendFormat("  ExternalVelocityDecay: {0}\n", ExternalVelocityDecay);
             return sb.ToString();
         }
 

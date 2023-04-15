@@ -19,7 +19,6 @@ namespace ProjectKratos
             _shop = Instantiate(_shopPrefab);
 
             var shopMenu = _shop.GetComponentInChildren<ShopMenu>();
-            print(shopMenu + " " + _playerVariables);
             shopMenu.Variables = _playerVariables;
 
             shopMenu.gameObject.SetActive(false);

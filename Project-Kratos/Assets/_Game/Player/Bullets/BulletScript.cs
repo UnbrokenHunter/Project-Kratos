@@ -1,16 +1,17 @@
 using ProjectKratos.Player;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Bullet
 {
-    public class BulletScript : MonoBehaviour
+    public class BulletScript : NetworkBehaviour
     {
         public ShooterStats ShooterStats { get; private set; }
 
         public ScriptableBullet BulletStats { get => _bulletStats; }
         [SerializeField] private ScriptableBullet _bulletStats;
 
-        public void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
+        public override void OnNetworkSpawn() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
 
         public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {
@@ -18,7 +19,7 @@ namespace ProjectKratos.Bullet
                 Direction = direction,
                 ShooterGameObject = shooterGameObject,
                 ShooterDamageMultiplier = shooterDamageMultiplier,
-                ShooterSpeedMultiplier = shooterSpeedMultiplier
+                ShooterSpeedMultiplier = shooterSpeedMultiplier,
             };
         }
 
@@ -34,8 +35,12 @@ namespace ProjectKratos.Bullet
             // Hits Player
             if (!other.gameObject.CompareTag("Player")) return;
             
-            PlayerHitInteractions player = 
-                other.transform.root.GetComponentInChildren<PlayerHitInteractions>();
+            // Make sure the player is not the shooter
+            if (other.GetComponentInParent<PlayerVariables>().gameObject == ShooterStats.ShooterGameObject) return;
+           
+            print("This player : " + this.ShooterStats.ShooterGameObject.name + " hit " + other.transform.parent.gameObject.name + " with a bullet" );
+            
+            var player = other.transform.GetComponentInParent<PlayerHitInteractions>();
 
             player.PlayerHit(this);
             
@@ -51,5 +56,4 @@ namespace ProjectKratos.Bullet
         public float ShooterDamageMultiplier;
         public float ShooterSpeedMultiplier;
     }
-
 }

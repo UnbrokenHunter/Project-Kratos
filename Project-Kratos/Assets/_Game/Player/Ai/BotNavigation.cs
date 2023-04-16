@@ -17,6 +17,7 @@ namespace ProjectKratos
         [SerializeField] private float _checkDestinationIntervaks = 10;
         
         private NavMeshAgent _agent;
+        private ClientNetworkTransform _closestPlayer;
         private float _shortestDistance;
 
         public override void OnNetworkSpawn()
@@ -34,7 +35,6 @@ namespace ProjectKratos
         {
             
             var shortestDistance = float.MaxValue;
-            ClientNetworkTransform closestPlayer = null;
 
             // It gets the closest player to the bot
             var playerVariablesEnumerable = GameManager.Instance.Players
@@ -47,18 +47,18 @@ namespace ProjectKratos
                 if (!(_shortestDistance < shortestDistance)) continue;
                 
                 shortestDistance = _shortestDistance;
-                closestPlayer = player.GetComponentInChildren<ClientNetworkTransform>();
+                _closestPlayer = player.GetComponentInChildren<ClientNetworkTransform>();
 
             }
-           
+            
             // Make it sao that it follows the transform of the player instead of the position
-            if (closestPlayer != null) 
-                _destination = closestPlayer.transform.position;
+            if (_closestPlayer != null) 
+                _destination = _closestPlayer.transform.position;
 
             SetDestinationServerRpc(_destination);
             
         }
-        
+
         [ServerRpc(RequireOwnership = false)]
         private void SetDestinationServerRpc(Vector3 destination)
         {
@@ -71,6 +71,5 @@ namespace ProjectKratos
         {
             _agent.SetDestination(_destination);
         }
-
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using ProjectKratos.Bullet;
 using Unity.Netcode;
 
@@ -26,13 +27,14 @@ namespace ProjectKratos.Player
             if (!IsOwner) return;
             if (bullet.ShooterStats.ShooterGameObject == transform.parent.gameObject) return;
 
+            //print(transform.parent.gameObject.name + " was hit by " + bullet.ShooterStats.ShooterGameObject.name);
+            
             calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
             var kill = _interactions.DealDamage(calculatedDamage);
 
             _shooterReference = bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>();
             MessageAttackResultServerRpc(_shooterReference, kill); 
             
-            Destroy(bullet);
         }
         
         private float CalculateDamage(float damage, float multiplier) => damage * multiplier / _variables.Defense;
@@ -53,6 +55,8 @@ namespace ProjectKratos.Player
         [ClientRpc]
         private void MessageAttackResultClientRpc(NetworkBehaviourReference shooterReference, bool wasKill)
         {
+            // This may accidentally give points to all players, instead of just the shooter
+            
             if (IsOwner) return;
             
             shooterReference.TryGet(out PlayerVariables shooter);

@@ -104,7 +104,7 @@ namespace ProjectKratos.Player
             if (!_variables.CanShoot) return;
 
             var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
-            _shoot.ShootBullet(rotation, _variables.Damage, _variables.ShootingSpeed);
+            _shoot.ShootBullet(rotation, _variables.Damage, _variables.ShootingSpeed, false);
 
         }
 
@@ -113,7 +113,7 @@ namespace ProjectKratos.Player
             _rb.velocity = _speed + _currentExternalVelocity;
         }
 
-    }
+}
 
     public enum PlayerForce
     {

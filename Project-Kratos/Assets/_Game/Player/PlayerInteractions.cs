@@ -20,7 +20,7 @@ namespace ProjectKratos.Player
         public override void OnNetworkSpawn()
         {
             _variables = GetComponentInParent<PlayerVariables>();
-            _healthBar = transform.root.GetComponentInChildren<HealthBar>();
+            _healthBar = transform.GetComponentInChildren<HealthBar>();
 
             _variables.CurrentHealth = _variables.MaxHealth;
 
@@ -55,7 +55,8 @@ namespace ProjectKratos.Player
 
             _variables.CurrentHealth += healAmt;
 
-            if (_variables.CurrentHealth >= _variables.MaxHealth) _variables.CurrentHealth = _variables.MaxHealth;
+            if (_variables.CurrentHealth >= _variables.MaxHealth) 
+                _variables.CurrentHealth = _variables.MaxHealth;
 
             _healthBar.UpdateBar();
         }

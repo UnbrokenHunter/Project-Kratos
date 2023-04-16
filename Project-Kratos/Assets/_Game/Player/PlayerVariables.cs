@@ -1,6 +1,7 @@
 using QFSW.QC;
 using System;
 using System.Text;
+using Sirenix.OdinInspector;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -34,8 +35,10 @@ namespace ProjectKratos.Player
         [Tooltip("The rate at which external velocity decays")]
         [SerializeField] private int _externalVelocityDecay = 100;
 
-        //[Header("Other")] [SerializeField] private bool _isBot = false;
-        
+        [Header("Other")] 
+        [SerializeField] private bool _isBot = false;
+       
+        [SerializeField, ReadOnly]
         private Stats _stats;
         
         
@@ -78,8 +81,11 @@ namespace ProjectKratos.Player
         public float Damage { get => _stats.Damage; set => _stats.Damage = value; }
         public float ShootingSpeed { get => _stats.ShootingSpeed; set => _stats.ShootingSpeed = value; }
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
+        public bool IsBot => _isBot;
+
         #endregion
         
+        [System.Serializable]
         private struct Stats 
         {
             [Header("Movement Variables")]
@@ -104,6 +110,9 @@ namespace ProjectKratos.Player
             
             [Header("External")]
             public int ExternalVelocityDecay;
+            
+            [Header("Other")]
+            public bool IsBot;
         }
        
         public override void OnNetworkSpawn() => SetStats();
@@ -113,7 +122,6 @@ namespace ProjectKratos.Player
         /// </summary>
         public void SetStats()
         {
-            
             _stats = new Stats
             {
                 CanMove = _canMove,
@@ -154,6 +162,7 @@ namespace ProjectKratos.Player
             sb.AppendFormat("  MoneyPerKill: {0}\n", MoneyPerKill);
             sb.AppendFormat("  MoneyCount: {0}\n", MoneyCount);
             sb.AppendFormat("  ExternalVelocityDecay: {0}\n", ExternalVelocityDecay);
+            sb.AppendFormat("  IsBot: {0}\n", IsBot);
             return sb.ToString();
         }
 

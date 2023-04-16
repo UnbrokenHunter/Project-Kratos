@@ -11,7 +11,7 @@ namespace ProjectKratos.Player
 
         private float _maxWidth;
 
-        public void Start()
+        public override void OnNetworkSpawn()
         {
             _variables = transform.GetComponentInParent<PlayerVariables>();
             _maxWidth = _healthBarSpriteRender.size.x;
@@ -21,8 +21,6 @@ namespace ProjectKratos.Player
 
         public void UpdateBar()
         {
-            print(_variables.ToString());
-            
             var width = (_variables.CurrentHealth / _variables.MaxHealth); 
             width /= _maxWidth;
             _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
@@ -39,10 +37,9 @@ namespace ProjectKratos.Player
         [ClientRpc]
         private void UpdateHealthBarClientRpc(float width)
         {
-            _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
+            //if (!IsOwner || (isBot &&  (IsServer || IsHost))) 
+                _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
 
         }
-
-
     }
 }

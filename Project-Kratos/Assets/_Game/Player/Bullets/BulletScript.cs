@@ -38,7 +38,7 @@ namespace ProjectKratos.Bullet
             // Make sure the player is not the shooter
             if (other.GetComponentInParent<PlayerVariables>().gameObject == ShooterStats.ShooterGameObject) return;
            
-            print("This player : " + this.ShooterStats.ShooterGameObject.name + " hit " + other.transform.parent.gameObject.name + " with a bullet" );
+            // print("This player : " + this.ShooterStats.ShooterGameObject.name + " hit " + other.transform.parent.gameObject.name + " with a bullet" );
             
             var player = other.transform.GetComponentInParent<PlayerHitInteractions>();
 

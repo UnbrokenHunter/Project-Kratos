@@ -19,7 +19,7 @@ namespace ProjectKratos.Tabs
         [SerializeField] private UnityEvent onTabDeselect;
 
 
-        private void Start()
+        private void Awake()
         {
             tabGroup = GetComponentInParent<TabGroup>();
 

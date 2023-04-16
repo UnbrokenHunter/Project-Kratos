@@ -1,4 +1,6 @@
+using System;
 using ProjectKratos.Player;
+using ProjectKratos.Tabs;
 using UnityEngine;
 
 namespace ProjectKratos.Shop
@@ -7,6 +9,8 @@ namespace ProjectKratos.Shop
     {
         public PlayerVariables Variables { get => _variables; set => _variables = value; }
         private PlayerVariables _variables;
+        
+        [SerializeField] private TabGroup _tabGroup;
 
 
         private void OnEnable()
@@ -15,6 +19,7 @@ namespace ProjectKratos.Shop
 
             _variables.CanMove = false;
             _variables.CanShoot = false;
+            
         }
 
         private void OnDisable()

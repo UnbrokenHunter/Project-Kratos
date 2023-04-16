@@ -25,8 +25,14 @@ namespace ProjectKratos.Tabs
         [Title("Default Behavior")]
         [SerializeField] private List<GameObject> objectsToSwap;
 
-
         private void Start()
+        {
+            GetTabButtons();
+            
+            OnTabSelected(tabButtons.FirstOrDefault());
+        }
+        
+        private void GetTabButtons()
         {
             tabButtons = GetComponentsInChildren<TabButton>().ToList();
         }
@@ -37,13 +43,20 @@ namespace ProjectKratos.Tabs
         {
             ResetTabs();
 
-            if (selectedTab != null || button != selectedTab)
+            if (selectedTab == null && button == selectedTab) return;
+            
+            switch (selectType)
             {
-                if (selectType == SelectType.Sprite)
+                case SelectType.Sprite:
                     button.background.texture = tabHover;
-
-                else if (selectType == SelectType.Tint)
+                    break;
+                
+                case SelectType.Tint:
                     button.background.color = tabHighlight;
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -61,15 +74,23 @@ namespace ProjectKratos.Tabs
 
             ResetTabs();
 
-            if (selectType == SelectType.Sprite)
-                button.background.texture = tabActive;
+            switch (selectType)
+            {
+                case SelectType.Sprite:
+                    button.background.texture = tabActive;
+                    break;
+                
+                case SelectType.Tint:
+                    button.background.color = tabPressed;
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
-            else if (selectType == SelectType.Tint)
-                button.background.color = tabPressed;
 
-
-            int index = button.transform.GetSiblingIndex();
-            for(int i = 0; i < objectsToSwap.Count; i++)
+            var index = button.transform.GetSiblingIndex();
+            for(var i = 0; i < objectsToSwap.Count; i++)
             {
                 objectsToSwap[i].SetActive(i == index);
             }
@@ -78,15 +99,21 @@ namespace ProjectKratos.Tabs
 
         private void ResetTabs()
         {
-            foreach (var tab in tabButtons)
+            foreach (var tab in tabButtons.Where(tab => selectedTab == null || tab != selectedTab))
             {
-                if (selectedTab != null && tab == selectedTab) continue;
-
-                if (selectType == SelectType.Sprite)
-                    tab.background.texture = tabIdle;
-
-                else if (selectType == SelectType.Tint) 
-                    tab.background.color = tab.NormalColor;
+                switch (selectType)
+                {
+                    case SelectType.Sprite:
+                        tab.background.texture = tabIdle;
+                        break;
+                    
+                    case SelectType.Tint:
+                        tab.background.color = tab.NormalColor;
+                        break;
+                    
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 

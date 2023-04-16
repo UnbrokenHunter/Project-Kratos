@@ -39,7 +39,7 @@ namespace ProjectKratos
             
             if (hit > 0)
             {
-                print("In Sight");
+                // print("In Sight");
                 _agent.isStopped = true;
                 AgentShoot(); 
             }

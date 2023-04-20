@@ -34,19 +34,14 @@ namespace ProjectKratos.Player
         public static bool CanRespawn()
         {
             var gamemode = GameManager.Instance.GameMode;
-            
-            switch (gamemode)
+
+            return gamemode switch
             {
-                case Constants.GameTypes.BattleRoyal:
-                    return false;
-                case Constants.GameTypes.CaptureTheFlag:
-                    return true;
-                case Constants.GameTypes.Brawl:
-                    return true;
-                
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                Constants.GameTypes.BattleRoyal => false,
+                Constants.GameTypes.CaptureTheFlag => true,
+                Constants.GameTypes.Brawl => true,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
     }

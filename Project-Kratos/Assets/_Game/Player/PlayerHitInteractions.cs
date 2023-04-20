@@ -57,7 +57,7 @@ namespace ProjectKratos.Player
         {
             // This may accidentally give points to all players, instead of just the shooter
             
-            if (IsOwner) return;
+            if (!IsOwner) return;
             
             shooterReference.TryGet(out PlayerVariables shooter);
             

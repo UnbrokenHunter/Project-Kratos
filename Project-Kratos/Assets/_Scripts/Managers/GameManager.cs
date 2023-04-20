@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine;
 using ProjectKratos.Player;
 using Unity.Netcode;
 using UnityEngine;

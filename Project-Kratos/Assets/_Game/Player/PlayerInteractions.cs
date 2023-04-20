@@ -14,6 +14,7 @@ namespace ProjectKratos.Player
         private HealthBar _healthBar;
 
         private readonly float _regenDivider = 10;
+        private bool _canRespawn;
 
         #endregion
 
@@ -79,7 +80,9 @@ namespace ProjectKratos.Player
         private void RespawnPlayer()
         {
             if (!IsOwner) return;
-            if (PlayerGamemode.CanRespawn()) return;
+            _canRespawn = PlayerGamemode.CanRespawn();
+            print(_canRespawn);
+            if (!_canRespawn) return;
             
             
             print("Respawn Player");

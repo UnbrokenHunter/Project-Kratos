@@ -22,16 +22,25 @@ namespace ProjectKratos
         private bool _gameStarted = false;
         
         [SerializeField] private PlayerShoot _playerShoot;
-
+        private PlayerVariables _playerVars;
+        
+        
         public override void OnNetworkSpawn()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _playerVars = GetComponentInParent<PlayerVariables>();
             _gameStarted = true;
         }
 
         private void FixedUpdate()
         {
-            if (!_gameStarted) return; 
+            if (!_gameStarted) return;
+
+            if (_playerVars.CanMove == false)
+            {
+                _agent.isStopped = true;
+                return;
+            }
             
             int hit = Physics.RaycastNonAlloc(_playerShoot.Firepoint.position, transform.forward, _hits,_sightRange, _layers);
             

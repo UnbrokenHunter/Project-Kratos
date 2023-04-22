@@ -12,12 +12,14 @@ public class GameManager : NetworkBehaviour {
     public List<PlayerVariables> Players => _players;
     [SerializeField] private List<PlayerVariables> _players;
     
-    private void Start()
+    public override void OnNetworkSpawn()
     {
+        OnPlayerConnected(NetworkManager.Singleton.LocalClientId);
+        
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         
-        NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerConnected;
+        print("GameManager spawned");
     }
 
     #region  Spawning

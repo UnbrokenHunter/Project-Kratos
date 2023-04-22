@@ -30,10 +30,19 @@ namespace ProjectKratos
                 AgentServerRpc();
         }
 
+        /// <summary>
+        /// This C# code defines a public method called "SetDestinationServerRpc"
+        /// which finds the closest player to the current game object and sets
+        /// their position as the destination. It then sends an RPC to the server
+        /// with that destination. The code achieves this by iterating through a 
+        /// list of players, calculating their distance to the game object and updating 
+        /// the closest player accordingly. If a closest player is found, the method 
+        /// sets the destination to the position of the closest player and calls the 
+        /// SetDestinationServerRpc method with that destination.
+        /// </summary>
         [ServerRpc(RequireOwnership = false)]
         public void SetDestinationServerRpc()
         {
-            
             var shortestDistance = float.MaxValue;
 
             // It gets the closest player to the bot

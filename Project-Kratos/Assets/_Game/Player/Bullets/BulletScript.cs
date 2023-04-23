@@ -7,7 +7,7 @@ namespace ProjectKratos.Bullet
     public abstract class BulletScript : MonoBehaviour 
     {
         public ShooterStats ShooterStats { get; private set; }
-
+        
         public float BulletSpeed => _bulletSpeed;
         [SerializeField] private float _bulletSpeed = 1f;
         
@@ -44,9 +44,6 @@ namespace ProjectKratos.Bullet
             var player = other.transform.GetComponentInParent<PlayerHitInteractions>();
 
             ContactPlayer(player);
-            
-            Destroy(gameObject);
-
         }
 
         protected virtual void ContactWorld()

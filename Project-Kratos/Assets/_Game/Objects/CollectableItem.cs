@@ -1,3 +1,4 @@
+using ProjectKratos.Player;
 using UnityEngine;
 
 namespace ProjectKratos
@@ -26,7 +27,7 @@ namespace ProjectKratos
         private void OnTriggerEnter(Collider other)
         { 
             if (!other.CompareTag("Player")) return;
-                ItemCollected(other.transform.root.gameObject, gameObject);
+                ItemCollected(other.GetComponentInParent<PlayerVariables>(), gameObject);
             
             if (!_destroyOnPickup) return;
                 DestroyObject();
@@ -37,6 +38,6 @@ namespace ProjectKratos
         /// </summary>
         /// <param name="player"></param>
         /// <param name="item"></param>
-        protected abstract void ItemCollected(GameObject player, GameObject item);
+        protected abstract void ItemCollected(PlayerVariables player, GameObject item);
     }
 }

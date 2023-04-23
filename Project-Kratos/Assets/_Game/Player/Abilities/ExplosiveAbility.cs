@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using ProjectKratos.Bullet;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace ProjectKratos
 {
     public class ExplosiveAbility : PlayerAbility
     {
-        [SerializeField] private GameObject _bombPrefab;
         
         public override void TriggerAbility()
         {
-            Instantiate(_bombPrefab, _shoot.Firepoint.position, _shoot.Firepoint.rotation);
+            var obj = Addressables.LoadAssetAsync<GameObject>("Assets/_Game/Player/Bullets/Bomb.prefab").Result;
+            _shoot.ShootBullet(obj);
         }
     }
 }

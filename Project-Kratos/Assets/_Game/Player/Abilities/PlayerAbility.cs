@@ -11,7 +11,7 @@ namespace ProjectKratos
         [SerializeField] private protected float _numberOfUses;
         private protected PlayerVariables _variables;
         private protected PlayerShoot _shoot;
-
+        
         private void Start()
         {
             _variables = GetComponent<PlayerVariables>();

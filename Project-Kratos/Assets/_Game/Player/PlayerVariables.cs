@@ -1,6 +1,7 @@
 using QFSW.QC;
 using System;
 using System.Text;
+using ProjectKratos.Bullet;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace ProjectKratos.Player
 
         [Header("Other")] 
         [SerializeField] private bool _isBot = false;
+        [SerializeField] private GameObject _defaultBullet;
         [SerializeField] private PlayerAbility _ability;
         
         [SerializeField, ReadOnly]
@@ -81,19 +83,24 @@ namespace ProjectKratos.Player
         public float Damage { get => _stats.Damage; set => _stats.Damage = value; }
         public float ShootingSpeed { get => _stats.ShootingSpeed; set => _stats.ShootingSpeed = value; }
         public PlayerAbility Ability { get => _stats.Ability; set => _stats.Ability = value; }
+        public GameObject DefaultBullet => _stats.DefaultBullet;
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool IsBot => _isBot;
 
         #endregion
         
-        private void SetNewAbility(PlayerAbility ability)
+        public void SetNewBullet(GameObject bullet)
+        {
+            _stats.DefaultBullet = bullet;
+        }
+        
+        public void SetNewAbility(PlayerAbility ability)
         {
             Destroy(GetComponent<PlayerAbility>());
             
             ability = gameObject.AddComponent(ability.GetType()) as PlayerAbility;
             
             _stats.Ability = ability;
-            
         }
         
         [System.Serializable]
@@ -121,6 +128,7 @@ namespace ProjectKratos.Player
             
             [Header("External")]
             public int ExternalVelocityDecay;
+            public GameObject DefaultBullet;
             public PlayerAbility Ability;
             
             [Header("Other")]
@@ -148,6 +156,7 @@ namespace ProjectKratos.Player
                 ShootingSpeed = _shootingSpeed,
                 MoneyPerKill = _moneyPerKill,
                 MoneyCount = _moneyCount,
+                DefaultBullet = _defaultBullet,
                 Ability = _ability,
                 ExternalVelocityDecay = _externalVelocityDecay
             };

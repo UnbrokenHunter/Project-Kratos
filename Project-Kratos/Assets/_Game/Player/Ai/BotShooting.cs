@@ -41,7 +41,7 @@ namespace ProjectKratos
                 return;
             }
             
-            var hit = Physics.RaycastNonAlloc(_playerShoot.Firepoint.position, transform.forward, _hits,_sightRange, _layers);
+            var hit = Physics.RaycastNonAlloc(_playerShoot.FirePoint.position, transform.forward, _hits,_sightRange, _layers);
             
             _waitToShoot += Time.deltaTime;
             
@@ -63,7 +63,7 @@ namespace ProjectKratos
         {
             if (_waitToShoot < _shootRate) return;
             
-            _playerShoot.ShootBullet(transform.rotation, 1, 1, true);
+            _playerShoot.ShootBullet(_playerVars.DefaultBullet);
             _waitToShoot = 0;           
         }
         
@@ -71,7 +71,7 @@ namespace ProjectKratos
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(_playerShoot.Firepoint.position, transform.forward * _sightRange);
+            Gizmos.DrawRay(_playerShoot.FirePoint.position, transform.forward * _sightRange);
         }
     }
 }

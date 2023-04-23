@@ -8,6 +8,8 @@ namespace ProjectKratos
         protected override void ContactPlayer(PlayerHitInteractions player)
         {
             player.PlayerHit(this);
+            Destroy(this.gameObject);
         }
+
     }
 }

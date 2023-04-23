@@ -7,11 +7,11 @@ namespace ProjectKratos
     {
         [SerializeField] private float _moneyToGive = 100; 
         
-        protected override void ItemCollected(GameObject player, GameObject item)
+        protected override void ItemCollected(PlayerVariables player, GameObject item)
         {
             if(item != gameObject) return;
             
-            player.GetComponent<PlayerVariables>().MoneyCount = _moneyToGive;
+            player.MoneyCount = _moneyToGive;
         }
 
     }

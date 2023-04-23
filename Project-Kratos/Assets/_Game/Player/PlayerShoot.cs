@@ -5,46 +5,32 @@ namespace ProjectKratos.Player
 {
     public class PlayerShoot : MonoBehaviour 
     {
-        [SerializeField] private Transform _firepoint;
-        [SerializeField] private GameObject _bulletPrefab;
-        private PlayerVariables _shooterObject;
+        [SerializeField] private Transform firePoint;
+        private PlayerVariables _variables;
+        public Transform FirePoint => firePoint;
 
-        public Transform Firepoint => _firepoint;
-
-        public void Start()
+        private void Start()
         {
-            _shooterObject = transform.gameObject.GetComponentInParent<PlayerVariables>();
+            _variables = transform.gameObject.GetComponentInParent<PlayerVariables>();
         }
 
         /// <summary>
         /// In Future, we may want to also pass in the firepoint position, if there are aiming issues
         /// </summary>
-        /// <param name="rotation"></param>
-        /// <param name="damageMultiplier"></param>
-        /// <param name="speedMultipler"></param>
-        /// <param name="isBot"></param>
-        public void ShootBullet(Quaternion rotation, float damageMultiplier, float speedMultipler, bool isBot)
+        /// <param name="bulletPrefab"></param>
+        public void ShootBullet(GameObject bulletPrefab)
         {
-            // If not a bot and is the owner, go
-            // If is a bot and is the server, go
-            // Is Bot
-            
-            // Spawn Bullet 
-            CreateBullet(rotation, _shooterObject.gameObject, damageMultiplier, speedMultipler);
-        }
+            var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
 
-        private void CreateBullet(Quaternion bulletRotation, GameObject shooter, float damageMultiplier, float speedMultipler)
-        {
-            
             // The velocity is done in the awake function on the object In the BulletScript
             var bullet = Instantiate(
-                _bulletPrefab,
-                _firepoint.position,
-                bulletRotation,
+                bulletPrefab,
+                firePoint.position,
+                rotation,
                 null);
 
             var bulletScript = bullet.GetComponent<BulletScript>();
-            bulletScript.CreateBullet(transform.forward, shooter, damageMultiplier, speedMultipler);
+            bulletScript.CreateBullet(transform.forward, _variables.gameObject, _variables.Damage, _variables.ShootingSpeed);
         }
     }
 }

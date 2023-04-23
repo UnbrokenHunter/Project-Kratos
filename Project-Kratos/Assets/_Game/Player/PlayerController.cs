@@ -99,8 +99,7 @@ namespace ProjectKratos.Player
         {
             if (!_variables.CanShoot) return;
 
-            var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
-            _shoot.ShootBullet(rotation, _variables.Damage, _variables.ShootingSpeed, false);
+            _shoot.ShootBullet(_variables.DefaultBullet);
 
         }
 

@@ -782,6 +782,8 @@ MonoBehaviour:
   _moneyCount: 0
   _externalVelocityDecay: 100
   _isBot: 0
+  _defaultBullet: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
+    type: 3}
   _ability: {fileID: 3129830489839197956}
   _stats:
     CanMove: 0
@@ -797,6 +799,7 @@ MonoBehaviour:
     MoneyPerKill: 0
     MoneyCount: 0
     ExternalVelocityDecay: 0
+    DefaultBullet: {fileID: 0}
     Ability: {fileID: 0}
     IsBot: 0
 --- !u!114 &3129830489839197956
@@ -812,7 +815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfUses: 0
-  _bombPrefab: {fileID: 0}
 --- !u!1 &6726190944142930072
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,9 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08c071a0a43c4d4d901d8ef132f0cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firepoint: {fileID: 6003358502426367436}
-  _bulletPrefab: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
-    type: 3}
+  firePoint: {fileID: 6003358502426367436}
 --- !u!114 &3903670199301588638
 MonoBehaviour:
   m_ObjectHideFlags: 0

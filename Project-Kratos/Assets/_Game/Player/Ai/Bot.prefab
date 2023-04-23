@@ -169,9 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08c071a0a43c4d4d901d8ef132f0cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firepoint: {fileID: 4059442223303942487}
-  _bulletPrefab: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
-    type: 3}
+  firePoint: {fileID: 4059442223303942487}
 --- !u!114 &7446950343546375352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3562612035477479814}
   - component: {fileID: 486571300768775418}
+  - component: {fileID: 1661713681314569176}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Player
@@ -325,6 +324,9 @@ MonoBehaviour:
   _moneyCount: 0
   _externalVelocityDecay: 100
   _isBot: 0
+  _defaultBullet: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
+    type: 3}
+  _ability: {fileID: 1661713681314569176}
   _stats:
     CanMove: 0
     Speed: 0
@@ -339,7 +341,22 @@ MonoBehaviour:
     MoneyPerKill: 0
     MoneyCount: 0
     ExternalVelocityDecay: 0
+    DefaultBullet: {fileID: 0}
+    Ability: {fileID: 0}
     IsBot: 0
+--- !u!114 &1661713681314569176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562612035477479815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d61c9768f6dfa4cb763f2089402834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfUses: 0
 --- !u!1 &4355853211590463152
 GameObject:
   m_ObjectHideFlags: 0

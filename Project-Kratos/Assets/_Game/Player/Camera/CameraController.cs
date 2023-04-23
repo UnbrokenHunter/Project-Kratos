@@ -1,18 +1,15 @@
 using Cinemachine;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class CameraController : NetworkBehaviour
+    public class CameraController : MonoBehaviour
     {
         public CinemachineVirtualCamera Camera => _camera;
         [SerializeField] private CinemachineVirtualCamera _camera;
 
-        public override void OnNetworkSpawn()
+        public void Start()
         {
-            if(!IsOwner) return;
-
             _camera.m_Priority = 10;
         }
     }

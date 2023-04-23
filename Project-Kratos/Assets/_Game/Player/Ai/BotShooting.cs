@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ProjectKratos.Player;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace ProjectKratos
 {
-    public class BotShooting : NetworkBehaviour
+    public class BotShooting : MonoBehaviour
     {
         [SerializeField] private float _sightRange = 10;
         [SerializeField] private float _shootRate = 2;
@@ -25,7 +24,7 @@ namespace ProjectKratos
         private PlayerVariables _playerVars;
         
         
-        public override void OnNetworkSpawn()
+        public void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
             _playerVars = GetComponentInParent<PlayerVariables>();
@@ -42,7 +41,7 @@ namespace ProjectKratos
                 return;
             }
             
-            int hit = Physics.RaycastNonAlloc(_playerShoot.Firepoint.position, transform.forward, _hits,_sightRange, _layers);
+            var hit = Physics.RaycastNonAlloc(_playerShoot.Firepoint.position, transform.forward, _hits,_sightRange, _layers);
             
             _waitToShoot += Time.deltaTime;
             

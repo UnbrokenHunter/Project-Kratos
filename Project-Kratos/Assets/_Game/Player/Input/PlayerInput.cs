@@ -1,11 +1,10 @@
 using System;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerInput : NetworkBehaviour
+    public class PlayerInput : MonoBehaviour
     {
         public FrameInput FrameInput { get; private set; }
 

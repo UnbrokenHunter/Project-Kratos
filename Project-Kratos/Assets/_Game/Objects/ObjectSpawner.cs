@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos
 {
-    public class ObjectSpawner : NetworkBehaviour 
+    public class ObjectSpawner : MonoBehaviour
     {
         [Header("Spawn Settings")]
         [SerializeField] private CollectableItem _objectToSpawn;
@@ -17,19 +16,15 @@ namespace ProjectKratos
 
         private float spawnChanceTotal => _spawnStats.Sum(stat => stat.spawnChance);
  
-        public override void OnNetworkSpawn()
+        private void Start()
         {
-            if (!IsServer) return;
-            
             InvokeRepeating(nameof(SpawnObject), 0, _spawnInterval);
         }
 
         private void SpawnObject()
         {
-            if (!IsServer) return; 
-            
             // The number after removing objects that are already spawned
-            float realSpawnNumber = spawnChanceTotal;
+            var realSpawnNumber = spawnChanceTotal;
             
             for (int i = 0; i < _spawnStats.Length; i++)
             {
@@ -41,8 +36,8 @@ namespace ProjectKratos
             }
             
             // Get a random number between 0 and the total spawn chance - already spawned objects
-            float spawnNumber = Random.Range(0, realSpawnNumber);
-            float currentSpawnChance = _spawnStats[0].spawnChance;
+            var spawnNumber = Random.Range(0, realSpawnNumber); 
+            var currentSpawnChance = _spawnStats[0].spawnChance;
             
             for (int i = 0; i < _spawnStats.Length; i++)
             {
@@ -51,8 +46,6 @@ namespace ProjectKratos
                 if (currentSpawnChance >= spawnNumber) 
                 {
                     CollectableItem item = Instantiate(_objectToSpawn, _spawnStats[i].position, Quaternion.identity).SpawnItem(this, i);
-                    // Spawn this object on the server
-                    item.GetComponent<NetworkObject>().Spawn();
                     
                     _spawnStats[i].isSpawned = true;
                     return;     
@@ -66,11 +59,8 @@ namespace ProjectKratos
         /// <summary>
         /// Call this method when an object is collected or destroyed to reset the spawn stats
         /// </summary>
-        [ServerRpc(RequireOwnership = false)]
-        public void ObjectDespawnServerRpc(int index)
+        public void ObjectDespawn(int index)
         {
-            if (!IsServer) return;
-            
             _spawnStats[index].isSpawned = false;
         }
         

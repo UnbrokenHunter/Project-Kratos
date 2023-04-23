@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using ProjectKratos.Player;
 using TMPro;
 using UnityEngine;
 
@@ -13,21 +11,25 @@ namespace ProjectKratos
         
         private IEnumerator Start()
         {
+            yield return Helpers.GetWait(0.1f);
+            
             DisableMovement();
             
-            for (int i = _startCountdownAt; i >= 1; i--)
+            for (var i = _startCountdownAt; i >= 1; i--)
             {
-                _countdownText.text = i.ToString(); 
-                yield return new WaitForSeconds(1); 
+                _countdownText.text = i.ToString();
+                yield return Helpers.GetWait(1);
             }
             
             _countdownText.text = "GO!"; 
             
-            yield return new WaitForSeconds(1); 
+            yield return Helpers.GetWait(0.5f);
+
+            EnableMovement();
+
+            yield return Helpers.GetWait(0.5f);
             
             gameObject.SetActive(false); 
-            
-            EnableMovement();
         }
         
         private static void DisableMovement()

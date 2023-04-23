@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 7527220862641185646}
   - component: {fileID: 7527220862641185645}
   - component: {fileID: 5521554936715450626}
-  - component: {fileID: 7669451906488187673}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -162,19 +161,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destroyOnPickup: 1
   _moneyToGive: 100
---- !u!114 &7669451906488187673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527220862641185651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1

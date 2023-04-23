@@ -1,18 +1,16 @@
 using System.Linq;
 using ProjectKratos.Bullet;
-using Unity.Netcode;
+using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public sealed class PlayerHitInteractions : NetworkBehaviour
+    public sealed class PlayerHitInteractions : MonoBehaviour 
     {
         
         private PlayerVariables _variables;
         private  PlayerInteractions _interactions;
-        private float calculatedDamage;
-        private NetworkBehaviour _shooterReference;
 
-        public override void OnNetworkSpawn()
+        private void Start()
         {
             _variables = GetComponentInParent<PlayerVariables>();
             _interactions = GetComponentInParent<PlayerInteractions>();
@@ -24,48 +22,30 @@ namespace ProjectKratos.Player
         /// <param name="bullet"></param>
         public void PlayerHit(BulletScript bullet)
         {
-            if (!IsOwner) return;
             if (bullet.ShooterStats.ShooterGameObject == transform.parent.gameObject) return;
 
             //print(transform.parent.gameObject.name + " was hit by " + bullet.ShooterStats.ShooterGameObject.name);
+
+            var shooter = bullet.ShooterStats.ShooterGameObject.GetComponentInChildren<PlayerHitInteractions>();
             
-            calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
+            var calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
             var kill = _interactions.DealDamage(calculatedDamage);
 
-            _shooterReference = bullet.ShooterStats.ShooterGameObject.GetComponent<NetworkBehaviour>();
-            MessageAttackResultServerRpc(_shooterReference, kill); 
-            
+            shooter.AttackResult(transform.parent.gameObject, kill);
+
         }
         
         private float CalculateDamage(float damage, float multiplier) => damage * multiplier / _variables.Defense;
 
-        /// <summary>
-        /// Call on server
-        /// </summary>
-        /// <param name="shooterReference"></param>
-        /// <param name="wasKill"></param>
-        [ServerRpc]
-        private void MessageAttackResultServerRpc(NetworkBehaviourReference shooterReference, bool wasKill) => MessageAttackResultClientRpc(shooterReference, wasKill);
-        
-        /// <summary>
-        ///  Call on all clients
-        /// </summary>
-        /// <param name="shooterReference"></param>
-        /// <param name="wasKill"></param>
-        [ClientRpc]
-        private void MessageAttackResultClientRpc(NetworkBehaviourReference shooterReference, bool wasKill)
+        private void AttackResult(GameObject shooter, bool wasKill)
         {
-            // This may accidentally give points to all players, instead of just the shooter
-            
-            if (!IsOwner) return;
-            
-            shooterReference.TryGet(out PlayerVariables shooter);
+            if (shooter == transform.parent.gameObject) return;
             
             if(wasKill) 
-                shooter.GetComponentInChildren<PlayerHitInteractions>().KillSuccessful();
+                KillSuccessful();
             
             else 
-                shooter.GetComponentInChildren<PlayerHitInteractions>().AttackSuccessful();
+                AttackSuccessful();
         }
         
         /// <summary>

@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerGamemode : NetworkBehaviour 
+    public class PlayerGamemode : MonoBehaviour
     {
         #region Internal
 
@@ -14,11 +13,9 @@ namespace ProjectKratos.Player
 
         #endregion
 
-        public override void OnNetworkSpawn()
+        public void Start()
         {
             _variables = GetComponentInParent<PlayerVariables>();
-            
-            
         }
 
         private void SetupBattleRoyal()

@@ -3,12 +3,11 @@ using System;
 using System.Text;
 using Sirenix.OdinInspector;
 using TMPro;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerVariables : NetworkBehaviour
+    public class PlayerVariables : MonoBehaviour 
     {
 
         [Header("Movement Variables")]
@@ -114,8 +113,8 @@ namespace ProjectKratos.Player
             [Header("Other")]
             public bool IsBot;
         }
-       
-        public override void OnNetworkSpawn() => SetStats();
+
+        public void Start() => SetStats();
 
         /// <summary>
         /// Resets all the stats to their default values

@@ -1,12 +1,11 @@
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos
 {
-    public abstract class CollectableItem : NetworkBehaviour
+    public abstract class CollectableItem : MonoBehaviour
     {
-        private ObjectSpawner _spawner;
-        private int _spawnIndex;
+        private ObjectSpawner _spawner; 
+        private int _spawnIndex; 
         
         [SerializeField] private bool _destroyOnPickup = true;
         
@@ -18,10 +17,9 @@ namespace ProjectKratos
             return this;
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        private void DestroyServerRpc()
+        private void DestroyObject()
         {
-            _spawner.ObjectDespawnServerRpc(_spawnIndex);
+            _spawner.ObjectDespawn(_spawnIndex);
             Destroy(gameObject);
         }
 
@@ -31,7 +29,7 @@ namespace ProjectKratos
                 ItemCollected(other.transform.root.gameObject, gameObject);
             
             if (!_destroyOnPickup) return;
-                DestroyServerRpc();
+                DestroyObject();
         }
 
         /// <summary>

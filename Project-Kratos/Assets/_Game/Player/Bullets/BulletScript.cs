@@ -1,17 +1,16 @@
 using ProjectKratos.Player;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Bullet
 {
-    public class BulletScript : NetworkBehaviour
+    public class BulletScript : MonoBehaviour 
     {
         public ShooterStats ShooterStats { get; private set; }
 
         public ScriptableBullet BulletStats { get => _bulletStats; }
         [SerializeField] private ScriptableBullet _bulletStats;
 
-        public override void OnNetworkSpawn() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
+        private void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
 
         public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {

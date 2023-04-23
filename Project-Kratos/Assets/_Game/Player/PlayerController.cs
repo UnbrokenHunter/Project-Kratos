@@ -1,9 +1,8 @@
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerController : NetworkBehaviour
+    public class PlayerController : MonoBehaviour
     {
         #region Internal
         private FrameInput _frameInput;
@@ -21,11 +20,9 @@ namespace ProjectKratos.Player
 
         #region External
 
-        public Vector2 Input => _frameInput.Move;
+        private Vector2 Input => _frameInput.Move;
 
-        public Vector3 Speed => _speed;
-
-        public virtual void ApplyVelocity(Vector3 vel, PlayerForce forceType)
+        public virtual void ExternalVelocity(Vector3 vel, PlayerForce forceType)
         {
             if (forceType == PlayerForce.Burst) _speed += vel;
             else _currentExternalVelocity += vel;
@@ -33,10 +30,8 @@ namespace ProjectKratos.Player
 
         #endregion
 
-        public override void OnNetworkSpawn()
+        public void Start()
         {
-            if (!IsOwner) return;
-
             // Cache Variables
             _transform = transform;
             _variables = GetComponentInParent<PlayerVariables>();
@@ -51,8 +46,6 @@ namespace ProjectKratos.Player
         #region Input
         protected virtual void Update()
         {
-            if (!IsOwner) return;
-            
             GatherInput();
         }
         
@@ -64,8 +57,8 @@ namespace ProjectKratos.Player
 
         protected virtual void FixedUpdate()
         {
-            if (!IsOwner) return;
-
+            if (!_variables.CanMove) return;
+            
             _currentExternalVelocity = Vector2.MoveTowards(
                 _currentExternalVelocity, 
                 Vector2.zero, 
@@ -81,26 +74,23 @@ namespace ProjectKratos.Player
         /// </summary>
         protected virtual void HandleMovement()
         {
-            if (!_variables.CanMove) return;
+            Vector3 movement = new (Input.x, 0f, Input.y);
 
-            Vector3 _movement = new (Input.x, 0f, Input.y);
+            
+            _speed = _variables.Speed * Time.fixedDeltaTime * movement;
 
-
-            _speed = _variables.Speed * Time.fixedDeltaTime * _movement;
-
-            if(_movement != Vector3.zero)
+            if(movement != Vector3.zero)
                 _transform.rotation = Quaternion.Slerp (_transform.rotation, 
-                    Quaternion.LookRotation(_movement), _variables.RotationSpeed);
+                    Quaternion.LookRotation(movement), _variables.RotationSpeed);
         }
 
         /// <summary>
-        /// Creates a bullet entirly through script, and syncs it to the server 
+        /// Creates a bullet entirely through script, and syncs it to the server 
         /// using a ClientNetworkTransform. It also adds force to it, and sets 
         /// its direction to the player's
         /// </summary>
         protected virtual void HandleShooting()
         {
-            if (!IsOwner) return;
             if (!_variables.CanShoot) return;
 
             var rotation = Quaternion.Euler(transform.rotation.eulerAngles);

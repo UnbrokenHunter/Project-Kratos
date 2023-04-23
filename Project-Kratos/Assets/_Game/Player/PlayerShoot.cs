@@ -1,10 +1,9 @@
 using ProjectKratos.Bullet;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public class PlayerShoot : NetworkBehaviour
+    public class PlayerShoot : MonoBehaviour 
     {
         [SerializeField] private Transform _firepoint;
         [SerializeField] private GameObject _bulletPrefab;
@@ -12,7 +11,7 @@ namespace ProjectKratos.Player
 
         public Transform Firepoint => _firepoint;
 
-        public override void OnNetworkSpawn()
+        public void Start()
         {
             _shooterObject = transform.gameObject.GetComponentInParent<PlayerVariables>();
         }
@@ -28,21 +27,14 @@ namespace ProjectKratos.Player
         {
             // If not a bot and is the owner, go
             // If is a bot and is the server, go
-            if (!(isBot && (IsServer || IsHost)))
-            {
-                if (!IsOwner) return;
-            }
-
+            // Is Bot
+            
             // Spawn Bullet 
-            CreateBulletServerRpc(rotation, _shooterObject, damageMultiplier, speedMultipler);
+            CreateBullet(rotation, _shooterObject.gameObject, damageMultiplier, speedMultipler);
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        private void CreateBulletServerRpc(Quaternion bulletRotation, NetworkBehaviourReference networkOfShooter, float damageMultiplier, float speedMultipler)
+        private void CreateBullet(Quaternion bulletRotation, GameObject shooter, float damageMultiplier, float speedMultipler)
         {
-            // !isOwner is called in the ClientRpc
-            
-            NetworkBehaviour shooterObject = networkOfShooter;
             
             // The velocity is done in the awake function on the object In the BulletScript
             var bullet = Instantiate(
@@ -52,9 +44,7 @@ namespace ProjectKratos.Player
                 null);
 
             var bulletScript = bullet.GetComponent<BulletScript>();
-            bulletScript.CreateBullet(transform.forward, shooterObject.gameObject, damageMultiplier, speedMultipler);
-            
-            bullet.GetComponent<NetworkObject>().Spawn(true);
+            bulletScript.CreateBullet(transform.forward, shooter, damageMultiplier, speedMultipler);
         }
     }
 }

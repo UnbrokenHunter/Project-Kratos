@@ -1,12 +1,11 @@
 using ProjectKratos.Bullet;
 using QFSW.QC;
-using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
 namespace ProjectKratos.Player
 {
-    public sealed class PlayerInteractions : NetworkBehaviour
+    public sealed class PlayerInteractions : MonoBehaviour
     {
         #region Internal
 
@@ -18,7 +17,7 @@ namespace ProjectKratos.Player
 
         #endregion
 
-        public override void OnNetworkSpawn()
+        public void Start()
         {
             _variables = GetComponentInParent<PlayerVariables>();
             _healthBar = transform.GetComponentInChildren<HealthBar>();
@@ -31,8 +30,6 @@ namespace ProjectKratos.Player
         [Command("dmg")]
         public bool DealDamage(float damage)
         {
-            if (!IsOwner) return false;
-
             var kill = false;
             
             _variables.CurrentHealth -= damage;
@@ -52,8 +49,6 @@ namespace ProjectKratos.Player
         [Command("heal")]
         private void AddHealth(float healAmt)
         {
-            if (!IsOwner) return;
-
             _variables.CurrentHealth += healAmt;
 
             if (_variables.CurrentHealth >= _variables.MaxHealth) 
@@ -72,14 +67,11 @@ namespace ProjectKratos.Player
 
         private void AddRegen()
         {
-            if (!IsOwner) return;
-
             AddHealth(_variables.HealthRegen / _regenDivider);
         }
 
         private void RespawnPlayer()
         {
-            if (!IsOwner) return;
             _canRespawn = PlayerGamemode.CanRespawn();
             print(_canRespawn);
             if (!_canRespawn) return;

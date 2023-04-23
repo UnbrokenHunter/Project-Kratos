@@ -5,11 +5,10 @@ using System.Linq;
 using ProjectKratos.Player;
 using Sirenix.Utilities;
 using TMPro;
-using Unity.Netcode;
 using UnityEngine;
 namespace ProjectKratos
 {
-    public class LeaderBoard : NetworkBehaviour 
+    public class LeaderBoard : MonoBehaviour
     {
         
         [SerializeField] private LeaderboardStat _trackedStat;
@@ -17,20 +16,13 @@ namespace ProjectKratos
         [SerializeField] private TMP_Text _localText;
         [SerializeField] private TMP_Text _highestText;
         
-        public override void OnNetworkSpawn()
+        private void Start()
         {
-            if (!IsOwner) return;
-            
             _trackedStat = GetComponent<LeaderboardStat>();
-            
-            // Find all players including bots
-            
         }
 
         private void Update()
         {
-            if (!IsOwner) return;
-
             var values = new float[_players.Count];
             for (var i = 0; i < _players.Count; i++)
             {
@@ -42,16 +34,16 @@ namespace ProjectKratos
 
             _localText.text = $"{FindLocalPlayerIndex()}. You";
             
-            var highestPlayerName = NetworkManager.Singleton.ConnectedClients.TryGetValue(FindHighestValuePlayer(_players.ToArray()).OwnerClientId, out var client) ? client.PlayerObject.name : "Unknown";
-            _highestText.text = $"{FindHighestValueIndex(values)}. {highestPlayerName}";
+            //var highestPlayerName = NetworkManager.Singleton.ConnectedClients.TryGetValue(FindHighestValuePlayer(_players.ToArray()).OwnerClientId, out var client) ? client.PlayerObject.name : "Unknown";
+            //_highestText.text = $"{FindHighestValueIndex(values)}. {highestPlayerName}";
 
         }
          
         // Returns the index of the highest value in the array
         private int FindLocalPlayerIndex()
         {
-            var localPlayer = NetworkManager.Singleton.LocalClientId;
-            return _players.FindIndex(player => player.OwnerClientId == localPlayer);
+            // INCOMPLETE
+            return -1;
         }
         
         // Returns the index of the highest value in the array

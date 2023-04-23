@@ -31,11 +31,12 @@ namespace ProjectKratos
             var shortestDistance = float.MaxValue;
 
             // It gets the closest player to the bot
-            var playerVariablesEnumerable = GameManager.Instance.Players
-                .Where(player => player.GetComponentInChildren<PlayerController>().gameObject != gameObject);
+            var playerList = GameManager.Instance.Players;
             
-            foreach (var player in playerVariablesEnumerable)
+            foreach (var player in playerList)
             {
+                if (player.gameObject == transform.parent.gameObject) continue;
+                
                 _shortestDistance = Vector3.Distance(transform.position, player.transform.position);
                 
                 if (!(_shortestDistance < shortestDistance)) continue;

@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3098689381522976389}
-  - component: {fileID: 1396577804056858017}
+  - component: {fileID: 1081465060800978958}
   - component: {fileID: 8222884988120758160}
   m_Layer: 0
   m_Name: Bullet
@@ -81,7 +81,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1396577804056858017
+--- !u!114 &1081465060800978958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,10 +90,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4905664660743700459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1020ab594d97ac49b396f31d6061824, type: 3}
+  m_Script: {fileID: 11500000, guid: 479bdae15666d6e4db5af0e7ad0ddd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletStats: {fileID: 11400000, guid: a8e9b07d8d72bb84488ba92d79c1eae1, type: 2}
+  _bulletSpeed: 70
+  _bulletDamage: 18.34
 --- !u!54 &8222884988120758160
 Rigidbody:
   m_ObjectHideFlags: 0

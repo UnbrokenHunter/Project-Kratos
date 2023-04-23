@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ namespace ProjectKratos.Player
 
         private Vector2 _move;
         public event Action Shoot;
+        public event Action Ability;
 
         public void OnMove(InputValue value)
         {
@@ -17,8 +19,12 @@ namespace ProjectKratos.Player
             Gather();
         }
 
+        
         public void OnShoot(InputValue value) => Shoot?.Invoke();
 
+        public void OnAbility(InputValue value) => Ability?.Invoke();
+        
+        
         private void Gather()
         {
             FrameInput = new FrameInput

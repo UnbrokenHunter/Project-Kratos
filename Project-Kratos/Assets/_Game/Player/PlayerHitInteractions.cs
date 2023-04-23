@@ -28,7 +28,7 @@ namespace ProjectKratos.Player
 
             var shooter = bullet.ShooterStats.ShooterGameObject.GetComponentInChildren<PlayerHitInteractions>();
             
-            var calculatedDamage = CalculateDamage(bullet.BulletStats.Damage, bullet.ShooterStats.ShooterDamageMultiplier);
+            var calculatedDamage = CalculateDamage(bullet.BulletDamage, bullet.ShooterStats.ShooterDamageMultiplier);
             var kill = _interactions.DealDamage(calculatedDamage);
 
             shooter.AttackResult(transform.parent.gameObject, kill);

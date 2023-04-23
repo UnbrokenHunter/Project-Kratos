@@ -36,7 +36,8 @@ namespace ProjectKratos.Player
 
         [Header("Other")] 
         [SerializeField] private bool _isBot = false;
-       
+        [SerializeField] private PlayerAbility _ability;
+        
         [SerializeField, ReadOnly]
         private Stats _stats;
         
@@ -79,10 +80,21 @@ namespace ProjectKratos.Player
         public bool CanShoot { get => _stats.CanShoot; set => _stats.CanShoot = value; }
         public float Damage { get => _stats.Damage; set => _stats.Damage = value; }
         public float ShootingSpeed { get => _stats.ShootingSpeed; set => _stats.ShootingSpeed = value; }
+        public PlayerAbility Ability { get => _stats.Ability; set => _stats.Ability = value; }
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool IsBot => _isBot;
 
         #endregion
+        
+        private void SetNewAbility(PlayerAbility ability)
+        {
+            Destroy(GetComponent<PlayerAbility>());
+            
+            ability = gameObject.AddComponent(ability.GetType()) as PlayerAbility;
+            
+            _stats.Ability = ability;
+            
+        }
         
         [System.Serializable]
         private struct Stats 
@@ -109,6 +121,7 @@ namespace ProjectKratos.Player
             
             [Header("External")]
             public int ExternalVelocityDecay;
+            public PlayerAbility Ability;
             
             [Header("Other")]
             public bool IsBot;
@@ -135,6 +148,7 @@ namespace ProjectKratos.Player
                 ShootingSpeed = _shootingSpeed,
                 MoneyPerKill = _moneyPerKill,
                 MoneyCount = _moneyCount,
+                Ability = _ability,
                 ExternalVelocityDecay = _externalVelocityDecay
             };
             

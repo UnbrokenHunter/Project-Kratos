@@ -41,6 +41,7 @@ namespace ProjectKratos.Player
             _interactions = GetComponent<PlayerInteractions>();
 
             _input.Shoot += HandleShooting;
+            _input.Ability += HandleAbility;
         }
 
         #region Input
@@ -69,6 +70,11 @@ namespace ProjectKratos.Player
             ApplyVelocity();
         }
 
+        protected virtual void HandleAbility()
+        {
+            _variables.Ability.TriggerAbility();
+        }
+        
         /// <summary>
         /// Gets the player input, and sets the _speed variable equal to it
         /// </summary>

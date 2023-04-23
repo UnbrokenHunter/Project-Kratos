@@ -1,16 +1,20 @@
 using ProjectKratos.Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ProjectKratos.Bullet
 {
-    public class BulletScript : MonoBehaviour 
+    public abstract class BulletScript : MonoBehaviour 
     {
         public ShooterStats ShooterStats { get; private set; }
 
-        public ScriptableBullet BulletStats { get => _bulletStats; }
-        [SerializeField] private ScriptableBullet _bulletStats;
-
-        private void Start() => GetComponent<Rigidbody>().AddForce(BulletStats.Speed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
+        public float BulletSpeed => _bulletSpeed;
+        [SerializeField] private float _bulletSpeed = 1f;
+        
+        public float BulletDamage => _bulletDamage;
+        [SerializeField] private float _bulletDamage = 1f;
+        
+        private void Start() => GetComponent<Rigidbody>().AddForce(_bulletSpeed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
 
         public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {
@@ -28,7 +32,7 @@ namespace ProjectKratos.Bullet
             // Hits World
             if (other.CompareTag("World"))
             {
-                Destroy(gameObject);
+                ContactWorld();
             }
 
             // Hits Player
@@ -37,15 +41,21 @@ namespace ProjectKratos.Bullet
             // Make sure the player is not the shooter
             if (other.GetComponentInParent<PlayerVariables>().gameObject == ShooterStats.ShooterGameObject) return;
            
-            // print("This player : " + this.ShooterStats.ShooterGameObject.name + " hit " + other.transform.parent.gameObject.name + " with a bullet" );
-            
             var player = other.transform.GetComponentInParent<PlayerHitInteractions>();
 
-            player.PlayerHit(this);
+            ContactPlayer(player);
             
             Destroy(gameObject);
 
         }
+
+        protected virtual void ContactWorld()
+        {
+            Destroy(gameObject);
+        }
+        
+        protected abstract void ContactPlayer(PlayerHitInteractions player);
+        
     }
 
     public struct ShooterStats

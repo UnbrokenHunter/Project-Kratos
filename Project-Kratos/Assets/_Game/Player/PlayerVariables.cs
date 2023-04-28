@@ -96,11 +96,11 @@ namespace ProjectKratos.Player
         
         public void SetNewAbility(PlayerAbility ability)
         {
-            Destroy(GetComponent<PlayerAbility>());
+            Destroy(GetComponentInChildren<PlayerAbility>().gameObject);
             
-            ability = gameObject.AddComponent(ability.GetType()) as PlayerAbility;
+            var obj = Instantiate(ability, transform);
             
-            _stats.Ability = ability;
+            _stats.Ability = obj;
         }
         
         [System.Serializable]

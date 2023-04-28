@@ -72,6 +72,8 @@ namespace ProjectKratos.Player
 
         protected virtual void HandleAbility()
         {
+            if(_variables.Ability == null) return;
+            
             _variables.Ability.TriggerAbility();
         }
         

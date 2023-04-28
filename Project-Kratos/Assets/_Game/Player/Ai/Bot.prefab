@@ -274,7 +274,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3562612035477479814}
   - component: {fileID: 486571300768775418}
-  - component: {fileID: 1661713681314569176}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Player
@@ -326,7 +325,7 @@ MonoBehaviour:
   _isBot: 0
   _defaultBullet: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
     type: 3}
-  _ability: {fileID: 1661713681314569176}
+  _ability: {fileID: 0}
   _stats:
     CanMove: 0
     Speed: 0
@@ -344,19 +343,6 @@ MonoBehaviour:
     DefaultBullet: {fileID: 0}
     Ability: {fileID: 0}
     IsBot: 0
---- !u!114 &1661713681314569176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562612035477479815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d61c9768f6dfa4cb763f2089402834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberOfUses: 0
 --- !u!1 &4355853211590463152
 GameObject:
   m_ObjectHideFlags: 0

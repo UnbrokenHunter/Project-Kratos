@@ -8,7 +8,8 @@ namespace ProjectKratos
     {
         [SerializeField] private float _speedBonus = 100;
         [SerializeField] private float _duration = 5f;
-
+        [SerializeField] private TrailRenderer _speedTrail;
+        
         protected override void Ability()
         { 
            StartCoroutine(SpeedUp());
@@ -16,9 +17,21 @@ namespace ProjectKratos
         
         private IEnumerator SpeedUp()
         {
-            _variables.Speed += _speedBonus;
+            EnableSpeed();
             yield return Helpers.GetWait(_duration);
+            DisableSpeed();
+        }
+
+        private void EnableSpeed()
+        {
+            _speedTrail.enabled = true;
+            _variables.Speed += _speedBonus;
+        }
+        
+        private void DisableSpeed()
+        {
             _variables.Speed -= _speedBonus;
+            _speedTrail.enabled = false;
         }
     }
 }

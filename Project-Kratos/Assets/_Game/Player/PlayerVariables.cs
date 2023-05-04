@@ -1,7 +1,6 @@
 using QFSW.QC;
 using System;
 using System.Text;
-using ProjectKratos.Bullet;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -28,6 +27,7 @@ namespace ProjectKratos.Player
         [SerializeField] private float _shootingSpeed = 1f;
 
         [Header("Economy")] 
+        [SerializeField] private bool _hasShop = false;
         [SerializeField] private float _moneyPerKill = 100f;
         [SerializeField] private float _moneyCount;
         
@@ -36,7 +36,6 @@ namespace ProjectKratos.Player
         [SerializeField] private int _externalVelocityDecay = 100;
 
         [Header("Other")] 
-        [SerializeField] private bool _isBot = false;
         [SerializeField] private GameObject _defaultBullet;
         [SerializeField] private PlayerAbility _ability;
         
@@ -85,7 +84,7 @@ namespace ProjectKratos.Player
         public PlayerAbility Ability { get => _stats.Ability; set => _stats.Ability = value; }
         public GameObject DefaultBullet => _stats.DefaultBullet;
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
-        public bool IsBot => _isBot;
+        public bool HasShop => _hasShop;
 
         #endregion
         
@@ -98,7 +97,7 @@ namespace ProjectKratos.Player
         {
             Destroy(GetComponentInChildren<PlayerAbility>().gameObject);
             
-            var obj = Instantiate(ability, transform);
+            var obj = Instantiate(ability, GetComponentInChildren<PlayerController>().transform);
             
             _stats.Ability = obj;
         }
@@ -130,9 +129,6 @@ namespace ProjectKratos.Player
             public int ExternalVelocityDecay;
             public GameObject DefaultBullet;
             public PlayerAbility Ability;
-            
-            [Header("Other")]
-            public bool IsBot;
         }
 
         public void Start() => SetStats();
@@ -158,7 +154,7 @@ namespace ProjectKratos.Player
                 MoneyCount = _moneyCount,
                 DefaultBullet = _defaultBullet,
                 Ability = _ability,
-                ExternalVelocityDecay = _externalVelocityDecay
+                ExternalVelocityDecay = _externalVelocityDecay,
             };
             
             MoneyCount = 0;
@@ -184,7 +180,6 @@ namespace ProjectKratos.Player
             sb.AppendFormat("  MoneyPerKill: {0}\n", MoneyPerKill);
             sb.AppendFormat("  MoneyCount: {0}\n", MoneyCount);
             sb.AppendFormat("  ExternalVelocityDecay: {0}\n", ExternalVelocityDecay);
-            sb.AppendFormat("  IsBot: {0}\n", IsBot);
             return sb.ToString();
         }
 

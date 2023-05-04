@@ -11,8 +11,11 @@ namespace ProjectKratos
         
         public void Start()
         {
+            var variables = transform.GetComponentInParent<PlayerVariables>();
+            if (!variables.HasShop) return;
+            
             _moneyUI = Instantiate(moneyUIPrefab);
-            transform.GetComponentInParent<PlayerVariables>().MoneyText = _moneyUI.GetComponentInChildren<TMP_Text>();
+            variables.MoneyText = _moneyUI.GetComponentInChildren<TMP_Text>();
         }
         
         public void DestroyMoneyUI()

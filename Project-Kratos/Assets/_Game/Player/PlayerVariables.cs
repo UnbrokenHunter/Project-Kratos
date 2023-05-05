@@ -41,8 +41,8 @@ namespace ProjectKratos.Player
         
         [SerializeField, ReadOnly]
         private Stats _stats;
-        
-        
+
+
         #region Things to do when something is changed
 
         public TMP_Text MoneyText { get => _moneyText; set => _moneyText = value; }
@@ -85,6 +85,7 @@ namespace ProjectKratos.Player
         public GameObject DefaultBullet => _stats.DefaultBullet;
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool HasShop => _hasShop;
+        public Rigidbody RigidBody { get; private set; }
 
         #endregion
         
@@ -129,6 +130,11 @@ namespace ProjectKratos.Player
             public int ExternalVelocityDecay;
             public GameObject DefaultBullet;
             public PlayerAbility Ability;
+        }
+
+        private void Awake()
+        { 
+            RigidBody = GetComponentInChildren<Rigidbody>(); 
         }
 
         public void Start() => SetStats();

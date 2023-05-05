@@ -16,13 +16,16 @@ namespace ProjectKratos
         [SerializeField] private float _checkDestinationIntervals = 1;
         
         private NavMeshAgent _agent;
-        private PlayerController _closestPlayer;
+        private Transform _closestPlayer;
         private float _shortestDistance;
 
+        private PlayerVariables _variables;
+        
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
             
+            _variables = transform.GetComponentInParent<PlayerVariables>();
             InvokeRepeating(nameof(SetDestination), 1, _checkDestinationIntervals);
         }
 
@@ -32,23 +35,20 @@ namespace ProjectKratos
 
             // It gets the closest player to the bot
             var playerList = GameManager.Instance.Players;
-            
-            foreach (var player in playerList)
+
+            foreach (var player in playerList.Where(player => player.gameObject != transform.parent.gameObject))
             {
-                if (player.gameObject == transform.parent.gameObject) continue;
-                
-                _shortestDistance = Vector3.Distance(transform.position, player.transform.position);
+                _shortestDistance = Vector3.Distance(transform.position, player.RigidBody.transform.position);
                 
                 if (!(_shortestDistance < shortestDistance)) continue;
                 
                 shortestDistance = _shortestDistance;
-                _closestPlayer = player.GetComponentInChildren<PlayerController>();
-
+                _closestPlayer = player.RigidBody.transform;
             }
             
             // Make it sao that it follows the transform of the player instead of the position
             if (_closestPlayer != null) 
-                _destination = _closestPlayer.transform.position;
+                _destination = _closestPlayer.position;
 
             SetDestination(_destination);
             

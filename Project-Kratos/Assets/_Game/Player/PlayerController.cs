@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ProjectKratos.Player
 {
@@ -16,6 +17,9 @@ namespace ProjectKratos.Player
         private PlayerInteractions _interactions;
         private PlayerInput _input;
         private Rigidbody _rb;
+        [SerializeField] private GameObject _topTank;
+        private Camera _camera;
+
         #endregion
 
         #region External
@@ -32,6 +36,7 @@ namespace ProjectKratos.Player
 
         public void Start()
         {
+            _camera = Camera.main;
             // Cache Variables
             _transform = transform;
             _variables = GetComponentInParent<PlayerVariables>();
@@ -84,12 +89,12 @@ namespace ProjectKratos.Player
         {
             Vector3 movement = new (Input.x, 0f, Input.y);
 
-            
             _speed = _variables.Speed * Time.fixedDeltaTime * movement;
 
             if(movement != Vector3.zero)
                 _transform.rotation = Quaternion.Slerp (_transform.rotation, 
                     Quaternion.LookRotation(movement), _variables.RotationSpeed);
+
         }
 
         /// <summary>
@@ -109,7 +114,6 @@ namespace ProjectKratos.Player
         {
             _rb.velocity = _speed + _currentExternalVelocity;
         }
-
 }
 
     public enum PlayerForce

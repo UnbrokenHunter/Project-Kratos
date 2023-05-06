@@ -9,7 +9,7 @@ public static class Constants {
 
     public enum GameTypes {
         BattleRoyal,
-        CaptureTheFlag,
+        Economy,
         Brawl 
     }
     public static List<GameTypes> GameTypesList() => Enum.GetValues(typeof(Constants.GameTypes))

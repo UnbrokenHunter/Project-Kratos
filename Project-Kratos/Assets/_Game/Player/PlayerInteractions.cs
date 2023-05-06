@@ -73,8 +73,18 @@ namespace ProjectKratos.Player
         private void RespawnPlayer()
         {
             _canRespawn = PlayerGamemode.CanRespawn();
-            print(_canRespawn);
-            if (!_canRespawn) return;
+
+            if (!_canRespawn)
+            {
+                // Player died, end game
+                if (!_variables.IsBot)
+                    _variables.EndGame(false);
+                
+                else
+                    GameManager.Instance.DespawnPlayer(_variables);
+                
+                return;
+            } 
             
             
             print("Respawn Player");

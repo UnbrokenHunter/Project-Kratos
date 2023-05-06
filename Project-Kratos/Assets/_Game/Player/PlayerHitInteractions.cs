@@ -62,6 +62,7 @@ namespace ProjectKratos.Player
         private void KillSuccessful()
         {
             _variables.MoneyCount = _variables.MoneyPerKill; 
+            _variables.AddKill();
         }
         
     }

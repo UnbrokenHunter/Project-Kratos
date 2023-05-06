@@ -35,7 +35,7 @@ namespace ProjectKratos.Player
             return gamemode switch
             {
                 Constants.GameTypes.BattleRoyal => false,
-                Constants.GameTypes.CaptureTheFlag => true,
+                Constants.GameTypes.Economy => true,
                 Constants.GameTypes.Brawl => true,
                 _ => throw new ArgumentOutOfRangeException()
             };

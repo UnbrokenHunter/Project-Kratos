@@ -232,10 +232,9 @@ namespace MoreMountains.Tools
 		/// </summary>
 		protected virtual void DrawHealthBar()
 		{
-			GameObject newGameObject = new();
+			GameObject newGameObject = new GameObject();
 			SceneManager.MoveGameObjectToScene(newGameObject, this.gameObject.scene);
-			newGameObject.name = "HealthBar |" + this.gameObject.name;
-			newGameObject.transform.SetParent(this.transform);
+			newGameObject.name = "HealthBar|"+this.gameObject.name;
 
 			if (NestDrawnHealthBar)
 			{
@@ -246,7 +245,7 @@ namespace MoreMountains.Tools
 
 			_followTransform = newGameObject.AddComponent<MMFollowTarget>();
 			_followTransform.Offset = HealthBarOffset;
-			_followTransform.Target = transform;
+			_followTransform.Target = this.transform;
 			_followTransform.FollowRotation = false; 
 			_followTransform.InterpolatePosition = false;
 			_followTransform.InterpolateRotation = false;

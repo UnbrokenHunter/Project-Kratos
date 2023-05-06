@@ -4,6 +4,7 @@ using System.Text;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ProjectKratos.Player
 {
@@ -42,16 +43,16 @@ namespace ProjectKratos.Player
         [SerializeField, ReadOnly]
         private Stats _stats;
 
+        private int _killCount = 0;
 
         #region Things to do when something is changed
 
-        public TMP_Text MoneyText { get => _moneyText; set => _moneyText = value; }
-        private TMP_Text _moneyText;
+        public TMP_Text MoneyText { get; set; }
 
         /// <summary>
         /// So that we can set the money count and have it update the UI
         /// </summary>
-        /// <param name="money"></param>
+        /// <param name="moneyToAdd"></param>
         /// <returns></returns>
         private float SetMoney(float moneyToAdd) {
             
@@ -61,6 +62,19 @@ namespace ProjectKratos.Player
                 MoneyText.text = "Coins: " + _stats.MoneyCount;
             
             return _stats.MoneyCount;
+        }
+        
+        public void AddKill()
+        {
+            _killCount++;
+            
+            if (IsBot) return;
+            
+            GameManager.Instance.KillsSlider.value = _killCount;
+            GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
+            
+            if (_killCount > GameManager.Instance.BrawlScoreToWin)
+                EndGame(true);
         }
 
         #endregion
@@ -86,9 +100,13 @@ namespace ProjectKratos.Player
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool HasShop => _hasShop;
         public Rigidbody RigidBody { get; private set; }
+        public int KillCount => _killCount;
+        public bool IsBot { get; private set; }
 
         #endregion
-        
+
+        #region Sets
+
         public void SetNewBullet(GameObject bullet)
         {
             _stats.DefaultBullet = bullet;
@@ -101,6 +119,28 @@ namespace ProjectKratos.Player
             var obj = Instantiate(ability, GetComponentInChildren<PlayerController>().transform);
             
             _stats.Ability = obj;
+        }
+        
+        #endregion
+
+        public void EndGame(bool won)
+        {
+            WinScreen.Instance.SetResults(
+                won, 
+                won ? "Nice job! You Won! Play again by pressing continue, or return to the menu." 
+                    : "You lost! Try again by pressing continue, or return to the menu.",
+                KillCount,
+                CalculateScore());
+        }
+
+
+        private int CalculateScore()
+        {
+            var score = KillCount * 100;
+            score += (int) MoneyCount;
+            score += (int) Random.value * 1000;
+            
+            return score;
         }
         
         [System.Serializable]
@@ -134,10 +174,18 @@ namespace ProjectKratos.Player
 
         private void Awake()
         { 
-            RigidBody = GetComponentInChildren<Rigidbody>(); 
+            RigidBody = GetComponentInChildren<Rigidbody>();
+
+            IsBot = RigidBody.gameObject.TryGetComponent(out BotNavigation nav);
         }
 
-        public void Start() => SetStats();
+        public void Start()
+        {
+            SetStats();
+            
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
+                RollAbility.Instance.Player = this;
+        }
 
         /// <summary>
         /// Resets all the stats to their default values

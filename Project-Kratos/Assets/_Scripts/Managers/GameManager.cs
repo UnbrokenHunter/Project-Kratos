@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ProjectKratos.Player;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
@@ -33,6 +34,12 @@ public class GameManager : MonoBehaviour {
 
         _players = GameObject.FindObjectsByType<PlayerVariables>(FindObjectsSortMode.None).ToList();
     }
+    
+    public void DespawnPlayer(PlayerVariables player)
+    {
+        _players.Remove(player);
+        Destroy(player.gameObject);
+    }
 
     public Transform PickRandomSpawnPoint()
     {
@@ -45,5 +52,9 @@ public class GameManager : MonoBehaviour {
     public Constants.GameTypes GameMode => _gameMode;
     // create a variable to store the game mode
     [SerializeField] private Constants.GameTypes _gameMode;
-
+    public int BrawlScoreToWin => _brawlScoreToWin;
+    [SerializeField] private int _brawlScoreToWin = 10;
+    public Slider KillsSlider => _killsSlider;
+    [SerializeField] private Slider _killsSlider;
+    
 }

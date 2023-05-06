@@ -39,6 +39,7 @@ namespace ProjectKratos.Player
         [Header("Other")] 
         [SerializeField] private GameObject _defaultBullet;
         [SerializeField] private PlayerAbility _ability;
+        [SerializeField] private StatusEffect _statusEffect;
         
         [SerializeField, ReadOnly]
         private Stats _stats;
@@ -108,7 +109,11 @@ namespace ProjectKratos.Player
         public int KillCount => _killCount;
         public int TotalKillCount => _totalKillCount;
         public bool IsBot { get; private set; }
-
+        public StatusEffect StatusEffect
+        {
+            get => _statusEffect;
+            set => SetNewStatusEffect(value);
+        }
         #endregion
 
         #region Sets
@@ -129,6 +134,13 @@ namespace ProjectKratos.Player
             if (IsBot) return;
             
             AbilityUI.Instance.SetAbility(_stats.Ability);
+        }
+
+        private  SetNewStatusEffect(StatusEffect statusEffect)
+        {
+            
+            
+            _statusEffect = statusEffect;
         }
         
         #endregion

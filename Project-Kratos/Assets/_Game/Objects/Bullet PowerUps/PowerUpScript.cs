@@ -7,8 +7,8 @@ namespace ProjectKratos
     public class PowerUpScript : CollectableItem
     {
         [SerializeField] private GameObject _bullet;
-        
-        protected override void ItemCollected(PlayerVariables player, GameObject item)
+
+        public override void ItemCollected(PlayerVariables player, GameObject item)
         {
             player.SetNewBullet(_bullet);
         }

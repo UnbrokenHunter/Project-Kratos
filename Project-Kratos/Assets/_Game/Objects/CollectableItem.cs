@@ -38,6 +38,6 @@ namespace ProjectKratos
         /// </summary>
         /// <param name="player"></param>
         /// <param name="item"></param>
-        protected abstract void ItemCollected(PlayerVariables player, GameObject item);
+        public abstract void ItemCollected(PlayerVariables player, GameObject item);
     }
 }

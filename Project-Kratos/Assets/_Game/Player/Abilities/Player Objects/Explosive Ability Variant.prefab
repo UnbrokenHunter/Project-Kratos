@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4260546283807222994, guid: 671863f28aa83c24691959711f0f5f16,
         type: 3}
       propertyPath: m_Name
-      value: Explosive Ability
+      value: Explosive Ability Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7506449276095110332, guid: 671863f28aa83c24691959711f0f5f16,
         type: 3}
@@ -87,4 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d61c9768f6dfa4cb763f2089402834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  _name: Bomb
   _cooldown: 2

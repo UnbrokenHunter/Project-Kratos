@@ -43,6 +43,7 @@ namespace ProjectKratos.Player
         [SerializeField, ReadOnly]
         private Stats _stats;
 
+        private int _totalKillCount = 0;
         private int _killCount = 0;
 
         #region Things to do when something is changed
@@ -66,15 +67,19 @@ namespace ProjectKratos.Player
         
         public void AddKill()
         {
+            _totalKillCount++;
             _killCount++;
             
             if (IsBot) return;
             
             GameManager.Instance.KillsSlider.value = _killCount;
             GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
-            
-            if (_killCount > GameManager.Instance.BrawlScoreToWin)
-                EndGame(true);
+
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl && _killCount >= GameManager.Instance.BrawlScoreToWin)
+            {
+                RollAbility.Instance.EnableRoll();
+                _killCount = 0;
+            }
         }
 
         #endregion
@@ -101,6 +106,7 @@ namespace ProjectKratos.Player
         public bool HasShop => _hasShop;
         public Rigidbody RigidBody { get; private set; }
         public int KillCount => _killCount;
+        public int TotalKillCount => _totalKillCount;
         public bool IsBot { get; private set; }
 
         #endregion
@@ -119,6 +125,10 @@ namespace ProjectKratos.Player
             var obj = Instantiate(ability, GetComponentInChildren<PlayerController>().transform);
             
             _stats.Ability = obj;
+            
+            if (IsBot) return;
+            
+            AbilityUI.Instance.SetAbility(_stats.Ability);
         }
         
         #endregion
@@ -136,7 +146,7 @@ namespace ProjectKratos.Player
 
         private int CalculateScore()
         {
-            var score = KillCount * 100;
+            var score = TotalKillCount * 100;
             score += (int) MoneyCount;
             score += (int) Random.value * 1000;
             

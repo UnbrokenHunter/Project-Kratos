@@ -6,6 +6,11 @@ namespace ProjectKratos
 {
     public abstract class PlayerAbility : MonoBehaviour
     {
+        public Sprite Icon => _icon;
+        [SerializeField] private Sprite _icon;
+        public string Name => _name;
+        [SerializeField] private string _name;
+        
         [SerializeField] private protected float _cooldown;
         private bool _canUseAbility = true;
         private protected PlayerVariables _variables;

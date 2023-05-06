@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ProjectKratos.Player;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace ProjectKratos
 {
@@ -15,18 +19,51 @@ namespace ProjectKratos
             else Destroy(gameObject);
         }
         
-        [SerializeField] private CollectableItem[] _abilitys;
+        [SerializeField] private AbilityCollectable[] _abilitys;
         public PlayerVariables Player { get; set; }
         
-        public CollectableItem PickAbility()
+        
+        [SerializeField] private TMP_Text[] _abilityText;
+
+        private void Start()
         {
-            return _abilitys[Random.Range(0, _abilitys.Length - 1)];
+            _abilityText = GetComponentsInChildren<TMP_Text>();
+            transform.parent.gameObject.SetActive(false);
+        }
+
+        public void EnableRoll()
+        {
+            transform.parent.gameObject.SetActive(true);
         }
         
-        public void SelectItem(CollectableItem item)
+        private void OnEnable()
         {
-            item.
+            Roll();
+        }
+
+        private void Roll()
+        {
+            foreach (var roll in _abilityText)
+            {
+                var ability = PickAbility();
+                roll.text = ability.AbilityName;
+
+                var component = roll.transform.parent.GetComponent<Button>();
+                component.onClick.RemoveAllListeners();
+                component.onClick.AddListener(() => SelectItem(ability));
+                
+            }
+        }
+
+        private AbilityCollectable PickAbility()
+        {
+            return _abilitys[Random.Range(0, _abilitys.Length)];
         }
         
+        private void SelectItem(AbilityCollectable item)
+        {
+            item.ItemCollected(Player, null);
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -21,6 +21,8 @@ namespace ProjectKratos
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             
+            print("Explosion");
+            
             var colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
             foreach (var collider in colliders)
             {
@@ -32,6 +34,7 @@ namespace ProjectKratos
                 if (_effect != null)
                     player.GetComponentInParent<PlayerVariables>().StatusEffect = _effect;
             }
+            
             _explosionParticles.gameObject.SetActive(true);
             GetComponentInChildren<MeshRenderer>().enabled = false;
             _explosionParticles.Play();

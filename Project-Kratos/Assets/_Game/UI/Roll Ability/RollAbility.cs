@@ -63,7 +63,7 @@ namespace ProjectKratos
         private void SelectItem(AbilityCollectable item)
         {
             item.ItemCollected(Player, null);
-            gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 }

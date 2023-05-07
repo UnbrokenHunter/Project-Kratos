@@ -136,7 +136,7 @@ namespace ProjectKratos.Player
             AbilityUI.Instance.SetAbility(_stats.Ability);
         }
 
-        private  SetNewStatusEffect(StatusEffect statusEffect)
+        private void SetNewStatusEffect(StatusEffect statusEffect)
         {
             
             

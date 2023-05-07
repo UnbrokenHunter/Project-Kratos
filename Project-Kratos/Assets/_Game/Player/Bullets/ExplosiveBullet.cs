@@ -10,6 +10,8 @@ namespace ProjectKratos
     {
         [SerializeField] private float _explosionRadius;
         [SerializeField] private ParticleSystem _explosionParticles;
+
+        [SerializeField] private StatusEffect _effect;
         
         protected override void ContactWorld() => BlowUp();
 
@@ -26,6 +28,9 @@ namespace ProjectKratos
                 
                 var player = collider.GetComponentInParent<PlayerHitInteractions>();
                 player.PlayerHit(this);
+                
+                if (_effect != null)
+                    player.GetComponentInParent<PlayerVariables>().StatusEffect = _effect;
             }
             _explosionParticles.gameObject.SetActive(true);
             GetComponentInChildren<MeshRenderer>().enabled = false;

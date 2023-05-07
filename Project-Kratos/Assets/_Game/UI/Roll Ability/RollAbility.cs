@@ -17,6 +17,9 @@ namespace ProjectKratos
         {
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
+            
+            _abilityText = GetComponentsInChildren<TMP_Text>();
+            transform.parent.gameObject.SetActive(false);
         }
         
         [SerializeField] private AbilityCollectable[] _abilitys;
@@ -25,11 +28,6 @@ namespace ProjectKratos
         
         [SerializeField] private TMP_Text[] _abilityText;
 
-        private void Start()
-        {
-            _abilityText = GetComponentsInChildren<TMP_Text>();
-            transform.parent.gameObject.SetActive(false);
-        }
 
         public void EnableRoll()
         {

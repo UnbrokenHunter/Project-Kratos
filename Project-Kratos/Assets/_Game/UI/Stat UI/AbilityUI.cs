@@ -21,6 +21,14 @@ namespace ProjectKratos
         
         public void SetAbility(PlayerAbility ability)
         {
+            if (ability == null)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+            
+            gameObject.SetActive(true);
+            
             _ability = ability;
            
             _image.sprite = _ability.Icon;

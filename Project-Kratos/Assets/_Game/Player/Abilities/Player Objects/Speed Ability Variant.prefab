@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: f82dfc5fc3c5a8f4080a3550427019c8, type: 3}
   _name: Speed
+  _abilitySound: Speed
   _cooldown: 10
   _speedBonus: 300
   _duration: 5

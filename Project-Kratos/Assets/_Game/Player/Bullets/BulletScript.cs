@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using ProjectKratos.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,11 +14,16 @@ namespace ProjectKratos.Bullet
         
         public float BulletDamage => _bulletDamage;
         [SerializeField] private float _bulletDamage = 1f;
+
+        [SerializeField] private string _shootAudio;
+        [SerializeField] private string _hitAudio;
         
         private void Start() => GetComponent<Rigidbody>().AddForce(_bulletSpeed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
 
         public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {
+            MasterAudio.PlaySound(_shootAudio);
+            
             ShooterStats = new ShooterStats {
                 Direction = direction,
                 ShooterGameObject = shooterGameObject,
@@ -33,6 +39,7 @@ namespace ProjectKratos.Bullet
             if (other.CompareTag("World"))
             {
                 ContactWorld();
+                MasterAudio.PlaySound(_hitAudio);
             }
 
             // Hits Player
@@ -43,6 +50,8 @@ namespace ProjectKratos.Bullet
            
             var player = other.transform.GetComponentInParent<PlayerHitInteractions>();
 
+            MasterAudio.PlaySound(_hitAudio);
+            
             ContactPlayer(player);
         }
 

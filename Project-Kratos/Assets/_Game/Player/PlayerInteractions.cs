@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using ProjectKratos.Bullet;
 using QFSW.QC;
 using UnityEditor;
@@ -42,6 +43,9 @@ namespace ProjectKratos.Player
 
             PauseRegen();
             _healthBar.UpdateBar();
+
+            if (!_variables.IsBot)
+                MasterAudio.PlaySound("Damaged");
             
             return kill;
         }

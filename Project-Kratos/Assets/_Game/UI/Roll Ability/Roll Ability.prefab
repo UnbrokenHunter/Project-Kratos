@@ -1174,6 +1174,7 @@ MonoBehaviour:
   _abilitys:
   - {fileID: 7656203510705391695, guid: 4346623e5ae279444b0b753b784e70fa, type: 3}
   - {fileID: 868997059429021900, guid: 1dc675c331163d34289027f7b6e8f6da, type: 3}
+  - {fileID: 7656203510705391695, guid: ecfd53f372182fc4fb4e652029e4cfe1, type: 3}
   _abilityText:
   - {fileID: 0}
 --- !u!1 &2850471201218630052

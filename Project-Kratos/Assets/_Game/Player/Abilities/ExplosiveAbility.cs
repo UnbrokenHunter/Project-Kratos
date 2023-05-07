@@ -11,7 +11,8 @@ namespace ProjectKratos
         protected override void Ability()
         {
             var obj = Addressables.LoadAssetAsync<GameObject>("Assets/_Game/Player/Bullets/Bomb.prefab").Result;
-            _shoot.ShootBullet(obj);
+            if (obj != null)
+                _shoot.ShootBullet(obj);
         }
     }
 }

@@ -1,21 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectKratos.Player;
 using UnityEngine;
 
 namespace ProjectKratos
 {
-    public class StatusEffect : MonoBehaviour
+    public abstract class StatusEffect : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        protected PlayerVariables _variables;
         
+        [SerializeField] protected float _duration;
+
+        private void Awake()
+        {
+            _variables = GetComponentInParent<PlayerVariables>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ApplyStatusEffect()
         {
-        
+            StartCoroutine(ApplyEffect());
         }
+        
+        protected abstract IEnumerator ApplyEffect();
     }
 }

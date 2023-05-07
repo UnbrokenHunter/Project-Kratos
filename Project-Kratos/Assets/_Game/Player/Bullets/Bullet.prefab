@@ -95,6 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpeed: 70
   _bulletDamage: 18.34
+  _shootAudio: Bullet
+  _hitAudio: 
 --- !u!54 &8222884988120758160
 Rigidbody:
   m_ObjectHideFlags: 0

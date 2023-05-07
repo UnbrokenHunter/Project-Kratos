@@ -1,6 +1,7 @@
 using QFSW.QC;
 using System;
 using System.Text;
+using DarkTonic.MasterAudio;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -39,6 +40,7 @@ namespace ProjectKratos.Player
         [Header("Other")] 
         [SerializeField] private GameObject _defaultBullet;
         [SerializeField] private PlayerAbility _ability;
+        [SerializeField] private string _abilitySound;
         [SerializeField] private StatusEffect _statusEffect;
         
         [SerializeField, ReadOnly]
@@ -68,10 +70,11 @@ namespace ProjectKratos.Player
         
         public void AddKill()
         {
+            if (IsBot) return;
+            
             _totalKillCount++;
             _killCount++;
             
-            if (IsBot) return;
             
             GameManager.Instance.KillsSlider.value = _killCount;
             GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
@@ -125,22 +128,34 @@ namespace ProjectKratos.Player
         
         public void SetNewAbility(PlayerAbility ability)
         {
-            Destroy(GetComponentInChildren<PlayerAbility>().gameObject);
+            var currentAbility = GetComponentInChildren<PlayerAbility>();
+            
+            if (currentAbility != null) 
+                Destroy(currentAbility.gameObject);
+            
+            if (IsBot) return;
             
             var obj = Instantiate(ability, GetComponentInChildren<PlayerController>().transform);
             
             _stats.Ability = obj;
             
-            if (IsBot) return;
+            MasterAudio.PlaySound(_abilitySound);
             
             AbilityUI.Instance.SetAbility(_stats.Ability);
         }
 
         private void SetNewStatusEffect(StatusEffect statusEffect)
         {
+            var currentStatusEffect = GetComponentInChildren<StatusEffect>();
             
+            if (currentStatusEffect != null) 
+                Destroy(currentStatusEffect.gameObject);
             
-            _statusEffect = statusEffect;
+            var obj = Instantiate(statusEffect, GetComponentInChildren<Rigidbody>().transform);
+
+            _statusEffect = obj;
+            
+            print("Status Effect Applied");
         }
         
         #endregion
@@ -234,7 +249,7 @@ namespace ProjectKratos.Player
             };
             
             MoneyCount = 0;
-            
+            AbilityUI.Instance.SetAbility(null);
             print("Reset Stats\n" + ToString());
         }
         

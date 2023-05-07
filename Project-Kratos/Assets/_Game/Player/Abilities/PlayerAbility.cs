@@ -1,4 +1,5 @@
 using System;
+using DarkTonic.MasterAudio;
 using ProjectKratos.Player;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace ProjectKratos
         [SerializeField] private Sprite _icon;
         public string Name => _name;
         [SerializeField] private string _name;
+        
+        [SerializeField] private string _abilitySound;
         
         [SerializeField] private protected float _cooldown;
         private bool _canUseAbility = true;
@@ -31,6 +34,7 @@ namespace ProjectKratos
             _canUseAbility = false;
             
             print("Ability Triggered");
+            MasterAudio.PlaySound(_abilitySound);
             Ability();
         }
         

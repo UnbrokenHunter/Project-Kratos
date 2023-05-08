@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1686021177307901620}
   - component: {fileID: 1686021177306803316}
   - component: {fileID: 2536002159034070635}
+  - component: {fileID: 2529355967819057643}
   m_Layer: 3
   m_Name: Ground_01
   m_TagString: World
@@ -98,3 +99,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d4ad967689295ba4eaf8baeaebc8721b, type: 3}
+--- !u!205 &2529355967819057643
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686021177304871604}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.006706238, y: 0.65449613, z: -0.0075912476}
+  m_Size: 29.765018
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.30382463
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1686021177306803316}
+  m_Enabled: 1

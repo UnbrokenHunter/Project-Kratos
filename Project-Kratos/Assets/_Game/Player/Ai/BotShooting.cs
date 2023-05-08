@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ProjectKratos.Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +9,10 @@ namespace ProjectKratos
         [SerializeField] private float _sightRange = 10;
         [SerializeField] private float _shootRate = 2;
         [SerializeField] private LayerMask _layers;
+        [SerializeField, Range(0f, 1f)] private float _abilityChance = 0.9f;
 
+        [Space] [SerializeField] private PlayerAbility[] _botAbilities;
+        
         private NavMeshAgent _agent;
         
         private RaycastHit[] _hits = new RaycastHit[1];
@@ -23,18 +23,19 @@ namespace ProjectKratos
         [SerializeField] private PlayerShoot _playerShoot;
         private PlayerVariables _playerVars;
         
-        
         public void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
             _playerVars = GetComponentInParent<PlayerVariables>();
             _gameStarted = true;
+            
+            _playerVars.SetNewAbility(_botAbilities[Random.Range(0, _botAbilities.Length)]);
         }
 
         private void FixedUpdate()
         {
             if (!_gameStarted) return;
-
+            
             if (_playerVars.CanMove == false)
             {
                 _agent.isStopped = true;
@@ -49,7 +50,12 @@ namespace ProjectKratos
             {
                 // print("In Sight");
                 _agent.isStopped = true;
-                AgentShoot(); 
+                AgentShoot();
+
+                if (Random.value > 0.9f)
+                {
+                    _playerVars.Ability.TriggerAbility();
+                }
             }
 
             // Keep going until in sight

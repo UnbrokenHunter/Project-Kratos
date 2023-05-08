@@ -52,8 +52,17 @@ public class GameManager : MonoBehaviour {
     public Constants.GameTypes GameMode => _gameMode;
     // create a variable to store the game mode
     [SerializeField] private Constants.GameTypes _gameMode;
-    public int BrawlScoreToWin => _brawlScoreToWin;
-    [SerializeField] private int _brawlScoreToWin = 10;
+
+    public void ResetBrawlScore()
+    {
+        _brawlScore = _brawlScoreToWin;
+        
+    }
+    public int BrawlScoreToWin { get => _brawlScore; set => _brawlScore += _brawlScoreIncrement; }
+
+    [SerializeField] private int _brawlScoreToWin = 10; 
+    private int _brawlScore = 10;
+    [SerializeField] private int _brawlScoreIncrement = 3;
     public Slider KillsSlider => _killsSlider;
     [SerializeField] private Slider _killsSlider;
     

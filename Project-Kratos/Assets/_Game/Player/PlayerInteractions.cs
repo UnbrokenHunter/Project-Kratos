@@ -34,7 +34,7 @@ namespace ProjectKratos.Player
             var kill = false;
             
             _variables.CurrentHealth -= damage;
-
+            
             if (_variables.CurrentHealth < 0)
             {
                 RespawnPlayer();

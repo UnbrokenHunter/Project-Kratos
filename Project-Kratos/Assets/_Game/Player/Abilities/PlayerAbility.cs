@@ -33,9 +33,13 @@ namespace ProjectKratos
             
             _canUseAbility = false;
             
-            print("Ability Triggered");
             MasterAudio.PlaySound(_abilitySound);
             Ability();
+            
+            if (_variables.IsBot) return;
+            
+            AbilityUI.Instance.ShowAbilityCooldown(_cooldown);
+            
         }
         
         protected abstract void Ability();

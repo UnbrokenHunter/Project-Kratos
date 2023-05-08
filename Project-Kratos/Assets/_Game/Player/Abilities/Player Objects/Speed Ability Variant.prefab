@@ -236,7 +236,7 @@ MonoBehaviour:
   _name: Speed
   _abilitySound: Speed
   _cooldown: 10
-  _speedBonus: 300
+  _speedBonus: 500
   _duration: 5
   _speedTrail: {fileID: 1581296264404402330}
 --- !u!4 &7761667250104331308 stripped

@@ -5,8 +5,8 @@ namespace ProjectKratos.Player
 {
     public class CameraController : MonoBehaviour
     {
-        public CinemachineVirtualCamera Camera => _camera;
         [SerializeField] private CinemachineVirtualCamera _camera;
+        public CinemachineVirtualCamera Camera => _camera;
 
         public void Start()
         {

@@ -139,6 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {x: -3, y: 0, z: 0}
   _checkDestinationIntervals: 1
+  _tooCloseDistance: 9.45
+  _revengeTime: 5
 --- !u!114 &718886012329889166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +158,13 @@ MonoBehaviour:
   _layers:
     serializedVersion: 2
     m_Bits: 1
+  _abilityChance: 0.9
+  _botAbilities:
+  - {fileID: 5502400380223994978, guid: 6541de4706bc8b442a1bf47e31738713, type: 3}
+  - {fileID: -4945429512957963323, guid: a2c174494e0a0c34c9c149cec45adbb4, type: 3}
+  - {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6, type: 3}
+  - {fileID: 1231750123, guid: b90a03e259b58074a8aaa843ad5fd3da, type: 3}
+  - {fileID: 1475445742, guid: 206b7ab8f0451914dbd1989056132b78, type: 3}
   _playerShoot: {fileID: 2703241399942974400}
 --- !u!114 &2703241399942974400
 MonoBehaviour:
@@ -170,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4059442223303942487}
+  _rotationOffset: 180
 --- !u!114 &7446950343546375352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +494,7 @@ MonoBehaviour:
   _healthRegen: 1
   _canShoot: 1
   _damage: 1
-  _shootingSpeed: 1
+  _shootingSpeed: 2
   _hasShop: 0
   _moneyPerKill: 100
   _moneyCount: 0

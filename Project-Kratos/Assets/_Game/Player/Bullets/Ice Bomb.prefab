@@ -40,7 +40,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663603746680781805}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
@@ -95,10 +95,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpeed: 70
   _bulletDamage: 10
-  _shootAudio: 
-  _hitAudio: 
-  _explosionRadius: 9
+  _shootAudio: Bullet
+  _hitAudio: Ice Bomb
+  _explosionRadius: 6
   _explosionParticles: {fileID: 1131729021366574211}
+  _missleParticles: {fileID: 0}
   _effect: {fileID: 5788146576811790860, guid: 12c82cccbf8ee4e4fbf6b44a4128d79f, type: 3}
 --- !u!54 &8222884988120758160
 Rigidbody:

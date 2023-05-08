@@ -17,7 +17,7 @@ namespace ProjectKratos.Player
         private PlayerInteractions _interactions;
         private PlayerInput _input;
         private Rigidbody _rb;
-        [SerializeField] private GameObject _topTank;
+        [SerializeField] private GameObject _turretGameObject;
         private Camera _camera;
 
         #endregion
@@ -91,10 +91,34 @@ namespace ProjectKratos.Player
 
             _speed = _variables.Speed * Time.fixedDeltaTime * movement;
 
+            
+            // Rotates the base
             if(movement != Vector3.zero)
                 _transform.rotation = Quaternion.Slerp (_transform.rotation, 
                     Quaternion.LookRotation(movement), _variables.RotationSpeed);
+            
+            
+            HandleTurretRotation();
+        }
 
+        RaycastHit hit;
+        protected virtual void HandleTurretRotation()
+        {
+            Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(ray, out hit, 50000f))
+            {
+                var rotation = Quaternion.LookRotation(hit.point - _turretGameObject.transform.position).eulerAngles;
+                
+                rotation -= _transform.rotation.eulerAngles;
+                
+                var realRotation = Quaternion.Euler(-90f, rotation.y, -180f);
+
+                var slerp = Quaternion.Slerp (_turretGameObject.transform.localRotation, 
+                    realRotation, _variables.RotationSpeed);
+                
+                _turretGameObject.transform.localRotation = slerp;
+            }
         }
 
         /// <summary>

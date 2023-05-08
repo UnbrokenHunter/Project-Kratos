@@ -5,6 +5,7 @@ using DarkTonic.MasterAudio;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using Event = Mono.CSharp.Event;
 using Random = UnityEngine.Random;
 
 namespace ProjectKratos.Player
@@ -82,6 +83,7 @@ namespace ProjectKratos.Player
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl && _killCount >= GameManager.Instance.BrawlScoreToWin)
             {
                 RollAbility.Instance.EnableRoll();
+                GameManager.Instance.BrawlScoreToWin++;
                 _killCount = 0;
             }
         }
@@ -95,8 +97,17 @@ namespace ProjectKratos.Player
         public float MoneyCount { get => _stats.MoneyCount; set => SetMoney(value); }
         public float MoneyPerKill { get => _stats.MoneyPerKill; set => _stats.MoneyPerKill = value; }
         public bool CanMove { get => _stats.CanMove; set => _stats.CanMove = value; }
-        public float Speed { get => _stats.Speed; set => _stats.Speed = value; }
-        public float RotationSpeed { get => _stats.RotationSpeed; set => _stats.RotationSpeed = value; }
+        public float Speed
+        {
+            get => _stats.Speed;
+            set => _stats.Speed = _stats.Speed + value > 0 ? value : 0;
+        }
+
+        public float RotationSpeed
+        {
+            get => _stats.RotationSpeed; 
+            set => _stats.RotationSpeed = _stats.RotationSpeed + value > 0.1 ? value : 0;
+        }
         public float CurrentHealth { get => _stats.CurrentHealth; set => _stats.CurrentHealth = value; }
         public float MaxHealth { get => _stats.MaxHealth; set => _stats.MaxHealth = value; }
         public float Defense { get => _stats.Defense; set => _stats.Defense = value; }
@@ -104,13 +115,14 @@ namespace ProjectKratos.Player
         public bool CanShoot { get => _stats.CanShoot; set => _stats.CanShoot = value; }
         public float Damage { get => _stats.Damage; set => _stats.Damage = value; }
         public float ShootingSpeed { get => _stats.ShootingSpeed; set => _stats.ShootingSpeed = value; }
-        public PlayerAbility Ability { get => _stats.Ability; set => _stats.Ability = value; }
+        public PlayerAbility Ability { get => _stats.Ability; private set => _stats.Ability = value; }
         public GameObject DefaultBullet => _stats.DefaultBullet;
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool HasShop => _hasShop;
         public Rigidbody RigidBody { get; private set; }
         public int KillCount => _killCount;
         public int TotalKillCount => _totalKillCount;
+        public int DeathCount { get; private set; }
         public bool IsBot { get; private set; }
         public StatusEffect StatusEffect
         {
@@ -133,11 +145,16 @@ namespace ProjectKratos.Player
             if (currentAbility != null) 
                 Destroy(currentAbility.gameObject);
             
-            if (IsBot) return;
             
-            var obj = Instantiate(ability, GetComponentInChildren<PlayerController>().transform);
+            var obj = Instantiate(ability, RigidBody.transform);
             
-            _stats.Ability = obj;
+            Ability = obj;
+
+            if (IsBot)
+            {
+                _ability = obj;
+                return;
+            }
             
             MasterAudio.PlaySound(_abilitySound);
             
@@ -154,6 +171,7 @@ namespace ProjectKratos.Player
             var obj = Instantiate(statusEffect, GetComponentInChildren<Rigidbody>().transform);
 
             _statusEffect = obj;
+            _statusEffect.ApplyStatusEffect();
             
             print("Status Effect Applied");
         }
@@ -170,7 +188,12 @@ namespace ProjectKratos.Player
                 CalculateScore());
         }
 
-
+        public event Action<PlayerVariables> OnHit;
+        public void Hit(PlayerVariables playerVariables)
+        {
+            OnHit?.Invoke(playerVariables);
+        }
+        
         private int CalculateScore()
         {
             var score = TotalKillCount * 100;
@@ -249,6 +272,16 @@ namespace ProjectKratos.Player
             };
             
             MoneyCount = 0;
+            DeathCount++;
+            
+            if (IsBot) return;
+
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
+            {
+                GameManager.Instance.ResetBrawlScore();
+                _killCount = 0;
+            }
+            
             AbilityUI.Instance.SetAbility(null);
             print("Reset Stats\n" + ToString());
         }

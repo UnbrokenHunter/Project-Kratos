@@ -17,8 +17,16 @@ namespace ProjectKratos.Bullet
 
         [SerializeField] private string _shootAudio;
         [SerializeField] private string _hitAudio;
+
+        protected Rigidbody Rigidbody => _rigidbody;
+        private Rigidbody _rigidbody;
         
-        private void Start() => GetComponent<Rigidbody>().AddForce(_bulletSpeed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction, ForceMode.Impulse);
+        private void Start()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.AddForce(_bulletSpeed * ShooterStats.ShooterSpeedMultiplier * ShooterStats.Direction,
+                    ForceMode.Impulse);
+        }
 
         public void CreateBullet(Vector3 direction, GameObject shooterGameObject, float shooterDamageMultiplier, float shooterSpeedMultiplier)
         {

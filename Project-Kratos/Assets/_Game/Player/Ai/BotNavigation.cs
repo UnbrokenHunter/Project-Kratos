@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ProjectKratos.Player;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -11,13 +13,36 @@ namespace ProjectKratos
 {
     public class BotNavigation : MonoBehaviour 
     {
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            
+            Gizmos.DrawSphere(_destination, 0.5f);
+            
+            Gizmos.color = _state == States.Moving ? Color.green : Color.red;
+            Gizmos.DrawSphere(transform.position, _tooCloseDistance);
+        }
+
         [SerializeField] private Vector3 _destination;
 
         [SerializeField] private float _checkDestinationIntervals = 1;
         
+        [Header("Nav Settings")]
+        [SerializeField] private float _tooCloseDistance = 1f;
+        [SerializeField] private float _revengeTime = 5f;
+        
+        private enum States
+        {
+            Idle,
+            Moving,
+            Revenge,
+        }
+        private States _state = States.Moving;
+        
         private NavMeshAgent _agent;
         private Transform _closestPlayer;
         private float _shortestDistance;
+        private PlayerVariables _attacker;
 
         private PlayerVariables _variables;
         
@@ -26,10 +51,40 @@ namespace ProjectKratos
             _agent = GetComponent<NavMeshAgent>();
             
             _variables = transform.GetComponentInParent<PlayerVariables>();
+            _variables.OnHit += PlayerAttacked;
+            
             InvokeRepeating(nameof(SetDestination), 1, _checkDestinationIntervals);
         }
 
         public void SetDestination()
+        {
+
+            if (_state == States.Moving)
+                MovingState();
+            
+            else if (_state == States.Revenge)
+                RevengeState();
+
+            SetDestination(_destination);
+        }
+
+        private bool MovingState()
+        {
+            var closestPlayer = GetClosestPlayer();
+            var position = transform.position;
+            var distance = Vector3.Distance(position, closestPlayer.position);
+            
+            if (distance <= _tooCloseDistance)
+            {
+                _destination = position + (position - closestPlayer.position);
+                SetDestination(_destination);
+                return true;
+            }
+
+            return false;
+        }
+
+        private Transform GetClosestPlayer()
         {
             var shortestDistance = float.MaxValue;
 
@@ -50,10 +105,32 @@ namespace ProjectKratos
             if (_closestPlayer != null) 
                 _destination = _closestPlayer.position;
 
-            SetDestination(_destination);
-            
+            return _closestPlayer;
         }
 
+        private void PlayerAttacked(PlayerVariables attacker)
+        {
+            _attacker = attacker;
+            _state = States.Revenge;
+            StartCoroutine(AngerTimer());
+        }
+
+        private IEnumerator AngerTimer()
+        {
+            yield return Helpers.GetWait(_revengeTime);
+            
+            _state = States.Moving;
+        }
+
+        private void RevengeState()
+        {
+            if (_attacker == _variables) return;
+            
+            var destination = _attacker.RigidBody.transform.position;
+            
+            SetDestination(destination);
+        }
+        
         private void SetDestination(Vector3 destination)
         {
             _destination = destination;

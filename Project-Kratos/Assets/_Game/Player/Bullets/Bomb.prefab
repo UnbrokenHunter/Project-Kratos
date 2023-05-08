@@ -40,7 +40,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663603746680781805}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
@@ -94,11 +94,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 70
-  _bulletDamage: 10
+  _bulletDamage: 30
   _shootAudio: Bullet
   _hitAudio: Explosion
   _explosionRadius: 9
   _explosionParticles: {fileID: 3931275248014647471}
+  _missleParticles: {fileID: 5817309430176136641}
   _effect: {fileID: 0}
 --- !u!54 &8222884988120758160
 Rigidbody:
@@ -331,6 +332,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6124dcfd1f9a5994f94c2cb2a9b5d81c, type: 3}
+--- !u!198 &5817309430176136641 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19884922, guid: 6124dcfd1f9a5994f94c2cb2a9b5d81c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817309430190102203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5817309430190307741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 470822, guid: 6124dcfd1f9a5994f94c2cb2a9b5d81c,

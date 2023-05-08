@@ -145,7 +145,6 @@ namespace ProjectKratos.Player
             if (currentAbility != null) 
                 Destroy(currentAbility.gameObject);
             
-            
             var obj = Instantiate(ability, RigidBody.transform);
             
             Ability = obj;

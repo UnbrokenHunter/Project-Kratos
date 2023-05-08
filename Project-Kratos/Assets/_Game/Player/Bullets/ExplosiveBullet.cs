@@ -28,7 +28,8 @@ namespace ProjectKratos
 
         private void BlowUp()
         {
-            Rigidbody.velocity = Vector3.zero;
+            if (Rigidbody != null)
+                Rigidbody.velocity = Vector3.zero;
 
             var numColliders = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, colliders);
 

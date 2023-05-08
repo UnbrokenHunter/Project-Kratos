@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 224708966071816778}
   - component: {fileID: 222589962187998198}
   - component: {fileID: 114704543873260852}
-  - component: {fileID: 114788587958843172}
   m_Layer: 5
   m_Name: LoadingBar_red
   m_TagString: Untagged
@@ -75,20 +74,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &114788587958843172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453627651306954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6efefaf68faf5804c9c30514797d1860, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 224722744822205080}
-  progress: 76.9
 --- !u!1 &1532504325082000
 GameObject:
   m_ObjectHideFlags: 0

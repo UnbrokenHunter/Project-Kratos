@@ -12,6 +12,8 @@ namespace ProjectKratos
         
         public override void ItemCollected(PlayerVariables player, GameObject item)
         {
+            if (!player.IsBot) 
+                print("2222222222 Player collected " + AbilityName + " ability");
             
             player.SetNewAbility(_ability);
             

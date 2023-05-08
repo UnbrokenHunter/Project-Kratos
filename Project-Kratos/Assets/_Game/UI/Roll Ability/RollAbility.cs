@@ -60,6 +60,8 @@ namespace ProjectKratos
         
         private void SelectItem(AbilityCollectable item)
         {
+            print("11111111 Player collected " + item.AbilityName + " ability");
+            
             item.ItemCollected(Player, null);
             transform.parent.gameObject.SetActive(false);
         }

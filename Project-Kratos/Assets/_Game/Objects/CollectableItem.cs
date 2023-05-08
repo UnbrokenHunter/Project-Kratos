@@ -33,11 +33,6 @@ namespace ProjectKratos
                 DestroyObject();
         }
 
-        /// <summary>
-        /// Make sure to check that the item that is being collected is the correct item. Otherwise it will call this method on all items.
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="item"></param>
         public abstract void ItemCollected(PlayerVariables player, GameObject item);
     }
 }

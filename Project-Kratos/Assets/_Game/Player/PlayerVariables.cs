@@ -140,6 +140,9 @@ namespace ProjectKratos.Player
         
         public void SetNewAbility(PlayerAbility ability)
         {
+            if (!IsBot) 
+                print("33333333333 Player Ability Applied: " + ability.name);
+            
             var currentAbility = GetComponentInChildren<PlayerAbility>();
             
             if (currentAbility != null) 
@@ -171,8 +174,6 @@ namespace ProjectKratos.Player
 
             _statusEffect = obj;
             _statusEffect.ApplyStatusEffect();
-            
-            print("Status Effect Applied");
         }
         
         #endregion
@@ -242,7 +243,7 @@ namespace ProjectKratos.Player
         {
             SetStats();
             
-            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl && !IsBot)
                 RollAbility.Instance.Player = this;
         }
 
@@ -282,7 +283,7 @@ namespace ProjectKratos.Player
             }
             
             AbilityUI.Instance.SetAbility(null);
-            print("Reset Stats\n" + ToString());
+            print("Player Reset Stats\n" + ToString());
         }
         
         [Command("stats")]

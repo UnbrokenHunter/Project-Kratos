@@ -276,6 +276,8 @@ namespace ProjectKratos.Player
             DeathCount++;
             
             if (IsBot) return;
+            
+            RollAbility.Instance.DisableRoll();
 
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
             {

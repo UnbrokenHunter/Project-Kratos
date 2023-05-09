@@ -12,13 +12,13 @@ namespace ProjectKratos
         
         public void Pause()
         {
-            MMTimeManager.Current.SetTimeScaleTo(0f);
+            MMTimeManager.Instance.SetTimeScaleTo(0f);
             _pauseMenu.SetActive(true);
         }
         
         public void Unpause()
         {
-            MMTimeManager.Current.SetTimeScaleTo(1f);
+            MMTimeManager.Instance.SetTimeScaleTo(1f);
             _pauseMenu.SetActive(false);
         }
         

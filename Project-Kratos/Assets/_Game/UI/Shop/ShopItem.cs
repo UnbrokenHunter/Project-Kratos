@@ -16,6 +16,7 @@ namespace ProjectKratos.Shop
              private protected PlayerVariables _variables;
              [SerializeField] private protected float _cost;
              
+             public string ItemName => _itemName;
              
              private void Start()
              {

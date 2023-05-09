@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
 
     public List<PlayerVariables> Players => _players;
     [SerializeField] private List<PlayerVariables> _players;
+    
+    public PlayerVariables MainPlayer => _mainPlayer;
+    [SerializeField] private PlayerVariables> _mainPlayer;
 
     public void Awake()
     { 

@@ -277,6 +277,9 @@ namespace ProjectKratos.Player
             {
                 GameManager.Instance.ResetBrawlScore();
                 _killCount = 0;
+                            
+                GameManager.Instance.KillsSlider.value = _killCount;
+                GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
             }
             
             AbilityUI.Instance.SetAbility(null);

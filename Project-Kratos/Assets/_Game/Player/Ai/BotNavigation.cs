@@ -30,6 +30,7 @@ namespace ProjectKratos
         [Header("Nav Settings")]
         [SerializeField] private float _tooCloseDistance = 1f;
         [SerializeField] private float _revengeTime = 5f;
+        [SerializeField] private float _playerDistanceBias = 10f;
         
         private enum States
         {
@@ -100,6 +101,12 @@ namespace ProjectKratos
                 shortestDistance = _shortestDistance;
                 _closestPlayer = player.RigidBody.transform;
             }
+            
+            var _mainPlayerDistance = Vector3.Distance(transform.position, GameManager.Instance.MainPlayer
+                .RigidBody.transform.position);
+                
+            if (shortestDistance < _mainPlayerDistance - _playerDistanceBias)
+                _closestPlayer = GameManager.Instance.MainPlayer.RigidBody.transform;
             
             // Make it sao that it follows the transform of the player instead of the position
             if (_closestPlayer != null) 

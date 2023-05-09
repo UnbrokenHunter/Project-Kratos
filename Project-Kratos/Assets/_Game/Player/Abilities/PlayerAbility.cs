@@ -34,7 +34,6 @@ namespace ProjectKratos
             _canUseAbility = false;
             
             MasterAudio.PlaySound(_abilitySound);
-            print("Ability Sound: " + _abilitySound + " played - Name: " + _name);
             Ability();
             
             if (_variables.IsBot) return;

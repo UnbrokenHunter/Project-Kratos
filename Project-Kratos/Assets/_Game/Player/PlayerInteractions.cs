@@ -90,9 +90,6 @@ namespace ProjectKratos.Player
                 return;
             } 
             
-            
-            print("Respawn Player");
-
             transform.position = GameManager.Instance.PickRandomSpawnPoint().position;
             _variables.SetStats();
             

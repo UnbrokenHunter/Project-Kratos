@@ -140,9 +140,6 @@ namespace ProjectKratos.Player
         
         public void SetNewAbility(PlayerAbility ability)
         {
-            if (!IsBot) 
-                print("33333333333 Player Ability Applied: " + ability.name);
-            
             var currentAbility = GetComponentInChildren<PlayerAbility>();
             
             if (currentAbility != null) 

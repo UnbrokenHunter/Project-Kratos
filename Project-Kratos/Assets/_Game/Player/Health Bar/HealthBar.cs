@@ -7,6 +7,7 @@ namespace ProjectKratos.Player
     {
         private PlayerVariables _variables;
         [SerializeField] private SpriteRenderer _healthBarSpriteRender;
+        [SerializeField] private float _extraOffset = 0.15f;
 
         private float _maxWidth;
 
@@ -22,6 +23,7 @@ namespace ProjectKratos.Player
         {
             var width = (_variables.CurrentHealth / _variables.MaxHealth); 
             width /= _maxWidth;
+            width += _extraOffset;
             _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
 
             UpdateHealthBar(width);

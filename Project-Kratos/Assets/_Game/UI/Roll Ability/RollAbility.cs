@@ -61,7 +61,13 @@ namespace ProjectKratos
         private void SelectItem(AbilityCollectable item)
         {
             item.ItemCollected(Player, null);
+            DisableRoll();
+        }
+        
+        public void DisableRoll()
+        {
             transform.parent.gameObject.SetActive(false);
         }
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using ProjectKratos;
 using UnityEngine;
@@ -46,7 +47,10 @@ public class TweenUI : MonoBehaviour
         transform.localScale = Vector3.zero;
 
         _rectTransform = GetComponent<RectTransform>();
-        _rectTransform.position = new Vector3(_rectTransform.position.x, _yStartPosition, _rectTransform.position.z);
+        
+        var position = _rectTransform.position;
+        position = new Vector3(position.x, _yStartPosition, position.z);
+        _rectTransform.position = position;
 
 
         StartCoroutine(nameof(InitialWait));

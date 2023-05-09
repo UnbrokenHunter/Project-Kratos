@@ -43,6 +43,8 @@ namespace ProjectKratos.Player
         [SerializeField] private PlayerAbility _ability;
         [SerializeField] private string _abilitySound;
         [SerializeField] private StatusEffect _statusEffect;
+
+        [SerializeField] private GameObject _abilityPopup;
         
         [SerializeField, ReadOnly]
         private Stats _stats;
@@ -158,6 +160,9 @@ namespace ProjectKratos.Player
             MasterAudio.PlaySound(_abilitySound);
             
             AbilityUI.Instance.SetAbility(_stats.Ability);
+            
+            _abilityPopup.SetActive(true);
+            
         }
 
         private void SetNewStatusEffect(StatusEffect statusEffect)
@@ -234,11 +239,6 @@ namespace ProjectKratos.Player
             RigidBody = GetComponentInChildren<Rigidbody>();
 
             IsBot = RigidBody.gameObject.TryGetComponent(out BotNavigation nav);
-        }
-
-        public void Start()
-        {
-            SetStats();
             
             if (IsBot) return;
             
@@ -246,6 +246,13 @@ namespace ProjectKratos.Player
                 RollAbility.Instance.Player = this;
                 
             GameManager.Instance.MainPlayer = this;
+
+        }
+
+        public void Start()
+        {
+            SetStats();
+            
         }
 
         /// <summary>

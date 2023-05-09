@@ -20,6 +20,7 @@ namespace ProjectKratos
             else Destroy(gameObject);
             
             _abilityText = GetComponentsInChildren<TMP_Text>();
+            _shopItems = _shopItems[0].GetComponents<ShopItem>();
             transform.parent.gameObject.SetActive(false);
         }
         
@@ -43,7 +44,7 @@ namespace ProjectKratos
 
         private void Roll()
         {
-            int statIndex = Random.Range(0, 3);
+            var statIndex = Random.Range(0, 3);
         
             for (int i = 0; i < _abilityText.Length; i++) 
             {
@@ -54,9 +55,9 @@ namespace ProjectKratos
                 if (i == statIndex) {
                     
                     var stat = PickStat();
-                    roll.text = stat.ItemName; // TODO Add a Getter
-                    
-                    component.onClick.AddListener(() => stat.BuyItem()); // TODO Make Public
+                    roll.text = stat.ItemName;
+
+                    component.onClick.AddListener(() => SelectItem(stat));
                 }
                 
                 else 
@@ -81,6 +82,12 @@ namespace ProjectKratos
         private void SelectItem(AbilityCollectable item)
         {
             item.ItemCollected(Player, null);
+            DisableRoll();
+        }
+        
+        private void SelectItem(ShopItem item)
+        {
+            item.BuyItem();
             DisableRoll();
         }
         

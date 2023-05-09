@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 70
-  _bulletDamage: 30
+  _bulletDamage: 40
   _shootAudio: Bullet
   _hitAudio: Explosion
   _explosionRadius: 9

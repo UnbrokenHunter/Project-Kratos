@@ -41,6 +41,15 @@ public class GameManager : MonoBehaviour {
     {
         _players.Remove(player);
         Destroy(player.gameObject);
+        
+        if (GameMode != Constants.GameTypes.BattleRoyal) return;
+        
+        if (_players.Length <= 0) {
+            if (_players[0].IsBot) return;
+            
+            _players[0].EndGame(true);
+        }
+            
     }
 
     public Transform PickRandomSpawnPoint()

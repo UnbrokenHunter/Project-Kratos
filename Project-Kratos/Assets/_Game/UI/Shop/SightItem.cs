@@ -8,7 +8,7 @@ namespace ProjectKratos.Shop
     {
         [SerializeField] private float _sightAmount;
 
-        private protected override void BuyItem()
+        public override void BuyItem()
         {
             _variables.GetComponentInChildren<CameraController>().Camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance += _sightAmount;
         }

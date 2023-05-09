@@ -1,4 +1,5 @@
 using System.Collections;
+using ProjectKratos;
 using UnityEngine;
 
 public class TweenUI : MonoBehaviour
@@ -35,7 +36,7 @@ public class TweenUI : MonoBehaviour
         {
             if (true) // GameManager.Instance.WasFirstLoad
             {
-                print("GameManager.Instance.WasFirstLoad")
+                print("GameManager.Instance.WasFirstLoad");
 
                 gameObject.SetActive(false);
                 return;

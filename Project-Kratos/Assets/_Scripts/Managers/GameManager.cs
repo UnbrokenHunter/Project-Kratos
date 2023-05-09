@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
         
         if (GameMode != Constants.GameTypes.BattleRoyal) return;
         
-        if (_players.Length <= 0) {
+        if (_players.Count <= 0) {
             if (_players[0].IsBot) return;
             
             _players[0].EndGame(true);

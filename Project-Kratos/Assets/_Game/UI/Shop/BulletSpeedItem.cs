@@ -7,7 +7,7 @@ namespace ProjectKratos.Shop
     {
         [SerializeField] private float _bulletSpeedAmount;
 
-        private protected override void BuyItem()
+        public override void BuyItem()
         {
             _variables.ShootingSpeed += _bulletSpeedAmount;
         }

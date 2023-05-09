@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class GraphicsQuality : MonoBehavior {
+public class GraphicsQuality : MonoBehaviour {
 
-  public void SetQuality (int qualityIndex) {
-    QualitySettings.SetQualityLevel (qualityIndex);
+  public void SetQuality (int qualityIndex) 
+  { 
+      QualitySettings.SetQualityLevel (qualityIndex);
   }
   
 }

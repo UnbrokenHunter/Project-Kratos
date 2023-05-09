@@ -6,7 +6,7 @@ namespace ProjectKratos.Shop
     {
         [SerializeField] private float _damageAmount;
 
-        private protected override void BuyItem()
+        public override void BuyItem()
         {
             _variables.Damage += _damageAmount;
         }

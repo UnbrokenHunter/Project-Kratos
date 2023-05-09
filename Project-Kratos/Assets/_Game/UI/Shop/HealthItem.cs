@@ -7,7 +7,7 @@ namespace ProjectKratos.Shop
     {
         [SerializeField] private float _healthAmount;
 
-        private protected override void BuyItem()
+        public override void BuyItem()
         {
             _variables.MaxHealth += _healthAmount;
             _variables.CurrentHealth += _healthAmount;

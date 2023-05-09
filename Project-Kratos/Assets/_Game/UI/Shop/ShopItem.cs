@@ -50,7 +50,7 @@ namespace ProjectKratos.Shop
              }
              
              // Base implementation does nothing
-             private protected abstract void BuyItem(); 
+             public abstract void BuyItem(); 
 
 
     }

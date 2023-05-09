@@ -23,6 +23,7 @@ namespace ProjectKratos
         }
         
         [SerializeField] private AbilityCollectable[] _abilitys;
+        [SerializeField] private ShopItem[] _shopItems;
         public PlayerVariables Player { get; set; }
         
         
@@ -41,21 +42,39 @@ namespace ProjectKratos
 
         private void Roll()
         {
-            foreach (var roll in _abilityText)
+            int statIndex = Random.Range(0, 3);
+        
+            for (int i = 0; i < _abilityText.Length; i++) 
             {
-                var ability = PickAbility();
-                roll.text = ability.AbilityName;
-
+                var roll = _abilityText[i];
                 var component = roll.transform.parent.GetComponent<Button>();
                 component.onClick.RemoveAllListeners();
-                component.onClick.AddListener(() => SelectItem(ability));
                 
+                if (i == statIndex) {
+                    
+                    var stat = PickStat();
+                    roll.text = stat.ItemName; // TODO Add a Getter
+                    
+                    component.onClick.AddListener(() => stat.BuyItem()); // TODO Make Public
+                }
+                
+                else 
+                {
+                    var ability = PickAbility();
+                    roll.text = ability.AbilityName;
+
+                    component.onClick.AddListener(() => SelectItem(ability));
+                }
             }
         }
 
         private AbilityCollectable PickAbility()
         {
             return _abilitys[Random.Range(0, _abilitys.Length)];
+        }
+        
+        private ShopItem PickStat() {
+            return _shopItems[Random.Range(0, _shopItems.Length)];
         }
         
         private void SelectItem(AbilityCollectable item)

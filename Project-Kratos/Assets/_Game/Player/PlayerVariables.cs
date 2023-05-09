@@ -240,8 +240,12 @@ namespace ProjectKratos.Player
         {
             SetStats();
             
-            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl && !IsBot)
+            if (IsBot) return;
+            
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
                 RollAbility.Instance.Player = this;
+                
+            GameManager.Instance.MainPlayer = this;
         }
 
         /// <summary>

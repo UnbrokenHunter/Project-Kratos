@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014312094cd893a46a297786f79dfb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300012, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  _icon: {fileID: 21300000, guid: f1e821a2106f7d349a9a486dc86f1eef, type: 3}
   _name: Ice Bomb
   _abilitySound: 
   _cooldown: 3

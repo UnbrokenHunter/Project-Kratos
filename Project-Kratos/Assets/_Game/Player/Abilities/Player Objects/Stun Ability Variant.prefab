@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd769f309e8f4aa49a2022f4f976c141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 4694184556055176316, guid: 72f7a32ac9c7676409eb438757bc6b4a, type: 3}
+  _icon: {fileID: 21300000, guid: ef8e2b39b97e34a489fafda6e486d923, type: 3}
   _name: 'Stun '
   _abilitySound: Stun
   _cooldown: 10

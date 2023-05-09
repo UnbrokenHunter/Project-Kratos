@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Bullet Speed
+  _sprite: {fileID: 21300000, guid: 4c9f0091e0f67224d876b39c4a38ebc9, type: 3}
   _bulletSpeedAmount: 30
 --- !u!114 &907521939560299284
 MonoBehaviour:
@@ -64,6 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Damage
+  _sprite: {fileID: 21300000, guid: 346ab28088aed114fa35f29bd2bdc4d1, type: 3}
   _damageAmount: 1
 --- !u!114 &907521939560299285
 MonoBehaviour:
@@ -78,6 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Health
+  _sprite: {fileID: 21300000, guid: 154e7e310b89e8248a02e6d72e3d6f9b, type: 3}
   _healthAmount: 10
 --- !u!114 &907521939560299286
 MonoBehaviour:
@@ -92,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Regeneration
+  _sprite: {fileID: 21300000, guid: bb8789e37c9bc1c4abb1bf4db3015c47, type: 3}
   _regenAmount: 2
 --- !u!114 &907521939560299287
 MonoBehaviour:
@@ -106,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Sight Range
+  _sprite: {fileID: 21300000, guid: b6cb84f00541e4d45a3ee28345708e4b, type: 3}
   _sightAmount: 5
 --- !u!114 &907521939560299280
 MonoBehaviour:
@@ -120,4 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0
+  _itemName: Speed
+  _sprite: {fileID: 21300000, guid: 7c856c8cfb6b3e74e8147de74cb7c450, type: 3}
   _speedAmount: 100

@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51958f2608bd904c90213fe24105149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 4a231ba0e81e63849a8f985c228e8acd, type: 3}
+  _icon: {fileID: 21300000, guid: eaca7ea238d5c5e4ba0a0f0f5535eb2a, type: 3}
   _name: Healing Aura
   _abilitySound: Healing Aura
   _cooldown: 5

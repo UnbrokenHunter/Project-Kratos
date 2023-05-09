@@ -19,7 +19,13 @@ namespace ProjectKratos
         [SerializeField] private PlayerAbility _ability;
         
         [SerializeField] Image _image;
+        [SerializeField] Image _backgroundImage;
         [SerializeField] TMP_Text _text;
+        [SerializeField] TMP_Text _cooldownText;
+        
+        [Space]
+        
+        [SerializeField] private float _alpha = 0.5f;
         
         public void SetAbility(PlayerAbility ability)
         {
@@ -46,15 +52,23 @@ namespace ProjectKratos
         private IEnumerator AbilityCooldown(float cooldown)
         {
             _image.type = Image.Type.Filled;
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 0.5f);
-
+            var imageColor = new Color(_image.color.r, _image.color.g, _image.color.b, _alpha);
+            _image.color = imageColor;
+            
+            _backgroundImage.enabled = true;
+            _cooldownText.enabled = true;
+            
             var timer = 0f;
             WaitForEndOfFrame waitForEndOfFrame = new WaitForEndOfFrame();
 
             while (timer < cooldown)
             {
                 timer += Time.deltaTime;
-                _image.fillAmount = timer / cooldown;
+                var backgroundImageFillAmount = timer / cooldown;
+                _image.fillAmount = backgroundImageFillAmount;
+                _backgroundImage.fillAmount = backgroundImageFillAmount;
+                
+                _cooldownText.text = Mathf.CeilToInt(cooldown - timer).ToString();
                 
                 yield return waitForEndOfFrame;
             }
@@ -62,8 +76,9 @@ namespace ProjectKratos
             // Ensure the fill amount is set to 1 when the cooldown is over
             _image.fillAmount = 1;
             _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 1f);
+            
+            _backgroundImage.enabled = false;
+            _cooldownText.enabled = false;
         }
-
-
     }
 }

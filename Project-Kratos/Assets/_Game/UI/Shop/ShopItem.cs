@@ -17,6 +17,9 @@ namespace ProjectKratos.Shop
              
             public string ItemName { get => _itemName; set => _itemName = value; }
             [SerializeField] private string _itemName;
+            
+            public Sprite Sprite { get => _sprite; set => _sprite = value; }
+            [SerializeField] private Sprite _sprite;
 
             private void Start()
             {

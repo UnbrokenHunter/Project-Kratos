@@ -24,13 +24,13 @@ namespace ProjectKratos
             transform.parent.gameObject.SetActive(false);
         }
         
-        [SerializeField] private AbilityCollectable[] _abilitys;
+        [SerializeField] private PlayerAbility[] _abilitys;
         [SerializeField] private ShopItem[] _shopItems;
         public PlayerVariables Player { get; set; }
         
         
         [SerializeField] private TMP_Text[] _abilityText;
-
+        [SerializeField] private Image[] _abilityImages;
 
         public void EnableRoll()
         {
@@ -49,6 +49,8 @@ namespace ProjectKratos
             for (int i = 0; i < _abilityText.Length; i++) 
             {
                 var roll = _abilityText[i];
+                var image = _abilityImages[i];
+                
                 var component = roll.transform.parent.GetComponent<Button>();
                 component.onClick.RemoveAllListeners();
                 
@@ -56,6 +58,7 @@ namespace ProjectKratos
                     
                     var stat = PickStat();
                     roll.text = stat.ItemName;
+                    image.sprite = stat.Sprite;
 
                     component.onClick.AddListener(() => SelectItem(stat));
                 }
@@ -63,14 +66,15 @@ namespace ProjectKratos
                 else 
                 {
                     var ability = PickAbility();
-                    roll.text = ability.AbilityName;
+                    roll.text = ability.Name;
+                    image.sprite = ability.Icon;
 
                     component.onClick.AddListener(() => SelectItem(ability));
                 }
             }
         }
 
-        private AbilityCollectable PickAbility()
+        private PlayerAbility PickAbility()
         {
             return _abilitys[Random.Range(0, _abilitys.Length)];
         }
@@ -79,9 +83,9 @@ namespace ProjectKratos
             return _shopItems[Random.Range(0, _shopItems.Length)];
         }
         
-        private void SelectItem(AbilityCollectable item)
+        private void SelectItem(PlayerAbility item)
         {
-            item.ItemCollected(Player, null);
+            Player.SetNewAbility(item);
             DisableRoll();
         }
         

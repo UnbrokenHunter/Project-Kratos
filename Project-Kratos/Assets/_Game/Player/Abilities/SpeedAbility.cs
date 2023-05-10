@@ -19,7 +19,6 @@ namespace ProjectKratos
         {
             EnableSpeed();
             yield return Helpers.GetWait(_duration);
-            DisableSpeed();
         }
 
         private void EnableSpeed()

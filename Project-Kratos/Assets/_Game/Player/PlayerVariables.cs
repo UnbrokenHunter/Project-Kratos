@@ -122,6 +122,8 @@ namespace ProjectKratos.Player
         public int ExternalVelocityDecay { get => _stats.ExternalVelocityDecay; set => _stats.ExternalVelocityDecay = value; }
         public bool HasShop => _hasShop;
         public Rigidbody RigidBody { get; private set; }
+        public PlayerController PlayerController { get; private set; }
+        public PlayerInteractions PlayerInteractions { get; private set; }
         public int KillCount => _killCount;
         public int TotalKillCount => _totalKillCount;
         public int DeathCount { get; private set; }
@@ -246,15 +248,34 @@ namespace ProjectKratos.Player
                 RollAbility.Instance.Player = this;
                 
             GameManager.Instance.MainPlayer = this;
-
+            
+            PlayerController = GetComponentInChildren<PlayerController>();
+            PlayerInteractions = GetComponentInChildren<PlayerInteractions>();
+            
+            InvokeRepeating(nameof(CheckValues), 10f, 10f);
+            
         }
 
         public void Start()
         {
             SetStats();
-            
         }
 
+        private void CheckValues()
+        {
+
+            if (CurrentHealth <= 0)
+            {
+                PlayerInteractions.DealDamage(0f);
+            }
+
+            if (Math.Abs(Speed - _speed) > 0.1f)
+            {
+                Speed = _speed;
+            }
+
+        }
+        
         /// <summary>
         /// Resets all the stats to their default values
         /// </summary>

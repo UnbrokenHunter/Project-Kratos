@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ProjectKratos.Player;
 using UnityEngine;
 
@@ -28,17 +25,21 @@ namespace ProjectKratos
             
             _particles.Play();
 
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _novaRadius, _layerMask);
-        
+            var hitColliders = Physics.OverlapSphere(transform.position, _novaRadius, _layerMask);
+            
+            var isEffectNotNull = _effect != null;
+            
             foreach (var hitCollider in hitColliders)
             {
                 if (!hitCollider.gameObject.CompareTag("Player")) continue;
-                var variables = hitCollider.GetComponentInParent<PlayerVariables>();
-            
-                if (variables == null) continue;
+                var variables = hitCollider.gameObject.GetComponentInParent<PlayerVariables>();
+           
+                if (variables == null || variables == _variables) continue;
+                
                 variables.PlayerInteractions.DealDamage(_novaDamage);
                 
-                variables.StatusEffect = _effect;
+                if (isEffectNotNull)
+                    variables.StatusEffect = _effect;
             }
         }
     }

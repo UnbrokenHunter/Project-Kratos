@@ -12,13 +12,14 @@ namespace ProjectKratos.Shop
     { 
         private ShopMenu _shopMenu;
         private TMP_Text _text; 
+        private Image _image;
              
         private protected PlayerVariables _variables;
         [SerializeField] private protected float _cost;
              
         public string ItemName { get => _itemName; set => _itemName = value; }
         [SerializeField] private string _itemName;
-        
+
         public Sprite Sprite { get => _sprite; set => _sprite = value; }
         [SerializeField] private Sprite _sprite;
         
@@ -29,7 +30,8 @@ namespace ProjectKratos.Shop
             if (GameManager.Instance.GameMode != Constants.GameTypes.Economy) return;
             
             _text = GetComponentInChildren<TMP_Text>();
-                
+            _image = GetComponentInChildren<Image>();
+            
             SetText();
             GetComponent<Button>().onClick.AddListener(TryBuyItem);
 
@@ -49,6 +51,7 @@ namespace ProjectKratos.Shop
         private void SetText()
         {
             _text.text = $"{ItemName}\n{_cost} Coins";
+            _image.sprite = Sprite;
         }
          
         // Base implementation does nothing

@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour {
         
         SpawnPlayer();
         
-        print("GameManager spawned");
-        
         if (GameMode == Constants.GameTypes.BattleRoyal)
             _playersLeftText.text = $"Players Left: {_players.Count + 1}";
     }

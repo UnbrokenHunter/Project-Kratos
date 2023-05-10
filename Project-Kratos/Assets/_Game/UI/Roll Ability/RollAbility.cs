@@ -83,9 +83,7 @@ namespace ProjectKratos
         
         private void SelectItem(PlayerAbility item)
         {
-            print("Before: \nPlayer: " + GameManager.Instance.MainPlayer + "\nAbility: " + item);
             GameManager.Instance.MainPlayer.SetNewAbility(item);
-            print("Before: \nPlayer: " + GameManager.Instance.MainPlayer + "\nAbility: " + item);
             DisableRoll();
         }
         

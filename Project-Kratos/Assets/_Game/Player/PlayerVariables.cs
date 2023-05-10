@@ -143,7 +143,23 @@ namespace ProjectKratos.Player
         {
             _stats.DefaultBullet = bullet;
         }
+
+        [Button]
+        private void GodMode(bool on)
+        {
+            if (on)
+            {
+                MaxHealth = 999999;
+                CurrentHealth = 999999;
+            }
+            else
+            {
+                MaxHealth = 100;
+                CurrentHealth = 100;
+            }
+        }
         
+        [Button]
         public void SetNewAbility(PlayerAbility ability)
         {
             var currentAbility = GetComponentInChildren<PlayerAbility>();

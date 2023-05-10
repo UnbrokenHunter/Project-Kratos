@@ -244,6 +244,8 @@ namespace ProjectKratos.Player
 
             IsBot = RigidBody.gameObject.TryGetComponent(out BotNavigation nav);
             
+            InvokeRepeating(nameof(CheckValues), 10f, 10f);
+            
             if (IsBot) return;
             
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
@@ -257,7 +259,6 @@ namespace ProjectKratos.Player
             PlayerController = GetComponentInChildren<PlayerController>();
             PlayerInteractions = GetComponentInChildren<PlayerInteractions>();
             
-            InvokeRepeating(nameof(CheckValues), 10f, 10f);
             
         }
 
@@ -274,11 +275,15 @@ namespace ProjectKratos.Player
                 PlayerInteractions.DealDamage(0f);
             }
 
-            if (Math.Abs(Speed - _speed) > 0.1f)
+            if (Speed < _speed)
             {
                 Speed = _speed;
             }
-
+            
+            if (HealthRegen < _healthRegen)
+            {
+                HealthRegen = _healthRegen;
+            }
         }
         
         /// <summary>

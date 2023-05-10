@@ -1182,6 +1182,7 @@ MonoBehaviour:
   - {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6, type: 3}
   - {fileID: 1231750123, guid: b90a03e259b58074a8aaa843ad5fd3da, type: 3}
   - {fileID: 1245913467, guid: 4400c9750b4bdb346819467b38bb7d5b, type: 3}
+  - {fileID: 1106819976, guid: 49b6dbb2897c8324d80bcebae19270ca, type: 3}
   _shopItems:
   - {fileID: 4760476009070367895}
   _abilityText:

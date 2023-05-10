@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/_Game/Player/Bullets/Shadow Bomb.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b15197d9111b37c419730c9e03063a37
+    m_Address: Assets/_Game/Player/Bullets/Light Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b5879f0b9cdbdc4297283d8fad93bcc, type: 2}
   m_SchemaSet:

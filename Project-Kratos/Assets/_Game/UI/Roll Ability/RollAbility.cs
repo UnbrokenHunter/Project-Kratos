@@ -66,7 +66,7 @@ namespace ProjectKratos
                 else 
                 {
                     var ability = PickAbility();
-                    roll.text = ability.Name;
+                    roll.text = ability.Name + " Ability";
                     image.sprite = ability.Icon;
 
                     component.onClick.AddListener(() => SelectItem(ability));

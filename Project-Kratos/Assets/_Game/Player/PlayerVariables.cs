@@ -249,9 +249,6 @@ namespace ProjectKratos.Player
             
             if (IsBot) return;
             
-            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
-                RollAbility.Instance.Player = this;
-                
             GameManager.Instance.MainPlayer = this;
             
             if (GameManager.Instance.GameMode == Constants.GameTypes.Economy)

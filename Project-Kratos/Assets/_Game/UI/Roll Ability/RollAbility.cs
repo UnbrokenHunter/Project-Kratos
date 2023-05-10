@@ -26,8 +26,6 @@ namespace ProjectKratos
         
         [SerializeField] private PlayerAbility[] _abilitys;
         [SerializeField] private ShopItem[] _shopItems;
-        public PlayerVariables Player { get; set; }
-        
         
         [SerializeField] private TMP_Text[] _abilityText;
         [SerializeField] private Image[] _abilityImages;
@@ -59,8 +57,8 @@ namespace ProjectKratos
                     var stat = PickStat();
                     roll.text = stat.ItemName;
                     image.sprite = stat.Sprite;
-
-                    component.onClick.AddListener(() => SelectItem(stat));
+                    
+                    component.onClick.AddListener(() => SelectStat(stat));
                 }
                 
                 else 
@@ -85,11 +83,13 @@ namespace ProjectKratos
         
         private void SelectItem(PlayerAbility item)
         {
-            Player.SetNewAbility(item);
+            print("Before: \nPlayer: " + GameManager.Instance.MainPlayer + "\nAbility: " + item);
+            GameManager.Instance.MainPlayer.SetNewAbility(item);
+            print("Before: \nPlayer: " + GameManager.Instance.MainPlayer + "\nAbility: " + item);
             DisableRoll();
         }
         
-        private void SelectItem(ShopItem item)
+        private void SelectStat(ShopItem item)
         {
             item.BuyItem();
             DisableRoll();

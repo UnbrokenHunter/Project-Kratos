@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2521332936440427695
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2393313993464065198, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: _ability
+      value: 
+      objectReference: {fileID: 821485385, guid: 22f8aec5da66bbb4c929072c48bbe639,
+        type: 3}
+    - target: {fileID: 7093890506858072891, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088130, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_Name
+      value: Storm Nova Ability Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba363a97e6efebd4597fa026454489df, type: 3}
+--- !u!4 &6509739130235621170 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8694955328869088157, guid: ba363a97e6efebd4597fa026454489df,
+    type: 3}
+  m_PrefabInstance: {fileID: 2521332936440427695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4534705263374335213
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6509739130235621170}
+    m_Modifications:
+    - target: {fileID: 110996, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_Name
+      value: AuraSpinningStorm
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440258, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19908998, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19912244, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19931514, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19971104, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5bfdae27e3ab81349acde48db55fa176, type: 3}

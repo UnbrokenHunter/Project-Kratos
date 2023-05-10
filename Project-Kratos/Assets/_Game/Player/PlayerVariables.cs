@@ -245,6 +245,7 @@ namespace ProjectKratos.Player
             IsBot = RigidBody.gameObject.TryGetComponent(out BotNavigation nav);
             
             InvokeRepeating(nameof(CheckValues), 10f, 10f);
+            PlayerInteractions = GetComponentInChildren<PlayerInteractions>();
             
             if (IsBot) return;
             
@@ -257,7 +258,6 @@ namespace ProjectKratos.Player
                 _hasShop = true;
             
             PlayerController = GetComponentInChildren<PlayerController>();
-            PlayerInteractions = GetComponentInChildren<PlayerInteractions>();
             
             
         }

@@ -5,7 +5,6 @@ using DarkTonic.MasterAudio;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using Event = Mono.CSharp.Event;
 using Random = UnityEngine.Random;
 
 namespace ProjectKratos.Player

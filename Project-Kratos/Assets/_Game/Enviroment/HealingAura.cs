@@ -27,11 +27,5 @@ namespace ProjectKratos
             
             other.GetComponentInParent<PlayerVariables>().HealthRegen -= _regenAmount;
         }
-
-        private void OnDestroy()
-        {
-            // Remove all regen from players
-            
-        }
     }
 }

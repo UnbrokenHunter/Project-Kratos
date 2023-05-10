@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProjectKratos.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour {
         SpawnPlayer();
         
         print("GameManager spawned");
+        
+        if (GameMode == Constants.GameTypes.BattleRoyal)
+            _playersLeftText.text = $"Players Left: {_players.Count + 1}";
     }
 
     #region  Spawning
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour {
         Destroy(player.gameObject);
         
         if (GameMode != Constants.GameTypes.BattleRoyal) return;
+        
+        _playersLeftText.text = $"Players Left: {_players.Count + 1}";
         
         if (_players.Count <= 0) {
             if (_players[0].IsBot) return;
@@ -76,5 +82,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int _brawlScoreIncrement = 3;
     public Slider KillsSlider => _killsSlider;
     [SerializeField] private Slider _killsSlider;
+    public TMP_Text PlayersLeftText => _playersLeftText;
+    [SerializeField] private TMP_Text _playersLeftText;
     
 }

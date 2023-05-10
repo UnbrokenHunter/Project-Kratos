@@ -79,10 +79,13 @@ namespace ProjectKratos.Player
             _killCount++;
             
             
+
+            if (GameManager.Instance.GameMode != Constants.GameTypes.Brawl) return;
+            
             GameManager.Instance.KillsSlider.value = _killCount;
             GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
 
-            if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl && _killCount >= GameManager.Instance.BrawlScoreToWin)
+            if (_killCount >= GameManager.Instance.BrawlScoreToWin)
             {
                 RollAbility.Instance.EnableRoll();
                 GameManager.Instance.BrawlScoreToWin++;
@@ -249,6 +252,9 @@ namespace ProjectKratos.Player
                 
             GameManager.Instance.MainPlayer = this;
             
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Economy)
+                _hasShop = true;
+            
             PlayerController = GetComponentInChildren<PlayerController>();
             PlayerInteractions = GetComponentInChildren<PlayerInteractions>();
             
@@ -305,10 +311,11 @@ namespace ProjectKratos.Player
             
             if (IsBot) return;
             
-            RollAbility.Instance.DisableRoll();
 
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
             {
+                RollAbility.Instance.DisableRoll();
+                
                 GameManager.Instance.ResetBrawlScore();
                 _killCount = 0;
                             

@@ -7,15 +7,16 @@ namespace ProjectKratos
     public class ObjectSpawner : MonoBehaviour
     {
         [Header("Spawn Settings")]
-        [SerializeField] private CollectableItem _objectToSpawn;
+        [SerializeField] private CollectableItemStats[] _objectsToSpawn;
         [SerializeField] private float _spawnInterval = 5f;
         
         [Space]
         
         [SerializeField] private SpawnStats[] _spawnStats;
 
-        private float spawnChanceTotal => _spawnStats.Sum(stat => stat.spawnChance);
- 
+        private float _spawnChanceTotal => _spawnStats.Sum(stat => stat.spawnChance);
+        private float _itemSpawnChanceTotal => _objectsToSpawn.Sum(stat => stat.spawnChance);
+        
         private void Start()
         {
             InvokeRepeating(nameof(SpawnObject), 0, _spawnInterval);
@@ -24,7 +25,7 @@ namespace ProjectKratos
         private void SpawnObject()
         {
             // The number after removing objects that are already spawned
-            var realSpawnNumber = spawnChanceTotal;
+            var realSpawnNumber = _spawnChanceTotal;
             
             for (int i = 0; i < _spawnStats.Length; i++)
             {
@@ -45,7 +46,9 @@ namespace ProjectKratos
 
                 if (currentSpawnChance >= spawnNumber) 
                 {
-                    CollectableItem item = Instantiate(_objectToSpawn, _spawnStats[i].position, Quaternion.identity).SpawnItem(this, i);
+                    var randomItem = PickRandomItem();
+                    
+                    CollectableItem item = Instantiate(randomItem.item, _spawnStats[i].position, Quaternion.identity).SpawnItem(this, i);
                     
                     _spawnStats[i].isSpawned = true;
                     return;     
@@ -54,6 +57,25 @@ namespace ProjectKratos
                 currentSpawnChance += _spawnStats[i].spawnChance;
                 
             }
+        }
+
+        private CollectableItemStats PickRandomItem()
+        {
+            var spawnNumber = Random.Range(0, _itemSpawnChanceTotal);
+            var currentSpawnChance = _objectsToSpawn[0].spawnChance;
+
+            for (int i = 0; i < _objectsToSpawn.Length; i++)
+            {
+                if (currentSpawnChance >= spawnNumber)
+                {
+                    return _objectsToSpawn[i];
+                }
+                
+                currentSpawnChance += _objectsToSpawn[i].spawnChance;
+            }
+
+            print("No item found");
+            return _objectsToSpawn[0];
         }
 
         /// <summary>
@@ -69,7 +91,7 @@ namespace ProjectKratos
             foreach (var obj in _spawnStats)
             {
                 Gizmos.color = obj.gizmoColor;
-                Gizmos.DrawSphere(obj.position, 0.5f);
+                Gizmos.DrawSphere(obj.position, 7f);
             }
         }
         
@@ -80,6 +102,13 @@ namespace ProjectKratos
             [Range(0, 100)] public float spawnChance;
             public bool isSpawned;
             public Color gizmoColor;
+        }
+        
+        [System.Serializable]
+        private struct CollectableItemStats
+        {
+            public CollectableItem item;
+            public float spawnChance;
         }
     }
 }

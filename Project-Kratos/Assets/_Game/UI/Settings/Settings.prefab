@@ -7266,7 +7266,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5048909705119529666}
         m_TargetAssemblyTypeName: ProjectKratos.JoinGame, Assembly-CSharp
-        m_MethodName: JoinLevel
+        m_MethodName: JoinLevelResetTime
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

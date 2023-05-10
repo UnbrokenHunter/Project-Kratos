@@ -49,6 +49,8 @@ namespace ProjectKratos
             {
                 player.CanMove = false;
                 player.CanShoot = false;
+                
+                player.RigidBody.velocity = Vector3.zero;
             }
         }
 

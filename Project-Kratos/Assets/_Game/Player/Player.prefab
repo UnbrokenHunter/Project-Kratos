@@ -74,9 +74,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.1707845
-  m_Height: 8.892089
+  m_Height: 5.7114706
   m_Direction: 2
-  m_Center: {x: 0, y: 1.4458263, z: 1.4026256}
+  m_Center: {x: 0, y: 1.4458263, z: -0.18768358}
 --- !u!1 &798698479354690632
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +784,7 @@ MonoBehaviour:
   _moneyPerKill: 100
   _moneyCount: 0
   _externalVelocityDecay: 100
+  _defaultSightRange: 60
   _defaultBullet: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
     type: 3}
   _ability: {fileID: 0}

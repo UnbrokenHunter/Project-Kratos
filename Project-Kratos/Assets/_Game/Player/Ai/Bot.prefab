@@ -164,7 +164,6 @@ MonoBehaviour:
   - {fileID: 5502400380223994978, guid: 6541de4706bc8b442a1bf47e31738713, type: 3}
   - {fileID: -4945429512957963323, guid: a2c174494e0a0c34c9c149cec45adbb4, type: 3}
   - {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6, type: 3}
-  - {fileID: 1231750123, guid: b90a03e259b58074a8aaa843ad5fd3da, type: 3}
   - {fileID: 1475445742, guid: 206b7ab8f0451914dbd1989056132b78, type: 3}
   - {fileID: 1106819976, guid: 49b6dbb2897c8324d80bcebae19270ca, type: 3}
   - {fileID: 1245913467, guid: 4400c9750b4bdb346819467b38bb7d5b, type: 3}
@@ -503,6 +502,7 @@ MonoBehaviour:
   _moneyPerKill: 100
   _moneyCount: 0
   _externalVelocityDecay: 100
+  _defaultSightRange: 60
   _defaultBullet: {fileID: 4905664660743700459, guid: 2a9f688442941de4596757f10c91a73e,
     type: 3}
   _ability: {fileID: 0}
@@ -752,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7961892073002358776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.845, z: 6.121}
+  m_LocalPosition: {x: 0, y: 2.845, z: 4.993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -802,9 +802,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.7
-  m_Height: 10.28
+  m_Height: 6.081296
   m_Direction: 2
-  m_Center: {x: 0, y: 0.46, z: 1.22}
+  m_Center: {x: 0, y: 0.46000004, z: -0.18157864}
 --- !u!1 &8569750446993482151
 GameObject:
   m_ObjectHideFlags: 0

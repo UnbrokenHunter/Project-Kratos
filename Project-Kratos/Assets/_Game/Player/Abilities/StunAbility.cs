@@ -9,25 +9,33 @@ namespace ProjectKratos
         [SerializeField] private StatusEffect _effect;
         private RaycastHit hit;
         
-        [SerializeField] private ParticleSystem _particles;
-        
+        [SerializeField] private ParticleSystem[] _particles;
+
         protected override void Ability()
         {
-            _particles.transform.rotation = _shoot.GetBulletRotation();
-            
-            _particles.Play();
+            _particles[0].transform.parent.rotation = _shoot.GetBulletRotation();
 
-            // Raycast to find the ob
-            Physics.Raycast(_shoot.FirePoint.position, _shoot.GetBulletDirection(), out hit, _stunDistance);
-            
-            if (hit.collider == null) return;
+            foreach (var p in _particles)
+            {
+                p.Play();
 
-            var player = hit.collider.GetComponentInParent<PlayerVariables>();
-            
-            if (player == null) return;
-            
-            player.StatusEffect = _effect;
+                // Raycast to find the ob
+                var hits = Physics.RaycastAll(_shoot.FirePoint.position, _shoot.GetBulletDirection(), _stunDistance);
+
+                // Draw the ray above
+                Debug.DrawRay(_shoot.FirePoint.position, _shoot.GetBulletDirection() * _stunDistance, Color.red, 3f);
+
+                foreach (var h in hits)
+                {
+                    if (h.collider == null) return;
+
+                    var player = h.collider.GetComponentInParent<PlayerVariables>();
+
+                    if (player == null) return;
+
+                    player.StatusEffect = _effect;
+                }
+            }
         }
-        
     }
 }

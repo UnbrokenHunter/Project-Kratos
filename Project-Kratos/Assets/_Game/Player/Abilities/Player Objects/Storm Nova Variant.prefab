@@ -94,7 +94,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 63
-  _novaRadius: 17.05
+  _novaRadius: 20
   _novaDamage: 50
   _effect: {fileID: 0}
   _particles: {fileID: 6460582932575064077}
@@ -176,6 +176,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19828848, guid: f99bc154d554db048a5d532ea0cfc9e7, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828848, guid: f99bc154d554db048a5d532ea0cfc9e7, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
       objectReference: {fileID: 0}
@@ -226,15 +230,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406978, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 406978, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 406978, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 406978, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -278,6 +282,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406978, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19870322, guid: 57b65f580d44f4b4ca52904e92a6e73a, type: 3}
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -355,6 +363,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 454148, guid: be8befa2be98a62449cda5d294a5014c, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19894112, guid: be8befa2be98a62449cda5d294a5014c, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19894112, guid: be8befa2be98a62449cda5d294a5014c, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19894746, guid: be8befa2be98a62449cda5d294a5014c, type: 3}
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19938270, guid: be8befa2be98a62449cda5d294a5014c, type: 3}

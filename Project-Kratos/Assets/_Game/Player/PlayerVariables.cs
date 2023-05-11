@@ -68,7 +68,7 @@ namespace ProjectKratos.Player
             _stats.MoneyCount += moneyToAdd;
                 
             if (MoneyText != null)
-                MoneyText.text = "Coins: " + _stats.MoneyCount;
+                MoneyText.text = "Coins: " + _stats.MoneyCount.ToString("N0");
             
             return _stats.MoneyCount;
         }

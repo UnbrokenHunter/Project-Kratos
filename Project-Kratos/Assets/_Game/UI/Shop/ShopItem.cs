@@ -106,7 +106,7 @@ namespace ProjectKratos.Shop
         {
             if (_cantBuy) return;
             
-            _text.text = $"{ItemName}\n{Cost} Coins";
+            _text.text = $"{ItemName}\n{Cost:N0} Coins";
             _image.sprite = Sprite;
         }
          

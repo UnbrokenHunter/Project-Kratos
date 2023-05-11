@@ -10,7 +10,9 @@ namespace ProjectKratos.Shop
 
         public override void BuyItem()
         {
-            _variables.GetComponentInChildren<CameraController>().Camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance += _sightAmount;
+            _variables.GetComponentInChildren<CameraController>()
+                .Camera.GetCinemachineComponent<CinemachineFramingTransposer>()
+                .m_CameraDistance += _sightAmount;
         }
     }
 }

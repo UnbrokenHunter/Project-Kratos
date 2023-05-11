@@ -972,7 +972,7 @@ PrefabInstance:
     - target: {fileID: 8135792868861893236, guid: d0ff44c2c55264d469a232d4f7a8f7b4,
         type: 3}
       propertyPath: _playlistVolume
-      value: 0.8912509
+      value: 0.5011872
       objectReference: {fileID: 0}
     - target: {fileID: 8135792868861893237, guid: d0ff44c2c55264d469a232d4f7a8f7b4,
         type: 3}

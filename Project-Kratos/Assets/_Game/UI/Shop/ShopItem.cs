@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using ProjectKratos.Player;
 using TMPro;
 using UnityEngine;
@@ -16,13 +17,22 @@ namespace ProjectKratos.Shop
              
         private protected PlayerVariables _variables;
         [SerializeField] private protected float _cost;
+        [SerializeField] private protected bool _doesIncrementCost = true;
+        [SerializeField] private protected float _costIncrementMultiplier = 1.3f;
              
         public string ItemName { get => _itemName; set => _itemName = value; }
         [SerializeField] private string _itemName;
 
         public Sprite Sprite { get => _sprite; set => _sprite = value; }
         [SerializeField] private Sprite _sprite;
+
+        [Space] 
         
+        [SerializeField] private string _buySound = "Buy";
+        [SerializeField] private string _cantBuySound = "Buy Failed";
+
+        private float Cost;
+
         private void Start()
         {
             _variables = GameManager.Instance.MainPlayer;
@@ -32,25 +42,43 @@ namespace ProjectKratos.Shop
             _text = GetComponentInChildren<TMP_Text>();
             _image = GetComponentInChildren<Image>();
             
+            Cost = _cost;
+            
             SetText();
             GetComponent<Button>().onClick.AddListener(TryBuyItem);
 
         }
 
+        public void ResetCost()
+        {
+            Cost = _cost;
+            
+            SetText();
+        }
+
         private void TryBuyItem()
         {
-            if (!(_variables.MoneyCount >= _cost)) return;
+            if (!(_variables.MoneyCount >= Cost))
+            {
+                MasterAudio.PlaySound(_cantBuySound);
+                return;
+            }
              
             // The += is implied
-            _variables.MoneyCount = -_cost;
-             
+            _variables.MoneyCount = - Cost;
+            
+            if (_doesIncrementCost)
+                Cost *= _costIncrementMultiplier;
+            
+            MasterAudio.PlaySound(_buySound);
+            
             BuyItem();
             SetText();
         }
  
         private void SetText()
         {
-            _text.text = $"{ItemName}\n{_cost} Coins";
+            _text.text = $"{ItemName}\n{Cost} Coins";
             _image.sprite = Sprite;
         }
          

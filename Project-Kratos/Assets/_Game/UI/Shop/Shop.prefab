@@ -592,8 +592,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 800
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Speed Boost
   _sprite: {fileID: 21300000, guid: 909c223a6feeb614fba290ef62488333, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6,
     type: 3}
   _shopMenu: {fileID: 3308300305327529970}
@@ -731,8 +735,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 1500
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Storm Nova
   _sprite: {fileID: 21300000, guid: 36e95594287618a488409125e5f8578e, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 821485385, guid: 22f8aec5da66bbb4c929072c48bbe639, type: 3}
   _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &3399835691318547975
@@ -1534,8 +1542,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 800
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Healing Aura
   _sprite: {fileID: 21300000, guid: eaca7ea238d5c5e4ba0a0f0f5535eb2a, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 1475445742, guid: 206b7ab8f0451914dbd1989056132b78, type: 3}
   _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &6876265065308701730
@@ -1672,8 +1684,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 150
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Health
   _sprite: {fileID: 21300000, guid: 154e7e310b89e8248a02e6d72e3d6f9b, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _healthAmount: 5
 --- !u!222 &52965193485661558
 CanvasRenderer:
@@ -3488,8 +3504,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 2000
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Shadow Bomb
   _sprite: {fileID: 21300000, guid: bf15ef8415443424aa55b15385b59baf, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 1245913467, guid: 4400c9750b4bdb346819467b38bb7d5b, type: 3}
   _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &4215843141064793346
@@ -3626,8 +3646,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 200
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Sight Range
   _sprite: {fileID: 21300000, guid: b6cb84f00541e4d45a3ee28345708e4b, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _sightAmount: 5
 --- !u!222 &2315783326269691787
 CanvasRenderer:
@@ -3763,8 +3787,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 2000
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Light Bomb
   _sprite: {fileID: 21300000, guid: 0efc8b8255526cb4e97f6ead398247ea, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 1106819976, guid: 49b6dbb2897c8324d80bcebae19270ca, type: 3}
   _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &5790980123370120606
@@ -4435,8 +4463,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 500
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Explosives
   _sprite: {fileID: 21300000, guid: 74e3b6e566b90464ab978ee9032a6390, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 5502400380223994978, guid: 6541de4706bc8b442a1bf47e31738713,
     type: 3}
   _shopMenu: {fileID: 3308300305327529970}
@@ -4574,8 +4606,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 1000
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Stun
   _sprite: {fileID: 21300000, guid: ef8e2b39b97e34a489fafda6e486d923, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: 1231750123, guid: b90a03e259b58074a8aaa843ad5fd3da, type: 3}
   _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &5224735427156979391
@@ -4712,8 +4748,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 100
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Regeneration
   _sprite: {fileID: 21300000, guid: bb8789e37c9bc1c4abb1bf4db3015c47, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _regenAmount: 3
 --- !u!222 &7698045155851207671
 CanvasRenderer:
@@ -5696,8 +5736,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 500
+  _doesIncrementCost: 0
+  _costIncrementMultiplier: 1.3
   _itemName: Ice Bomb
   _sprite: {fileID: 21300000, guid: f1e821a2106f7d349a9a486dc86f1eef, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _ability: {fileID: -4945429512957963323, guid: a2c174494e0a0c34c9c149cec45adbb4,
     type: 3}
   _shopMenu: {fileID: 3308300305327529970}
@@ -5929,8 +5973,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 300
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Bullet Speed
   _sprite: {fileID: 21300000, guid: 4c9f0091e0f67224d876b39c4a38ebc9, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _bulletSpeedAmount: 0.5
 --- !u!222 &3364373295289626134
 CanvasRenderer:
@@ -6788,8 +6836,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 300
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Speed
   _sprite: {fileID: 21300000, guid: 909c223a6feeb614fba290ef62488333, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _speedAmount: 50
 --- !u!222 &2449000099296149463
 CanvasRenderer:
@@ -6925,8 +6977,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 500
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Money per Kill
   _sprite: {fileID: 21300000, guid: 9ec35c1516349db4eb306160e853dc09, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _moneyMultiplierAmount: 10
 --- !u!222 &6738171740167112948
 CanvasRenderer:
@@ -7156,8 +7212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 300
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
   _itemName: Damage
   _sprite: {fileID: 21300000, guid: 346ab28088aed114fa35f29bd2bdc4d1, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
   _damageAmount: 0.2
 --- !u!222 &6516127828397773798
 CanvasRenderer:

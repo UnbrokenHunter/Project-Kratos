@@ -1,7 +1,9 @@
 using QFSW.QC;
 using System;
 using System.Text;
+using Cinemachine;
 using DarkTonic.MasterAudio;
+using ProjectKratos.Shop;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -36,6 +38,7 @@ namespace ProjectKratos.Player
         [Header("External")]
         [Tooltip("The rate at which external velocity decays")]
         [SerializeField] private int _externalVelocityDecay = 100;
+        [SerializeField] private float _defaultSightRange = 60f;
 
         [Header("Other")] 
         [SerializeField] private GameObject _defaultBullet;
@@ -321,10 +324,15 @@ namespace ProjectKratos.Player
                 ExternalVelocityDecay = _externalVelocityDecay,
             };
             
+            
             MoneyCount = 0;
             DeathCount++;
             
             if (IsBot) return;
+
+            GetComponentInChildren<CameraController>()
+                .Camera.GetCinemachineComponent<CinemachineFramingTransposer>()
+                .m_CameraDistance = _defaultSightRange;
 
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
             {
@@ -335,6 +343,12 @@ namespace ProjectKratos.Player
                             
                 GameManager.Instance.KillsSlider.value = _killCount;
                 GameManager.Instance.KillsSlider.maxValue = GameManager.Instance.BrawlScoreToWin;
+            }
+
+            else if (GameManager.Instance.GameMode == Constants.GameTypes.Economy)
+            {
+                if (ShopMenu.Instance != null)
+                    ShopMenu.Instance.ResetShop();
             }
             
             AbilityUI.Instance.SetAbility(null);

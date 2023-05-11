@@ -9,18 +9,40 @@ namespace ProjectKratos.Shop
 {
     public class ShopMenu : MonoBehaviour
     {
-        public PlayerVariables Variables { get => _variables; set => _variables = value; }
-        private PlayerVariables _variables;
+        public static ShopMenu Instance { get; private set; }
         
         [SerializeField] private TabGroup _tabGroup;
         [SerializeField] private TMP_Text _shopButtonText;
 
+        private ShopItem[] _shopItems;
+
+        private void Awake()
+        {
+            _shopItems = GetComponentsInChildren<ShopItem>();
+            
+            // Singleton
+            if (Instance == null)
+                Instance = this;
+            
+            else
+                Destroy(gameObject);
+        }
+
+        public void ResetShop()
+        {
+            foreach (var item in _shopItems)
+            {
+                item.ResetCost();
+            }
+        }
+        
         private void OnEnable()
         {
-            if (_variables == null) return;
+            
+            if (GameManager.Instance.MainPlayer == null) return;
 
-            _variables.CanMove = false;
-            _variables.CanShoot = false;
+            GameManager.Instance.MainPlayer.CanMove = false;
+            GameManager.Instance.MainPlayer.CanShoot = false;
             
             _shopButtonText.text = "Exit";
             
@@ -29,10 +51,10 @@ namespace ProjectKratos.Shop
 
         private void OnDisable()
         {
-            if (_variables == null) return;
+            if (GameManager.Instance.MainPlayer == null) return;
 
-            _variables.CanMove = true;
-            _variables.CanShoot = true;
+            GameManager.Instance.MainPlayer.CanMove = true;
+            GameManager.Instance.MainPlayer.CanShoot = true;
             
             _shopButtonText.text = "Shop";
             

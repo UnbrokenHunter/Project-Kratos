@@ -6990,7 +6990,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1441199616}
         m_TargetAssemblyTypeName: ProjectKratos.Events.ToggleEnabled, Assembly-CSharp
-        m_MethodName: ToggleGameobject
+        m_MethodName: ToggleGameobjectNoRename
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 113661636}

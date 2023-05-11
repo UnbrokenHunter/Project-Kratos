@@ -106,6 +106,8 @@ namespace ProjectKratos.Shop
         {
             if (_cantBuy) return;
             
+            if (_text == null || _image == null) return;
+            
             _text.text = $"{ItemName}\n{Cost:N0} Coins";
             _image.sprite = Sprite;
         }

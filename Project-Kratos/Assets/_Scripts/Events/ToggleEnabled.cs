@@ -22,5 +22,10 @@ namespace ProjectKratos.Events
 
             _text.text = toggle.activeSelf ? "Exit" : "Shop";
         }
+        
+        public void ToggleGameobjectNoRename(GameObject toggle)
+        {
+            toggle.SetActive(!toggle.activeSelf);
+        }
     }
 }

@@ -19,9 +19,17 @@ namespace ProjectKratos.Shop
         [SerializeField] private protected float _cost;
         [SerializeField] private protected bool _doesIncrementCost = true;
         [SerializeField] private protected float _costIncrementMultiplier = 1.3f;
-             
-        public string ItemName { get => _itemName; set => _itemName = value; }
+        
+        [Space]
+        
+        [SerializeField] private int _maxBuyCount = 0;
+        private int _buyCounter = 0;
+        private bool _cantBuy = false;
+        
+        [Space]
+        
         [SerializeField] private string _itemName;
+        public string ItemName { get => _itemName; set => _itemName = value; }
 
         public Sprite Sprite { get => _sprite; set => _sprite = value; }
         [SerializeField] private Sprite _sprite;
@@ -52,8 +60,18 @@ namespace ProjectKratos.Shop
         public void ResetCost()
         {
             Cost = _cost;
+            _buyCounter = 0;
             
             SetText();
+        }
+        
+        private void MaxLevel()
+        {
+            _cantBuy = true;
+            
+            _text.text = $"{ItemName}\nMAX";
+            
+            MasterAudio.PlaySound(_cantBuySound);
         }
 
         private void TryBuyItem()
@@ -63,7 +81,15 @@ namespace ProjectKratos.Shop
                 MasterAudio.PlaySound(_cantBuySound);
                 return;
             }
-             
+
+            if (_maxBuyCount > 0 && _buyCounter >= _maxBuyCount)
+            {
+                MaxLevel();
+                return;
+            }
+            
+            _buyCounter++;
+            
             // The += is implied
             _variables.MoneyCount = - Cost;
             
@@ -78,13 +104,14 @@ namespace ProjectKratos.Shop
  
         private void SetText()
         {
+            if (_cantBuy) return;
+            
             _text.text = $"{ItemName}\n{Cost} Coins";
             _image.sprite = Sprite;
         }
          
         // Base implementation does nothing
         public abstract void BuyItem(); 
-
-
+        
     }
 }

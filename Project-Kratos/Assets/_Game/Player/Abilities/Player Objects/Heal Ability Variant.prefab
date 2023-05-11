@@ -90,7 +90,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: eaca7ea238d5c5e4ba0a0f0f5535eb2a, type: 3}
   _name: Healing Aura
   _abilitySound: Healing Aura
-  _cooldown: 5
+  _cooldown: 8
   _healRadius: 3
   _auraLifespan: 10
   _effect: {fileID: 0}

@@ -3536,6 +3536,7 @@ MonoBehaviour:
   _brawlScoreToWin: 3
   _brawlScoreIncrement: 3
   _killsSlider: {fileID: 0}
+  _playersLeftText: {fileID: 0}
 --- !u!43 &807092153
 Mesh:
   m_ObjectHideFlags: 0

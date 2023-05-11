@@ -591,11 +591,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 800
   _itemName: Speed Boost
   _sprite: {fileID: 21300000, guid: 909c223a6feeb614fba290ef62488333, type: 3}
   _ability: {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6,
     type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &664114430750782968
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -729,10 +730,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 1500
   _itemName: Storm Nova
   _sprite: {fileID: 21300000, guid: 36e95594287618a488409125e5f8578e, type: 3}
   _ability: {fileID: 821485385, guid: 22f8aec5da66bbb4c929072c48bbe639, type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &3399835691318547975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1180,7 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.53333336, g: 0.32941177, b: 0.8156863, a: 1}
+  m_Color: {r: 0.29411766, g: 0.39607844, b: 0.5176471, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1531,10 +1533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 800
   _itemName: Healing Aura
   _sprite: {fileID: 21300000, guid: eaca7ea238d5c5e4ba0a0f0f5535eb2a, type: 3}
   _ability: {fileID: 1475445742, guid: 206b7ab8f0451914dbd1989056132b78, type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &6876265065308701730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1668,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3b90dae96f90e4b9b74b2cf61294f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 50
+  _cost: 150
   _itemName: Health
   _sprite: {fileID: 21300000, guid: 154e7e310b89e8248a02e6d72e3d6f9b, type: 3}
   _healthAmount: 5
@@ -3483,10 +3486,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 2000
   _itemName: Shadow Bomb
   _sprite: {fileID: 21300000, guid: bf15ef8415443424aa55b15385b59baf, type: 3}
   _ability: {fileID: 1245913467, guid: 4400c9750b4bdb346819467b38bb7d5b, type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &4215843141064793346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3757,10 +3761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 2000
   _itemName: Light Bomb
   _sprite: {fileID: 21300000, guid: 0efc8b8255526cb4e97f6ead398247ea, type: 3}
   _ability: {fileID: 1106819976, guid: 49b6dbb2897c8324d80bcebae19270ca, type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &5790980123370120606
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4433,6 +4438,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 74e3b6e566b90464ab978ee9032a6390, type: 3}
   _ability: {fileID: 5502400380223994978, guid: 6541de4706bc8b442a1bf47e31738713,
     type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &9207334602197721091
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4566,10 +4572,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 1000
   _itemName: Stun
   _sprite: {fileID: 21300000, guid: ef8e2b39b97e34a489fafda6e486d923, type: 3}
   _ability: {fileID: 1231750123, guid: b90a03e259b58074a8aaa843ad5fd3da, type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &5224735427156979391
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4706,7 +4713,7 @@ MonoBehaviour:
   _cost: 100
   _itemName: Regeneration
   _sprite: {fileID: 21300000, guid: bb8789e37c9bc1c4abb1bf4db3015c47, type: 3}
-  _regenAmount: 1
+  _regenAmount: 3
 --- !u!222 &7698045155851207671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5692,6 +5699,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: f1e821a2106f7d349a9a486dc86f1eef, type: 3}
   _ability: {fileID: -4945429512957963323, guid: a2c174494e0a0c34c9c149cec45adbb4,
     type: 3}
+  _shopMenu: {fileID: 3308300305327529970}
 --- !u!222 &6857800359189222724
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5919,7 +5927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3069dbdc2b907c84b8fae030d052db23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 100
+  _cost: 300
   _itemName: Bullet Speed
   _sprite: {fileID: 21300000, guid: 4c9f0091e0f67224d876b39c4a38ebc9, type: 3}
   _bulletSpeedAmount: 0.5
@@ -6778,7 +6786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bac9926ac431743bdde081991c43e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 20
+  _cost: 300
   _itemName: Speed
   _sprite: {fileID: 21300000, guid: 909c223a6feeb614fba290ef62488333, type: 3}
   _speedAmount: 50
@@ -6915,7 +6923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa0dc87d7fc10040b5751ae59f68032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 150
+  _cost: 500
   _itemName: Money per Kill
   _sprite: {fileID: 21300000, guid: 9ec35c1516349db4eb306160e853dc09, type: 3}
   _moneyMultiplierAmount: 10
@@ -7146,10 +7154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7257c127d9f2ea742ba0400e426056da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 100
+  _cost: 300
   _itemName: Damage
   _sprite: {fileID: 21300000, guid: 346ab28088aed114fa35f29bd2bdc4d1, type: 3}
-  _damageAmount: 3
+  _damageAmount: 0.2
 --- !u!222 &6516127828397773798
 CanvasRenderer:
   m_ObjectHideFlags: 0

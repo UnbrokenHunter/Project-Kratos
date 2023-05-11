@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using ProjectKratos.Player;
 using ProjectKratos.Shop;
 using TMPro;
@@ -37,6 +38,7 @@ namespace ProjectKratos
         
         private void OnEnable()
         {
+            Pause();
             Roll();
         }
 
@@ -95,8 +97,20 @@ namespace ProjectKratos
         
         public void DisableRoll()
         {
+            Unpause();
             transform.parent.gameObject.SetActive(false);
         }
+        
+        public void Pause()
+        {
+            MMTimeManager.Instance.SetTimeScaleTo(0f);
+        }
+        
+        public void Unpause()
+        {
+            MMTimeManager.Instance.SetTimeScaleTo(1f);
+        }
+
 
     }
 }

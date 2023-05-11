@@ -293,7 +293,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: ef8e2b39b97e34a489fafda6e486d923, type: 3}
   _name: 'Stun '
   _abilitySound: Stun
-  _cooldown: 2
+  _cooldown: 7
   _stunDistance: 132.9
   _effect: {fileID: -6261750531025218919, guid: 607f43e0f9f6743409101f55c4094b99,
     type: 3}

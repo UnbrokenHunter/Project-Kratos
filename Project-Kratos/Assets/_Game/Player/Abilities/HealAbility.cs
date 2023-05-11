@@ -17,7 +17,7 @@ namespace ProjectKratos
         
         protected override void Ability()
         {
-            var aura = Instantiate(_healingAura, _variables.RigidBody.position, Quaternion.identity);
+            var aura = Instantiate(_healingAura, _variables.RigidBody.position + Vector3.up, Quaternion.identity);
             aura.transform.localScale = Vector3.one * _healRadius;
             Destroy(aura, _auraLifespan);
             

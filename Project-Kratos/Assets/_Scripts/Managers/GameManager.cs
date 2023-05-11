@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour {
         
         if (GameMode != Constants.GameTypes.BattleRoyal) return;
         
-        _playersLeftText.text = $"Players Left: {_players.Count + 1}";
+        _playersLeftText.text = $"Players Left: {_players.Count}";
         
-        if (_players.Count <= 0) {
+        if (_players.Count <= 1) {
             if (_players[0].IsBot) return;
             
             _players[0].EndGame(true);

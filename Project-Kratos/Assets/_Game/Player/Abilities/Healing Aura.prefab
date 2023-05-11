@@ -128,6 +128,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19868588, guid: 40d8995d37b228c419637bcf1dade8bf, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19868588, guid: 40d8995d37b228c419637bcf1dade8bf, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19878368, guid: 40d8995d37b228c419637bcf1dade8bf, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19878368, guid: 40d8995d37b228c419637bcf1dade8bf, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 19938858, guid: 40d8995d37b228c419637bcf1dade8bf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1

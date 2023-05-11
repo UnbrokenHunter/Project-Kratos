@@ -1,4 +1,5 @@
 using System;
+using MoreMountains.Feedbacks;
 using ProjectKratos.Player;
 using ProjectKratos.Tabs;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace ProjectKratos.Shop
             _variables.CanMove = false;
             _variables.CanShoot = false;
             
+            MMTimeManager.Instance.SetTimeScaleTo(0f);
         }
 
         private void OnDisable()
@@ -28,7 +30,8 @@ namespace ProjectKratos.Shop
 
             _variables.CanMove = true;
             _variables.CanShoot = true;
-
+            
+            MMTimeManager.Instance.SetTimeScaleTo(1f);
         }
     }
 }

@@ -271,8 +271,6 @@ namespace ProjectKratos.Player
                 _hasShop = true;
             
             PlayerController = GetComponentInChildren<PlayerController>();
-            
-            
         }
 
         public void Start()
@@ -327,7 +325,6 @@ namespace ProjectKratos.Player
             DeathCount++;
             
             if (IsBot) return;
-            
 
             if (GameManager.Instance.GameMode == Constants.GameTypes.Brawl)
             {

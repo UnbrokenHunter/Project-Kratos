@@ -22,7 +22,5 @@ namespace ProjectKratos.Events
 
             _text.text = toggle.activeSelf ? "Exit" : "Shop";
         }
-
-
     }
 }

@@ -2,6 +2,7 @@ using System;
 using MoreMountains.Feedbacks;
 using ProjectKratos.Player;
 using ProjectKratos.Tabs;
+using TMPro;
 using UnityEngine;
 
 namespace ProjectKratos.Shop
@@ -12,7 +13,7 @@ namespace ProjectKratos.Shop
         private PlayerVariables _variables;
         
         [SerializeField] private TabGroup _tabGroup;
-
+        [SerializeField] private TMP_Text _shopButtonText;
 
         private void OnEnable()
         {
@@ -20,6 +21,8 @@ namespace ProjectKratos.Shop
 
             _variables.CanMove = false;
             _variables.CanShoot = false;
+            
+            _shopButtonText.text = "Exit";
             
             MMTimeManager.Instance.SetTimeScaleTo(0f);
         }
@@ -30,6 +33,8 @@ namespace ProjectKratos.Shop
 
             _variables.CanMove = true;
             _variables.CanShoot = true;
+            
+            _shopButtonText.text = "Shop";
             
             MMTimeManager.Instance.SetTimeScaleTo(1f);
         }

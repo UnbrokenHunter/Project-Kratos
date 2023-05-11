@@ -2848,6 +2848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tabGroup: {fileID: 3308300304501198462}
+  _shopButtonText: {fileID: 3829296945410077333}
 --- !u!1 &3384398171907211568
 GameObject:
   m_ObjectHideFlags: 0

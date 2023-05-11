@@ -42,6 +42,8 @@ namespace ProjectKratos
             _image.sprite = _ability.Icon;
             _text.text = _ability.Name;
             
+            ResetAbilityCooldown();
+            
         }
         
         public void ShowAbilityCooldown(float cooldown)
@@ -49,6 +51,16 @@ namespace ProjectKratos
             StartCoroutine(AbilityCooldown(cooldown));
         }
 
+        private void ResetAbilityCooldown()
+        {
+            // Ensure the fill amount is set to 1 when the cooldown is over
+            _image.fillAmount = 1;
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 1f);
+            
+            _backgroundImage.enabled = false;
+            _cooldownText.enabled = false;
+        }
+        
         private IEnumerator AbilityCooldown(float cooldown)
         {
             _image.type = Image.Type.Filled;
@@ -59,7 +71,7 @@ namespace ProjectKratos
             _cooldownText.enabled = true;
             
             var timer = 0f;
-            WaitForEndOfFrame waitForEndOfFrame = new WaitForEndOfFrame();
+            var waitForEndOfFrame = new WaitForEndOfFrame();
 
             while (timer < cooldown)
             {
@@ -73,12 +85,7 @@ namespace ProjectKratos
                 yield return waitForEndOfFrame;
             }
     
-            // Ensure the fill amount is set to 1 when the cooldown is over
-            _image.fillAmount = 1;
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 1f);
-            
-            _backgroundImage.enabled = false;
-            _cooldownText.enabled = false;
+            ResetAbilityCooldown();
         }
     }
 }

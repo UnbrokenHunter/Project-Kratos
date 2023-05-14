@@ -967,12 +967,12 @@ MonoBehaviour:
   _cost: 100
   _doesIncrementCost: 1
   _costIncrementMultiplier: 1.5
-  _maxBuyCount: 10
+  _maxBuyCount: 5
   _itemName: Ability Cooldown
   _sprite: {fileID: 21300000, guid: 0f0a5df928115114186ac1c72f2ceb3d, type: 3}
   _buySound: Buy
   _cantBuySound: Buy Failed
-  _decreaseAmount: 0.1
+  _decreaseAmount: 0.05
 --- !u!222 &225811271471006326
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class SceneSorterEditor : EditorWindow
     #region GUI
     void OnGUI()
     {
-        //GUIDrawLogo();
+        GUIDrawLogo();
         GUIDrawAndTestButtons();
     }
 

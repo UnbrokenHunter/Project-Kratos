@@ -1,5 +1,7 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+=======
     "com.autodesk.fbx": {
       "version": "4.1.2",
       "depth": 2,
@@ -27,6 +29,7 @@
       },
       "url": "https://packages.unity.com"
     },
+>>>>>>> add-death
     "com.unity.burst": {
       "version": "1.8.2",
       "depth": 1,
@@ -52,6 +55,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+    "com.unity.collections": {
+      "version": "1.2.4",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.6.6",
+        "com.unity.test-framework": "1.1.31"
+=======
     "com.unity.connect.share": {
       "version": "4.2.3",
       "depth": 0,
@@ -59,12 +71,13 @@
       "dependencies": {
         "com.unity.editorcoroutines": "1.0.0",
         "com.unity.settings-manager": "1.0.2"
+>>>>>>> add-death
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -76,6 +89,11 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+    "com.unity.ide.rider": {
+      "version": "3.0.18",
+      "depth": 0,
+=======
     "com.unity.feature.worldbuilding": {
       "version": "1.0.1",
       "depth": 0,
@@ -90,6 +108,7 @@
     "com.unity.film-internal-utilities": {
       "version": "0.18.4-preview",
       "depth": 1,
+>>>>>>> add-death
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0",
@@ -124,7 +143,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.5.1",
+      "version": "1.5.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -139,6 +158,40 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+    "com.unity.multiplayer.samples.coop": {
+      "version": "https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop.git?path=/Packages/com.unity.multiplayer.samples.coop#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.learn.iet-framework": "1.2.1",
+        "com.unity.multiplayer.tools": "1.1.0",
+        "com.unity.netcode.gameobjects": "1.1.0",
+        "com.unity.services.relay": "1.0.3"
+      },
+      "hash": "60c19dc6cafe555c1a38bb56d072c6e19605b9ae"
+    },
+    "com.unity.multiplayer.tools": {
+      "version": "1.1.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.profiling.core": "1.0.0-pre.1",
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.unity.nuget.mono-cecil": "1.10.1",
+        "com.unity.collections": "1.1.0",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.netcode.gameobjects": {
+      "version": "1.2.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.mono-cecil": "1.10.1",
+        "com.unity.transport": "1.3.0"
+=======
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
       "depth": 1,
@@ -152,6 +205,7 @@
       "source": "registry",
       "dependencies": {
         "com.unity.settings-manager": "1.0.3"
+>>>>>>> add-death
       },
       "url": "https://packages.unity.com"
     },
@@ -248,12 +302,30 @@
     },
     "com.unity.services.core": {
       "version": "1.7.1",
+<<<<<<< HEAD
       "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.services.qos": {
+      "version": "1.1.0",
+=======
+>>>>>>> add-death
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+<<<<<<< HEAD
+        "com.unity.transport": "1.3.0"
+=======
+        "com.unity.modules.androidjni": "1.0.0"
+>>>>>>> add-death
       },
       "url": "https://packages.unity.com"
     },
@@ -273,6 +345,8 @@
         "com.unity.searcher": "4.9.1"
       }
     },
+<<<<<<< HEAD
+=======
     "com.unity.terrain-tools": {
       "version": "4.0.3",
       "depth": 1,
@@ -283,8 +357,9 @@
       },
       "url": "https://packages.unity.com"
     },
+>>>>>>> add-death
     "com.unity.test-framework": {
-      "version": "1.1.33",
+      "version": "1.1.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {

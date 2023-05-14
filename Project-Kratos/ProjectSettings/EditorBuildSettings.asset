@@ -6,6 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  m_configObjects: {}
+=======
     path: Assets/Scenes/Auth.unity
     guid: d0a687845e0a81e43aeac787835cffeb
   - enabled: 1
@@ -27,3 +32,4 @@ EditorBuildSettings:
       guid: a0795ed38410aea42910ed4f8a3043a5, type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: 2202b01454cbf8e468348259ad33a342,
       type: 2}
+>>>>>>> add-death

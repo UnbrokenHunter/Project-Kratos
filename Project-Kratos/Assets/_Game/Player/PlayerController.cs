@@ -1,20 +1,32 @@
+<<<<<<< HEAD
+using ProjectKratos.Bullet;
+using Unity.Netcode;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace ProjectKratos.Player
+{
+    public class PlayerController : NetworkBehaviour, IPlayer
+=======
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ProjectKratos.Player
 {
     public class PlayerController : MonoBehaviour
+>>>>>>> add-death
     {
+        [SerializeField] private ScriptableStats _stats;
+
         #region Internal
+        private int _fixedFrame;
         private FrameInput _frameInput;
         private Vector3 _speed;
         private Vector3 _currentExternalVelocity;
         
         // Cached Variables
         private Transform _transform;
-        private PlayerVariables _variables;
         private PlayerShoot _shoot;
-        private PlayerInteractions _interactions;
         private PlayerInput _input;
         private Rigidbody _rb;
         [SerializeField] private GameObject _turretGameObject;
@@ -23,6 +35,7 @@ namespace ProjectKratos.Player
         #endregion
 
         #region External
+        public ScriptableStats PlayerStats => _stats;
 
         private Vector2 Input => _frameInput.Move;
 
@@ -39,17 +52,14 @@ namespace ProjectKratos.Player
             _camera = Camera.main;
             // Cache Variables
             _transform = transform;
-            _variables = GetComponentInParent<PlayerVariables>();
             _rb = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
             _shoot = GetComponent<PlayerShoot>();
-            _interactions = GetComponent<PlayerInteractions>();
 
             _input.Shoot += HandleShooting;
             _input.Ability += HandleAbility;
         }
 
-        #region Input
         protected virtual void Update()
         {
             GatherInput();
@@ -59,22 +69,31 @@ namespace ProjectKratos.Player
         {
             _frameInput = _input.FrameInput;
         }
-        #endregion
 
         protected virtual void FixedUpdate()
         {
+<<<<<<< HEAD
+            if (!IsOwner) return;
+
+            _fixedFrame++;
+            _currentExternalVelocity = Vector2.MoveTowards(_currentExternalVelocity, Vector2.zero, _stats.ExternalVelocityDecay * Time.fixedDeltaTime);
+=======
             if (!_variables.CanMove) return;
             
             _currentExternalVelocity = Vector2.MoveTowards(
                 _currentExternalVelocity, 
                 Vector2.zero, 
                 _variables.ExternalVelocityDecay * Time.fixedDeltaTime);
+>>>>>>> add-death
 
             HandleMovement();
 
             ApplyVelocity();
         }
 
+<<<<<<< HEAD
+
+=======
         protected virtual void HandleAbility()
         {
             if(_variables.Ability == null) return;
@@ -82,15 +101,27 @@ namespace ProjectKratos.Player
             _variables.Ability.TriggerAbility();
         }
         
+>>>>>>> add-death
         /// <summary>
         /// Gets the player input, and sets the _speed variable equal to it
         /// </summary>
         protected virtual void HandleMovement()
         {
+<<<<<<< HEAD
+=======
             Vector3 movement = new (Input.x, 0f, Input.y);
+>>>>>>> add-death
 
             _speed = _variables.Speed * Time.fixedDeltaTime * movement;
 
+<<<<<<< HEAD
+
+            _speed = _stats.Speed * Time.fixedDeltaTime * _movement;
+
+            if(_movement != Vector3.zero)
+                _transform.rotation = Quaternion.Slerp (_transform.rotation, 
+                    Quaternion.LookRotation(_movement), _stats.RotationSpeed);
+=======
             
             // Rotates the base
             if(movement != Vector3.zero)
@@ -119,6 +150,7 @@ namespace ProjectKratos.Player
                 
                 _turretGameObject.transform.localRotation = slerp;
             }
+>>>>>>> add-death
         }
 
         /// <summary>
@@ -128,9 +160,16 @@ namespace ProjectKratos.Player
         /// </summary>
         protected virtual void HandleShooting()
         {
+<<<<<<< HEAD
+            if (!IsOwner) return;
+
+            var rotation = Quaternion.Euler(transform.rotation.eulerAngles);
+            _shoot.ShootBullet(rotation);
+=======
             if (!_variables.CanShoot) return;
 
             _shoot.ShootBullet(_variables.DefaultBullet);
+>>>>>>> add-death
 
         }
 

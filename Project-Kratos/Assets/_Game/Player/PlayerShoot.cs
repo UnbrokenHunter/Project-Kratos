@@ -11,6 +11,31 @@ namespace ProjectKratos.Player
         public Transform FirePoint => firePoint;
         [SerializeField] private float _rotationOffset = 180;
 
+<<<<<<< HEAD
+        private Quaternion _bulletRotation;
+
+        /// <summary>
+        /// In Future, we may want to also pass in the firepoint position, if there are aiming issues
+        /// </summary>
+        /// <param name="rotation"></param>
+        public void ShootBullet(Quaternion rotation)
+        {
+            _bulletRotation = rotation;
+
+            RequestFireServerRpc();
+        }
+
+        [ServerRpc]
+        private void RequestFireServerRpc()
+        {
+            FireClientRpc();
+        }
+
+        [ClientRpc]
+        private void FireClientRpc()
+        {
+            CreateBullet();
+=======
         private void Start()
         {
             _variables = transform.gameObject.GetComponentInParent<PlayerVariables>();
@@ -27,6 +52,7 @@ namespace ProjectKratos.Player
             rotation = Quaternion.Euler(new Vector3(0, barrel.eulerAngles.y + _rotationOffset, 0));
 
             return rotation;
+>>>>>>> add-death
         }
         
         public Vector3 GetBulletDirection()
@@ -34,6 +60,15 @@ namespace ProjectKratos.Player
             // Velocity direction wof the bullet
             var forwardDir = transform.forward;
 
+<<<<<<< HEAD
+        private void CreateBullet()
+        {
+            // The velocity is done in the awake function on the object In the BulletScript
+            GameObject bullet = Instantiate(
+                _bulletPrefab,
+                _firepoint.position,
+                _bulletRotation,
+=======
             if (_variables.IsBot) return forwardDir;
             
             // Calculate forward direction in terms of x and z axes
@@ -55,11 +90,17 @@ namespace ProjectKratos.Player
                 bulletPrefab,
                 firePoint.position,
                 GetBulletRotation(),
+>>>>>>> add-death
                 null);
             
 
+<<<<<<< HEAD
+            bullet.GetComponent<BulletScript>().Direction = transform.forward;
+
+=======
             var bulletScript = bullet.GetComponent<BulletScript>();
             bulletScript.CreateBullet(GetBulletDirection(), _variables.gameObject, _variables.Damage, _variables.ShootingSpeed);
+>>>>>>> add-death
         }
     }
 }

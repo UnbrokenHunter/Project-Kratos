@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+=======
 using DarkTonic.MasterAudio;
 using ProjectKratos.Player;
+>>>>>>> add-death
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,6 +10,16 @@ namespace ProjectKratos.Bullet
 {
     public abstract class BulletScript : MonoBehaviour 
     {
+<<<<<<< HEAD
+        public Vector3 Direction { private get; set; }
+
+        [SerializeField] private ScriptableBullet _bulletType;
+
+        private void Start()
+        {
+            GetComponent<Rigidbody>().AddForce(_bulletType.BulletSpeed * Direction, ForceMode.Impulse);
+        }
+=======
         public ShooterStats ShooterStats { get; private set; }
         
         public float BulletSpeed => _bulletSpeed;
@@ -71,12 +84,7 @@ namespace ProjectKratos.Bullet
         protected abstract void ContactPlayer(PlayerHitInteractions player);
         
     }
+>>>>>>> add-death
 
-    public struct ShooterStats
-    {
-        public Vector3 Direction;
-        public GameObject ShooterGameObject;
-        public float ShooterDamageMultiplier;
-        public float ShooterSpeedMultiplier;
     }
 }

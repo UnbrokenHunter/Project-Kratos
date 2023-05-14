@@ -19,6 +19,8 @@ namespace ProjectKratos
         private protected PlayerVariables _variables;
         private protected PlayerShoot _shoot;
         
+        private float Cooldown => _cooldown * _variables.AbilityCooldownMultiplier;
+        
         private float _timer;
         
         private void Start()
@@ -38,7 +40,7 @@ namespace ProjectKratos
             
             if (_variables.IsBot) return;
             
-            AbilityUI.Instance.ShowAbilityCooldown(_cooldown);
+            AbilityUI.Instance.ShowAbilityCooldown(Cooldown);
             
         }
         
@@ -50,7 +52,7 @@ namespace ProjectKratos
 
             _timer += Time.deltaTime;
 
-            if (!(_timer >= _cooldown)) return;
+            if (!(_timer >= Cooldown)) return;
             
             _canUseAbility = true;
             _timer = 0;

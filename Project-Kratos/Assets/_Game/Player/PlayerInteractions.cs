@@ -51,7 +51,7 @@ namespace ProjectKratos.Player
         }
 
         [Command("heal")]
-        private void AddHealth(float healAmt)
+        public void AddHealth(float healAmt)
         {
             _variables.CurrentHealth += healAmt;
 
@@ -89,6 +89,13 @@ namespace ProjectKratos.Player
                 
                 return;
             } 
+            
+            if (GameManager.Instance.GameMode == Constants.GameTypes.Economy && !_variables.IsBot)
+            {
+                _variables.EndGame(false);
+                return;
+            }
+                
             
             transform.position = GameManager.Instance.PickRandomSpawnPoint().position;
             _variables.SetStats();

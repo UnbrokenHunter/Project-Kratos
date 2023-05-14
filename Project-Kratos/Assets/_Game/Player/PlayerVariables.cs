@@ -47,6 +47,7 @@ namespace ProjectKratos.Player
         [SerializeField] private StatusEffect _statusEffect;
 
         [SerializeField] private GameObject _abilityPopup;
+        [SerializeField] private float _abilityCooldownMultiplier = 1f;
         
         [SerializeField, ReadOnly]
         private Stats _stats;
@@ -138,6 +139,8 @@ namespace ProjectKratos.Player
             get => _statusEffect;
             set => SetNewStatusEffect(value);
         }
+        public float AbilityCooldownMultiplier { get => _abilityCooldownMultiplier; set => _abilityCooldownMultiplier = value; }
+        
         #endregion
 
         #region Sets
@@ -255,6 +258,7 @@ namespace ProjectKratos.Player
             public int ExternalVelocityDecay;
             public GameObject DefaultBullet;
             public PlayerAbility Ability;
+            public float AbilityCooldownMultiplier;
         }
 
         private void Awake()
@@ -322,6 +326,7 @@ namespace ProjectKratos.Player
                 DefaultBullet = _defaultBullet,
                 Ability = _ability,
                 ExternalVelocityDecay = _externalVelocityDecay,
+                AbilityCooldownMultiplier = _abilityCooldownMultiplier,
             };
             
             

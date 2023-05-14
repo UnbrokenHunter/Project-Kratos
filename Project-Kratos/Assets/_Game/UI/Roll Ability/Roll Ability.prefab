@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 2568672502854952}
   - component: {fileID: 2568672502854953}
   - component: {fileID: 2568672502854966}
+  - component: {fileID: 5080731388890872670}
   m_Layer: 0
   m_Name: Ability.2
   m_TagString: Untagged
@@ -280,6 +281,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5080731388890872670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568672502854964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3351cb2aacddc4f9c1f96ef159ae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: 
+  _content: 
 --- !u!1 &2568672923615239
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +307,7 @@ GameObject:
   - component: {fileID: 2568672923615483}
   - component: {fileID: 2568672923615480}
   - component: {fileID: 2568672923615481}
+  - component: {fileID: 6348374959513752043}
   m_Layer: 0
   m_Name: Ability.1
   m_TagString: Untagged
@@ -403,6 +419,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6348374959513752043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568672923615239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3351cb2aacddc4f9c1f96ef159ae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: 
+  _content: 
 --- !u!1 &2568673391431771
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +816,7 @@ GameObject:
   - component: {fileID: 2850471199274157841}
   - component: {fileID: 2850471199274157846}
   - component: {fileID: 2850471199274157847}
+  - component: {fileID: 7532990738093474714}
   m_Layer: 0
   m_Name: Ability
   m_TagString: Untagged
@@ -897,6 +928,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7532990738093474714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850471199274157845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3351cb2aacddc4f9c1f96ef159ae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: 
+  _content: 
 --- !u!1 &2850471199761051996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1237,10 @@ MonoBehaviour:
   - {fileID: 6735274513028319567}
   - {fileID: 5072874625131818852}
   - {fileID: 8074947732402068546}
+  _tooltipTriggers:
+  - {fileID: 7532990738093474714}
+  - {fileID: 6348374959513752043}
+  - {fileID: 5080731388890872670}
 --- !u!1 &2850471201218630052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,45 +1632,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299275, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Bullet Speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299275, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _bulletSpeedAmount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299280, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Permanent Speed
-      objectReference: {fileID: 0}
     - target: {fileID: 907521939560299281, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
         type: 3}
       propertyPath: m_Name
       value: Shop Items Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299284, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299285, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299286, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Regeneration
-      objectReference: {fileID: 0}
-    - target: {fileID: 907521939560299287, guid: cdc3048858d1b6d4bb8dcfd82e78838b,
-        type: 3}
-      propertyPath: _itemName
-      value: Sight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdc3048858d1b6d4bb8dcfd82e78838b, type: 3}

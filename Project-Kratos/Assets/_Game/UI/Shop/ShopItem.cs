@@ -30,7 +30,10 @@ namespace ProjectKratos.Shop
         
         [SerializeField] private string _itemName;
         public string ItemName { get => _itemName; set => _itemName = value; }
-
+        
+        [SerializeField, TextArea] private string _description;
+        public string Description { get => _description; set => _description = value; }
+        
         public Sprite Sprite { get => _sprite; set => _sprite = value; }
         [SerializeField] private Sprite _sprite;
 
@@ -40,6 +43,8 @@ namespace ProjectKratos.Shop
         [SerializeField] private string _cantBuySound = "Buy Failed";
 
         private float Cost;
+        
+        private TooltipTrigger _tooltipTrigger;
 
         private void Start()
         {
@@ -51,6 +56,9 @@ namespace ProjectKratos.Shop
             _image = GetComponentInChildren<Image>();
             
             Cost = _cost;
+
+            _tooltipTrigger = gameObject.AddComponent<TooltipTrigger>();
+            _tooltipTrigger.SetToolTip(ItemName, _description);
             
             SetText();
             GetComponent<Button>().onClick.AddListener(TryBuyItem);

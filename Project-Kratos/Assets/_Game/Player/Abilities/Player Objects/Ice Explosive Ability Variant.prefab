@@ -89,5 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: f1e821a2106f7d349a9a486dc86f1eef, type: 3}
   _name: Ice Bomb
+  _description: Shoots an icicle that explodes on impact, slowing down your target!
   _abilitySound: 
   _cooldown: 3

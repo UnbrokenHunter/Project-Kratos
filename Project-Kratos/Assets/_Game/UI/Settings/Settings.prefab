@@ -6552,6 +6552,7 @@ GameObject:
   - component: {fileID: 1640317089432175983}
   - component: {fileID: 4693396570976905565}
   - component: {fileID: 4022000505635572215}
+  - component: {fileID: 4265274550056734572}
   m_Layer: 5
   m_Name: Graphics
   m_TagString: Untagged
@@ -6719,6 +6720,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &4265274550056734572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217652015955185620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3351cb2aacddc4f9c1f96ef159ae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: 
+  _content: "Recommended: High Quality\r\nFor Slower Computers: Fast\r\nFor Funny:
+    Fastest\r"
 --- !u!1 &8249213350919430682
 GameObject:
   m_ObjectHideFlags: 0

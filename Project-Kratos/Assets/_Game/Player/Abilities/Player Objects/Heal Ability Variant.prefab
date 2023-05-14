@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: eaca7ea238d5c5e4ba0a0f0f5535eb2a, type: 3}
   _name: Healing Aura
+  _description: 'Creates a healing field that dramatically increases your regeneration
+    while inside. Be Careful, though, because it will also heal enemies!  '
   _abilitySound: Healing Aura
   _cooldown: 8
   _healRadius: 3

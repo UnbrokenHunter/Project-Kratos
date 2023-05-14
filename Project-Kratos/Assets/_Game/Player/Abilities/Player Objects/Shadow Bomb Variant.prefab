@@ -89,5 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: bf15ef8415443424aa55b15385b59baf, type: 3}
   _name: Shadow Bomb
+  _description: A bullet of pure evil, it deals unparalleled damage, with a very
+    small blast radius.
   _abilitySound: Shadow Bomb
   _cooldown: 7

@@ -27,6 +27,10 @@ namespace ProjectKratos
         
         [SerializeField] private float _alpha = 0.5f;
         
+        [Space]
+        
+        [SerializeField] private TooltipTrigger _tooltipTrigger;
+        
         public void SetAbility(PlayerAbility ability)
         {
             if (ability == null)
@@ -41,6 +45,8 @@ namespace ProjectKratos
            
             _image.sprite = _ability.Icon;
             _text.text = _ability.Name;
+            
+            _tooltipTrigger.SetToolTip(_ability.Name, _ability.Description);
             
             ResetAbilityCooldown();
             

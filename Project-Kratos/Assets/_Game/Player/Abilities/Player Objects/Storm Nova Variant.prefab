@@ -89,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 36e95594287618a488409125e5f8578e, type: 3}
   _name: Storm Nova
+  _description: "Summons a hurricane that damages everything around you.\r"
   _abilitySound: Storm Nova
   _cooldown: 5
   _layerMask:

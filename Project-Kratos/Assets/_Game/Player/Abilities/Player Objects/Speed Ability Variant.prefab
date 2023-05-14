@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 909c223a6feeb614fba290ef62488333, type: 3}
   _name: Speed Boost
+  _description: "This ability gives the user a temporary speed boost.\r"
   _abilitySound: Speed
   _cooldown: 10
   _speedBonus: 500

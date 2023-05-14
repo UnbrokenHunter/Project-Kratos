@@ -89,5 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 74e3b6e566b90464ab978ee9032a6390, type: 3}
   _name: Bomb
+  _description: 'Shoots and explosive shot that blows up anything in its path  '
   _abilitySound: 
   _cooldown: 2

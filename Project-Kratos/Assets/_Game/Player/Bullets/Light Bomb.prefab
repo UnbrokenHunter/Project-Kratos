@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 30
-  _bulletDamage: 50
+  _bulletDamage: 30
   _shootAudio: Bullet
   _hitAudio: Light Bomb
   _explosionRadius: 17

@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 0c68f51cbc84ce44f91865c55803de63, type: 3}
   _name: Orbital Strike
+  _description: "Summons fire from the sky, dealing heavy damage over time to everything
+    in its path. Be careful, though, because it will also hurt you!\r"
   _abilitySound: Orbital Strike
   _cooldown: 10
   _damageRadius: 4

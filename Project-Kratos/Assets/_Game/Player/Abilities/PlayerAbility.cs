@@ -12,6 +12,9 @@ namespace ProjectKratos
         public string Name => _name;
         [SerializeField] private string _name;
         
+        public string Description => _description;
+        [SerializeField, TextArea] private string _description;
+        
         [SerializeField] private string _abilitySound;
         
         [SerializeField] private protected float _cooldown;

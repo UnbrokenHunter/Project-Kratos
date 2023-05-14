@@ -292,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: ef8e2b39b97e34a489fafda6e486d923, type: 3}
   _name: 'Stun '
+  _description: "Creates a beam of electricity that will stun everything in its path.\r"
   _abilitySound: Stun
   _cooldown: 7
   _stunDistance: 132.9

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4260546283807222994, guid: 671863f28aa83c24691959711f0f5f16,
         type: 3}
       propertyPath: m_Name
-      value: Light Bomb Ability
+      value: Light Bomb Ability Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7506449276095110332, guid: 671863f28aa83c24691959711f0f5f16,
         type: 3}
@@ -89,5 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 0efc8b8255526cb4e97f6ead398247ea, type: 3}
   _name: Light Bomb
+  _description: "Shoots a miniature star, dealing heavy damage across a massive radius\r"
   _abilitySound: 
   _cooldown: 7

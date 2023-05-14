@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a46fbec493d6c45baf5a4fb5b6ff6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 70
+  _bulletSpeed: 80
   _bulletDamage: 101
   _shootAudio: Bullet
   _hitAudio: Shadow Bomb

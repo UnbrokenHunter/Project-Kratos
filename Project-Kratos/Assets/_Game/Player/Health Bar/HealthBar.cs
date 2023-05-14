@@ -1,4 +1,5 @@
 using ProjectKratos.Player;
+using TMPro;
 using UnityEngine;
 
 namespace ProjectKratos.Player
@@ -8,7 +9,10 @@ namespace ProjectKratos.Player
         private PlayerVariables _variables;
         [SerializeField] private SpriteRenderer _healthBarSpriteRender;
         [SerializeField] private float _extraOffset = 0.15f;
-
+        [SerializeField] private TextMeshPro _healthText;
+        
+        [SerializeField] private Quaternion _rotation = Quaternion.Euler(60, 0, 0);
+        
         private float _maxWidth;
 
         public void Start()
@@ -17,7 +21,7 @@ namespace ProjectKratos.Player
             _maxWidth = _healthBarSpriteRender.size.x;
         }
 
-        private void FixedUpdate() => transform.rotation = new Quaternion(60, 0, 0, 0);
+        private void FixedUpdate() => transform.rotation = _rotation;
 
         public void UpdateBar()
         {
@@ -32,6 +36,8 @@ namespace ProjectKratos.Player
         private void UpdateHealthBar(float width)
         {
             _healthBarSpriteRender.size = new Vector2(width, _healthBarSpriteRender.size.y);
+            
+            _healthText.text = $"{_variables.CurrentHealth:N0}/{_variables.MaxHealth:N0}";
         }
     }
 }

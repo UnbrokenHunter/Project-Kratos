@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &907521939560299281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 907521939560299274}
+  - component: {fileID: 907521939560299275}
+  - component: {fileID: 907521939560299284}
+  - component: {fileID: 907521939560299285}
+  - component: {fileID: 907521939560299286}
+  - component: {fileID: 907521939560299287}
+  - component: {fileID: 907521939560299280}
+  m_Layer: 0
+  m_Name: Shop Items Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &907521939560299274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907521939560299275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3069dbdc2b907c84b8fae030d052db23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Bullet Speed
+  _description: Increases the speed at which bullets travel
+  _sprite: {fileID: 21300000, guid: 4c9f0091e0f67224d876b39c4a38ebc9, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _bulletSpeedAmount: 2
+--- !u!114 &907521939560299284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7257c127d9f2ea742ba0400e426056da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Damage
+  _description: Increases the Players damage
+  _sprite: {fileID: 21300000, guid: 346ab28088aed114fa35f29bd2bdc4d1, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _damageAmount: 1
+--- !u!114 &907521939560299285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3b90dae96f90e4b9b74b2cf61294f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Health
+  _description: Increases the Players max health
+  _sprite: {fileID: 21300000, guid: 154e7e310b89e8248a02e6d72e3d6f9b, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _healthAmount: 10
+--- !u!114 &907521939560299286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4967e6f51df2c7f428d9bf1de28ff7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Regeneration
+  _description: Increases the Players passive regeneration
+  _sprite: {fileID: 21300000, guid: bb8789e37c9bc1c4abb1bf4db3015c47, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _regenAmount: 2
+--- !u!114 &907521939560299287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912ade88b4295bd44b1057cc6b8fe49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Sight
+  _description: Allows the player to see further
+  _sprite: {fileID: 21300000, guid: b6cb84f00541e4d45a3ee28345708e4b, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _sightAmount: 5
+--- !u!114 &907521939560299280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907521939560299281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28bac9926ac431743bdde081991c43e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _doesIncrementCost: 1
+  _costIncrementMultiplier: 1.3
+  _maxBuyCount: 0
+  _itemName: Permanent Speed
+  _description: Increases the Players speed until death
+  _sprite: {fileID: 21300000, guid: 7c856c8cfb6b3e74e8147de74cb7c450, type: 3}
+  _buySound: Buy
+  _cantBuySound: Buy Failed
+  _speedAmount: 100

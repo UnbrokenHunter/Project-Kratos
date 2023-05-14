@@ -6,6 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
+=======
+    path: Assets/Scenes/Auth.unity
+    guid: d0a687845e0a81e43aeac787835cffeb
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 1c590ef88b0434e45a0236a04c4333dc
+  - enabled: 1
+    path: Assets/Scenes/Brawl.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Battle Royal.unity
+    guid: 6295582192d9dbe41b1ec90bbf620dc7
+  - enabled: 1
+    path: Assets/Scenes/Economy.unity
+    guid: 633f9390514114346b4bd84cb24bf65e
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 66e7cf6d6245d9d43b75ed6658c0ef84,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: a0795ed38410aea42910ed4f8a3043a5, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 2202b01454cbf8e468348259ad33a342,
+      type: 2}
+>>>>>>> add-death

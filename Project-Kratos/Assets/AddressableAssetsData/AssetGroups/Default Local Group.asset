@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ee5db0f8cc21c714c9a80302ab91ba05
+  m_SerializeEntries:
+  - m_GUID: c4533b3d8bed7d540aa0a78d3383abc7
+    m_Address: Assets/_Game/Player/Bullets/Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29208c410dd6f194cb0964c989602556
+    m_Address: Assets/_Game/Player/Bullets/Ice Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bbed5e57bbbc6eb41aa009af618956c7
+    m_Address: Assets/_Game/Player/Bullets/Shadow Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b15197d9111b37c419730c9e03063a37
+    m_Address: Assets/_Game/Player/Bullets/Light Bomb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0b5879f0b9cdbdc4297283d8fad93bcc, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f7e42ee704036a24e91931846e4b1234, type: 2}
+    - {fileID: 11400000, guid: bb74efcb0f1f27f428f3fffa0732d594, type: 2}

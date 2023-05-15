@@ -1,4 +1,6 @@
+using System;
 using ProjectKratos.Player;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectKratos
@@ -7,7 +9,9 @@ namespace ProjectKratos
     {
         [SerializeField] private float _stunDistance;
         [SerializeField] private StatusEffect _effect;
-        private RaycastHit hit;
+        private RaycastHit[] _hits = new RaycastHit[20];
+        
+        [SerializeField] private LayerMask _layerMask;
         
         [SerializeField] private ParticleSystem[] _particles;
 
@@ -19,19 +23,21 @@ namespace ProjectKratos
             {
                 p.Play();
 
-                // Raycast to find the ob
-                var hits = Physics.RaycastAll(_shoot.FirePoint.position, _shoot.GetBulletDirection(), _stunDistance);
+                // Raycast to find the object to stun
+                var size = Physics.SphereCastNonAlloc(_shoot.FirePoint.position, 
+                    2f, 
+                    _shoot.GetBulletDirection(), //+ p.transform.localRotation.eulerAngles,
+                    _hits,
+                    _stunDistance,
+                    _layerMask);
 
-                // Draw the ray above
-                Debug.DrawRay(_shoot.FirePoint.position, _shoot.GetBulletDirection() * _stunDistance, Color.red, 3f);
-
-                foreach (var h in hits)
+                for (int i = 0; i < size; i++)
                 {
-                    if (h.collider == null) return;
-
-                    var player = h.collider.GetComponentInParent<PlayerVariables>();
-
-                    if (player == null) return;
+                    if (_hits[i].collider == null) continue;
+                    
+                    if (!_hits[i].collider.gameObject.CompareTag("Player")) continue;
+                    
+                    var player = _hits[i].collider.gameObject.GetComponentInParent<PlayerVariables>();
 
                     player.StatusEffect = _effect;
                 }

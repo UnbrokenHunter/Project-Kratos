@@ -298,6 +298,9 @@ MonoBehaviour:
   _stunDistance: 132.9
   _effect: {fileID: -6261750531025218919, guid: 607f43e0f9f6743409101f55c4094b99,
     type: 3}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
   _particles:
   - {fileID: 4407141565219766347}
   - {fileID: 62449048321161407}
@@ -522,15 +525,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420560, guid: c3012d9c43f6729458240b2986aa69e2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 420560, guid: c3012d9c43f6729458240b2986aa69e2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.13052624
+      value: -0.1305262
       objectReference: {fileID: 0}
     - target: {fileID: 420560, guid: c3012d9c43f6729458240b2986aa69e2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 420560, guid: c3012d9c43f6729458240b2986aa69e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

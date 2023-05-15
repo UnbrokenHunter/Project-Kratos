@@ -106,6 +106,8 @@ namespace ProjectKratos.Shop
             
             MasterAudio.PlaySound(_buySound);
             
+            _tooltipTrigger.Hide();
+            
             BuyItem();
             SetText();
         }

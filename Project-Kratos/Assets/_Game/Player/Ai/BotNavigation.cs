@@ -13,8 +13,11 @@ namespace ProjectKratos
 {
     public class BotNavigation : MonoBehaviour 
     {
+        [SerializeField] private bool _debug;
         private void OnDrawGizmos()
         {
+            if (!_debug) return;
+            
             Gizmos.color = Color.blue;
             
             Gizmos.DrawSphere(_destination, 0.5f);

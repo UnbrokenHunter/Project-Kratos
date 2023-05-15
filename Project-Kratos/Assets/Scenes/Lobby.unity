@@ -2515,7 +2515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Tanks!
-  _content: "Tanks (technically Tanks 2) is the predecessor to Tanks 1, the original.
+  _content: "Tanks (technically Tanks 2) is the sequel to Tanks 1, the original.
     Tanks 1 was the first game that I ever made, and it was a massive accomplishment
     for me. It didn't look pretty, and it only worked half of the time, but I had
     made it all by myself, and I was proud of that. As Tanks 1\u2019s one year anniversary
@@ -6837,7 +6837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: Economy
   _content: In this gamemode, you gain money by defeating others. You can then use
-    the mone to buy upgrades to become more powerful!
+    the money to buy upgrades to become more powerful!
 --- !u!1 &1396791989
 GameObject:
   m_ObjectHideFlags: 0

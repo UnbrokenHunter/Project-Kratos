@@ -153,7 +153,7 @@ namespace ProjectKratos.Player
         }
 
         [Button]
-        private void GodMode(bool on)
+        public void GodMode(bool on)
         {
             if (on)
             {

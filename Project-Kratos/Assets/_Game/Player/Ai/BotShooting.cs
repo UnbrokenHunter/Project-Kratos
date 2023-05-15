@@ -42,6 +42,8 @@ namespace ProjectKratos
                 return;
             }
             
+            _agent.speed = _playerVars.Speed / 200;
+            
             var hit = Physics.RaycastNonAlloc(_playerShoot.FirePoint.position, transform.forward, _hits,_sightRange, _layers);
             
             _waitToShoot += Time.deltaTime;

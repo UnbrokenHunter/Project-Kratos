@@ -306,7 +306,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b2638aca88fb324e9e28e07a6a54f2d, type: 2}
+  - {fileID: 2100000, guid: 1be558ebcee0c3548b7c33623a7ddc83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -389,7 +389,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b2638aca88fb324e9e28e07a6a54f2d, type: 2}
+  - {fileID: 2100000, guid: 1be558ebcee0c3548b7c33623a7ddc83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   _shootingSpeed: 2
   _hasShop: 0
   _moneyPerKill: 100
+  _passiveMoneyPerSecond: 1
   _moneyCount: 0
   _externalVelocityDecay: 100
   _defaultSightRange: 60
@@ -522,6 +523,7 @@ MonoBehaviour:
     Damage: 0
     ShootingSpeed: 0
     MoneyPerKill: 0
+    PassiveMoneyPerSecond: 0
     MoneyCount: 0
     ExternalVelocityDecay: 0
     DefaultBullet: {fileID: 0}

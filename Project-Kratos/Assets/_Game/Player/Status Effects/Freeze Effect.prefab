@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 3
   _slowAmount: 400
-  _slowRotationAmount: 0.05
+  _slowRotationAmount: 0
   _particles: {fileID: 1943746420582767831}
 --- !u!1001 &1943746420602014027
 PrefabInstance:

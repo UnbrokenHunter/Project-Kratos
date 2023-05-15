@@ -26,6 +26,10 @@ namespace ProjectKratos.Shop
         private int _buyCounter = 0;
         private bool _cantBuy = false;
         
+        
+        private int _level = 1;
+        [SerializeField] private TMP_Text _levelText;
+        
         [Space]
         
         [SerializeField] private string _itemName;
@@ -70,6 +74,8 @@ namespace ProjectKratos.Shop
             Cost = _cost;
             _buyCounter = 0;
             
+            _level = 1;
+            
             SetText();
         }
         
@@ -104,6 +110,8 @@ namespace ProjectKratos.Shop
             if (_doesIncrementCost)
                 Cost *= _costIncrementMultiplier;
             
+            _level++;
+            
             MasterAudio.PlaySound(_buySound);
             
             _tooltipTrigger.Hide();
@@ -120,6 +128,11 @@ namespace ProjectKratos.Shop
             
             _text.text = $"{ItemName}\n{Cost:N0} Coins";
             _image.sprite = Sprite;
+
+            if (_levelText != null)
+            {
+                _levelText.text = _level == 0 ? "" : $"Level {_level}";
+            }
         }
          
         // Base implementation does nothing

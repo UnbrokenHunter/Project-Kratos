@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2487dafe74c9b874f9f9dcdd76a861be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debug: 0
   _destination: {x: -3, y: 0, z: 0}
   _checkDestinationIntervals: 1
   _tooCloseDistance: 9.45
@@ -166,7 +167,6 @@ MonoBehaviour:
   - {fileID: 1448977330074321493, guid: 63e68e70aee99d94790bf1081dab5ce6, type: 3}
   - {fileID: 1475445742, guid: 206b7ab8f0451914dbd1989056132b78, type: 3}
   - {fileID: 1106819976, guid: 49b6dbb2897c8324d80bcebae19270ca, type: 3}
-  - {fileID: 1245913467, guid: 4400c9750b4bdb346819467b38bb7d5b, type: 3}
   - {fileID: 821485385, guid: 22f8aec5da66bbb4c929072c48bbe639, type: 3}
   _playerShoot: {fileID: 2703241399942974400}
 --- !u!114 &2703241399942974400
@@ -509,6 +509,7 @@ MonoBehaviour:
   _abilitySound: 
   _statusEffect: {fileID: 0}
   _abilityPopup: {fileID: 0}
+  _abilityCooldownMultiplier: 1
   _stats:
     CanMove: 0
     Speed: 0
@@ -525,6 +526,7 @@ MonoBehaviour:
     ExternalVelocityDecay: 0
     DefaultBullet: {fileID: 0}
     Ability: {fileID: 0}
+    AbilityCooldownMultiplier: 0
 --- !u!1 &4355853211590463152
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace ProjectKratos
 {
-    public class MoneyMultiplierItem : ShopItem
+    public class PassiveMoneyItem : ShopItem
     {
-        [SerializeField] private float _moneyMultiplierAmount;
+
+        [SerializeField] private float _multiplierAmount = 1.5f;
         
         public override void BuyItem()
         {
-            _variables.MoneyPerKill *= _moneyMultiplierAmount;
+            _variables.PassiveMoneyPerSecond *= _multiplierAmount;
         }
     }
 }

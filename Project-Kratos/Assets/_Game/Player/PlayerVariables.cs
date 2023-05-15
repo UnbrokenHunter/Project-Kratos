@@ -33,6 +33,7 @@ namespace ProjectKratos.Player
         [Header("Economy")] 
         [SerializeField] private bool _hasShop = false;
         [SerializeField] private float _moneyPerKill = 100f;
+        [SerializeField] private float _passiveMoneyPerSecond = 1f;
         [SerializeField] private float _moneyCount;
         
         [Header("External")]
@@ -104,6 +105,7 @@ namespace ProjectKratos.Player
         /// </summary>
         public float MoneyCount { get => _stats.MoneyCount; set => SetMoney(value); }
         public float MoneyPerKill { get => _stats.MoneyPerKill; set => _stats.MoneyPerKill = value; }
+        public float PassiveMoneyPerSecond { get => _stats.PassiveMoneyPerSecond; set => _stats.PassiveMoneyPerSecond = value; }
         public bool CanMove { get => _stats.CanMove; set => _stats.CanMove = value; }
         public float Speed
         {
@@ -252,6 +254,7 @@ namespace ProjectKratos.Player
 
             [Header("Economy")] 
             public float MoneyPerKill;
+            public float PassiveMoneyPerSecond;
             public float MoneyCount;
             
             [Header("External")]
@@ -278,6 +281,8 @@ namespace ProjectKratos.Player
                 _hasShop = true;
             
             PlayerController = GetComponentInChildren<PlayerController>();
+            
+            InvokeRepeating(nameof(AddPassiveMoney), 0, 1f);
         }
 
         public void Start()
@@ -285,6 +290,11 @@ namespace ProjectKratos.Player
             SetStats();
         }
 
+        private void AddPassiveMoney()
+        {
+            SetMoney(PassiveMoneyPerSecond);
+        }
+        
         private void CheckValues()
         {
 
@@ -322,6 +332,7 @@ namespace ProjectKratos.Player
                 Damage = _damage,
                 ShootingSpeed = _shootingSpeed,
                 MoneyPerKill = _moneyPerKill,
+                PassiveMoneyPerSecond = _passiveMoneyPerSecond,
                 MoneyCount = _moneyCount,
                 DefaultBullet = _defaultBullet,
                 Ability = _ability,

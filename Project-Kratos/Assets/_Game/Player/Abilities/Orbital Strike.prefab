@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f4e1ce94f510e45a6236323086fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 7
+  _damageAmount: 15
   _playerParticles: {fileID: 387594403081754786, guid: d481dc194dbbb2f41bb56ba7aa3c8ee6,
     type: 3}
   _damageInterval: 0.5

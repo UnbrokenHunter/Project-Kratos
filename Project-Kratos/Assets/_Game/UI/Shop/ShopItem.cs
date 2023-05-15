@@ -28,6 +28,7 @@ namespace ProjectKratos.Shop
         
         
         private int _level = 1;
+        [SerializeField] private bool _hasLevelText = true;
         [SerializeField] private TMP_Text _levelText;
         
         [Space]
@@ -131,7 +132,10 @@ namespace ProjectKratos.Shop
 
             if (_levelText != null)
             {
-                _levelText.text = _level == 0 ? "" : $"Level {_level}";
+                if (_hasLevelText)
+                    _levelText.text = _level == 0 ? "" : $"Level {_level}";
+                else
+                    _levelText.gameObject.SetActive(false);
             }
         }
          

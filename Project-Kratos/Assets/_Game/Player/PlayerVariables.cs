@@ -343,8 +343,12 @@ namespace ProjectKratos.Player
             
             MoneyCount = 0;
             DeathCount++;
-            
-            if (IsBot) return;
+
+            if (IsBot)
+            {
+                GetComponentInChildren<BotShooting>().SetRandomStats();
+                return;
+            }
 
             GetComponentInChildren<CameraController>()
                 .Camera.GetCinemachineComponent<CinemachineFramingTransposer>()

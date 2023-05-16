@@ -958,6 +958,7 @@ MonoBehaviour:
   _shootingSpeed: 2
   _hasShop: 0
   _moneyPerKill: 100
+  _passiveMoneyPerSecond: 10
   _moneyCount: 0
   _externalVelocityDecay: 100
   _defaultSightRange: 60
@@ -967,6 +968,7 @@ MonoBehaviour:
   _abilitySound: Collect Ability
   _statusEffect: {fileID: 0}
   _abilityPopup: {fileID: 2651813660461277644}
+  _abilityCooldownMultiplier: 1
   _stats:
     CanMove: 0
     Speed: 0
@@ -979,10 +981,12 @@ MonoBehaviour:
     Damage: 0
     ShootingSpeed: 0
     MoneyPerKill: 0
+    PassiveMoneyPerSecond: 0
     MoneyCount: 0
     ExternalVelocityDecay: 0
     DefaultBullet: {fileID: 0}
     Ability: {fileID: 0}
+    AbilityCooldownMultiplier: 0
 --- !u!1 &6726190944142930072
 GameObject:
   m_ObjectHideFlags: 0

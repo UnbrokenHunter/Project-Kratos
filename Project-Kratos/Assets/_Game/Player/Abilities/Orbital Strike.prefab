@@ -62,7 +62,7 @@ MonoBehaviour:
   _damageAmount: 15
   _playerParticles: {fileID: 387594403081754786, guid: d481dc194dbbb2f41bb56ba7aa3c8ee6,
     type: 3}
-  _damageInterval: 0.5
+  _damageInterval: 0.4
 --- !u!1001 &7390603036603157377
 PrefabInstance:
   m_ObjectHideFlags: 0

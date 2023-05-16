@@ -294,13 +294,13 @@ MonoBehaviour:
   _name: 'Stun '
   _description: "Creates a beam of electricity that will stun everything in its path.\r"
   _abilitySound: Stun
-  _cooldown: 7
+  _cooldown: 4
   _stunDistance: 132.9
   _effect: {fileID: -6261750531025218919, guid: 607f43e0f9f6743409101f55c4094b99,
     type: 3}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 63
   _particles:
   - {fileID: 4407141565219766347}
   - {fileID: 62449048321161407}

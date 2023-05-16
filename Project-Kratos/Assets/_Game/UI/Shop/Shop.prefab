@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1000000
+  _cost: 1e+9
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -1871,7 +1871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 800
+  _cost: 2500
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -2212,7 +2212,7 @@ RectTransform:
   - {fileID: 103241771207864681}
   - {fileID: 7380513384347558600}
   m_Father: {fileID: 3381081045820727164}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2231,7 +2231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1500
+  _cost: 5000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -3723,7 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 800
+  _cost: 2500
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -4006,7 +4006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 3500
+  _cost: 500000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -4843,7 +4843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 5000
+  _cost: 1000000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -6785,7 +6785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 2000
+  _cost: 7500
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -7195,7 +7195,7 @@ RectTransform:
   - {fileID: 9093217208585512242}
   - {fileID: 1890912963672564176}
   m_Father: {fileID: 3381081045820727164}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7214,7 +7214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 2000
+  _cost: 10000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -8183,7 +8183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 100000
+  _cost: 10000000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -8602,7 +8602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 2500
+  _cost: 100000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -8896,7 +8896,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 2f551a035703e3846abfb4a62be2b5d6, type: 3}
   _buySound: Buy
   _cantBuySound: Buy Failed
-  _multiplierAmount: 1.5
+  _multiplierAmount: 1.6
 --- !u!222 &9139428461900339523
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9303,7 +9303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 1000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -9432,7 +9432,7 @@ RectTransform:
   - {fileID: 8977684123272914640}
   - {fileID: 2254027002747090797}
   m_Father: {fileID: 3381081045820727164}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9451,7 +9451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1000
+  _cost: 7500
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -10852,7 +10852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303006973205ab14bbd68222603e44e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 1000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -11837,10 +11837,10 @@ RectTransform:
   - {fileID: 7716069091936230586}
   - {fileID: 367107233799480129}
   - {fileID: 4789973688343914801}
-  - {fileID: 3566355563673078118}
-  - {fileID: 6547212084383511200}
-  - {fileID: 8009239205156768699}
   - {fileID: 6604257598032273847}
+  - {fileID: 6547212084383511200}
+  - {fileID: 3566355563673078118}
+  - {fileID: 8009239205156768699}
   m_Father: {fileID: 3308300303546835754}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12772,7 +12772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 500
   _doesIncrementCost: 1
-  _costIncrementMultiplier: 1.3
+  _costIncrementMultiplier: 2
   _maxBuyCount: 5
   _hasLevelText: 1
   _levelText: {fileID: 665171488011237192}
@@ -12781,6 +12781,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 8c2239ec15fe61e44a83cd1f0ba45bbb, type: 3}
   _buySound: Buy
   _cantBuySound: Buy Failed
+  _shopMenuRef: {fileID: 3308300305327529970}
 --- !u!222 &1252198400589309320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12991,7 +12992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa0dc87d7fc10040b5751ae59f68032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 500
+  _cost: 300
   _doesIncrementCost: 1
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -13003,7 +13004,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 9ec35c1516349db4eb306160e853dc09, type: 3}
   _buySound: Buy
   _cantBuySound: Buy Failed
-  _moneyMultiplierAmount: 1.3
+  _moneyMultiplierAmount: 1.2
 --- !u!222 &6738171740167112948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13232,7 +13233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ad750b1982b3344809b39ca18c3753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1000
+  _cost: 10000
   _doesIncrementCost: 0
   _costIncrementMultiplier: 1.3
   _maxBuyCount: 0
@@ -13390,7 +13391,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 346ab28088aed114fa35f29bd2bdc4d1, type: 3}
   _buySound: Buy
   _cantBuySound: Buy Failed
-  _damageAmount: 0.2
+  _damageAmount: 0.1
 --- !u!222 &6516127828397773798
 CanvasRenderer:
   m_ObjectHideFlags: 0

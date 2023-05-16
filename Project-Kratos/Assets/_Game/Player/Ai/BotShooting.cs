@@ -35,11 +35,13 @@ namespace ProjectKratos
         public void SetRandomStats()
         {
             _playerVars.Speed += Random.Range(-100f, 300f);
-            _playerVars.Damage += Random.Range(-1f, 2f);
+            _playerVars.Damage += Random.Range(-0.5f, 1f);
             _playerVars.MaxHealth += Random.Range(-10f, 30f);
             _playerVars.Defense += Random.Range(-0.3f, 1f);
             _playerVars.ShootingSpeed += Random.Range(-0.5f, 1f);
             _playerVars.HealthRegen += Random.Range(-0.5f, 1f);
+            
+            _playerVars.PlayerInteractions.AddHealth(_playerVars.MaxHealth);
             
             _playerVars.SetNewAbility(_botAbilities[Random.Range(0, _botAbilities.Length)]);
         }

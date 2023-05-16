@@ -340,7 +340,6 @@ namespace ProjectKratos.Player
                 AbilityCooldownMultiplier = _abilityCooldownMultiplier,
             };
             
-            
             MoneyCount = 0;
             DeathCount++;
 
